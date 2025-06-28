@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
+import PageWrapper from './components/animation/PageWrapper';
 import HomePage from './pages/HomePage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 
@@ -16,12 +17,12 @@ const App: React.FC = () => {
         <BrowserRouter>
             <Suspense fallback={<div className="loading">Loading portfolio...</div>}>
                 <Routes>
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/about-me" element={<AboutMePage />} />
-                    <Route path="/projects" element={<ProjectsPage />} />
-                    <Route path="/honors-and-awards" element={<HonorsAndAwardsPage />} />
-                    <Route path="/contact-me" element={<ContactMePage />} />
-                    <Route path="*" element={<NotFoundPage />} />
+                    <Route path="/" element={<PageWrapper><HomePage /></PageWrapper>} />
+                    <Route path="/about-me" element={<PageWrapper><AboutMePage /></PageWrapper>} />
+                    <Route path="/projects" element={<PageWrapper><ProjectsPage /></PageWrapper>} />
+                    <Route path="/honors-and-awards" element={<PageWrapper><HonorsAndAwardsPage /></PageWrapper>} />
+                    <Route path="/contact-me" element={<PageWrapper><ContactMePage /></PageWrapper>} />
+                    <Route path="*" element={<PageWrapper><NotFoundPage /></PageWrapper>} />
                 </Routes>
             </Suspense>
         </BrowserRouter>
