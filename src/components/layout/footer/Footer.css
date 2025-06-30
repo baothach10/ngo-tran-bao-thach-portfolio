@@ -1,0 +1,13 @@
+.site-footer {
+  background: #0f0f0f;
+  color: white;
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: auto;
+}
+
+.footer-content span {
+  color: #66fcf1;
+  font-weight: bold;
+}

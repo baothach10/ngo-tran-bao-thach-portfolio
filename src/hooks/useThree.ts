@@ -58,6 +58,9 @@ export function useThree({
   const { animationMixers } = useAssets();
   const [isMounted, setIsMounted] = useState(false);
 
+  const animationMixersRef = useRef<{ [key: string]: THREE.AnimationMixer }>({});
+  animationMixersRef.current = animationMixers;
+
   const [cssRenderer, setCSSRenderer] = useState<CSS2DRenderer | undefined>();
   const [cssScene, setCSSScene] = useState<THREE.Scene | undefined>();
   const orbitControls = useRef<OrbitControls | undefined>(undefined);
@@ -66,8 +69,8 @@ export function useThree({
   const ambientLightRef = useRef<THREE.AmbientLight | undefined>(undefined);
 
   const updateAnimationMixers = (delta: number) => {
-    if (!animationMixers) return;
-    Object.values(animationMixers).forEach(mixer => {
+    if (!animationMixers || Object.keys(animationMixersRef.current).length < 1) return;
+    Object.values(animationMixersRef.current).forEach(mixer => {
       mixer.update(delta);
     });
   };
@@ -136,6 +139,8 @@ export function useThree({
       const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
       directionalLight.position.set(1, 1, 1);
       directionalLight.castShadow = true;
+      directionalLight.shadow.mapSize.width = 1024; // default
+      directionalLight.shadow.mapSize.height = 1024; // default
       webglScene.add(directionalLight);
       directionalLightRef.current = directionalLight;
     }

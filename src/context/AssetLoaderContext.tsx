@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { AnimationAction, AnimationMixer, DataTexture, EquirectangularReflectionMapping, LoadingManager, Texture, TextureLoader } from 'three';
+import { AnimationAction, AnimationMixer, Color, DataTexture, EquirectangularReflectionMapping, LoadingManager, Mesh, MeshStandardMaterial, MeshToonMaterial, SkinnedMesh, Texture, TextureLoader } from 'three';
 import { DRACOLoader, EXRLoader, RGBELoader } from 'three/examples/jsm/Addons';
 import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
@@ -24,7 +24,7 @@ export function AssetLoaderProvider({ children }: { children: ReactNode }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [progress, setProgress] = useState(0);
   const [textures, setTextures] = useState<{ [key: string]: Texture }>({});
-  const [envBackground, ] = useState<Texture>();
+  const [envBackground,] = useState<Texture>();
   const [models, setModels] = useState<{ [key: string]: GLTF }>({});
   // const [specs, setSpecs] = useState<{ [key: string]: TSpecification }>({});
   const [animationActions, setAnimationActions] = useState<{
@@ -171,10 +171,24 @@ export function AssetLoaderProvider({ children }: { children: ReactNode }) {
           for (const [modelName, model] of Object.entries(parsedModels)) {
             if (model) {
               const mixer = new AnimationMixer(model.scene);
+              model.scene.traverse((child) => {
+                if (child instanceof Mesh || child instanceof SkinnedMesh) {
+                  const mesh = child;
+
+                  // Copy texture map or base color if needed
+                  const oldMat = mesh.material as MeshStandardMaterial;
+
+                  mesh.material = new MeshToonMaterial({
+                    color: oldMat.color || new Color(0xffffff),
+                    map: oldMat.map || null,
+                  });
+                }
+              });
               model.animations.forEach((clip) => {
                 const action = mixer.clipAction(clip);
-                animationActionsObj[modelName] = action;
-                animationMixersObj[modelName] = mixer;
+                animationActionsObj[`${modelName}-${clip.name}`] = action;
+                animationMixersObj[`${modelName}-${clip.name}`] = mixer;
+
               });
             }
           }
@@ -190,6 +204,7 @@ export function AssetLoaderProvider({ children }: { children: ReactNode }) {
 
         worker.postMessage({
           models: [
+            { name: 'manInVest', url: '/assets/models/manInVest.glb' },
             // { name: 'lamborghiniRevuelto', url: '/assets/models/lamborghiniRevuelto.glb' },
             // { name: 'bugattiTourbillon', url: '/assets/models/bugattiTourbillon.glb' },
             // { name: 'lamborghiniCentenario', url: '/assets/models/lamborghiniCentenario.glb' },
