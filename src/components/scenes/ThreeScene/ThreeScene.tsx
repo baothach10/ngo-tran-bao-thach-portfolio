@@ -1,16 +1,17 @@
 import React, { useEffect } from "react";
-import { BoxGeometry, MeshStandardMaterial, Mesh, DirectionalLightHelper } from "three";
 
 import { useAssets } from "@/context/AssetLoaderContext";
 import { useThree } from "@/hooks/useThree";
-import { getModelCenter, getTopPosition, playAnimationOnce } from "@/utils";
+import { getTopPosition, playAnimationOnce } from "@/utils";
+import './ThreeScene.css';
 
 const ThreeScene = () => {
     const {
         mountRef,
         webglScene,
         camera,
-        directionalLight,
+        orbitControls,
+        enableModelLookAtMouse,
         ambientLight,
         webglRenderer,
         isMounted
@@ -29,34 +30,46 @@ const ThreeScene = () => {
         )
             return;
 
-
         if (ambientLight) {
-            ambientLight.intensity = 2.5;
+            ambientLight.intensity = 1.5;
         }
 
-        const modelCenter = getModelCenter(models['manInVest'].scene);
+        models['manInVest'].scene.position.set(-0.5, 0, 2.5);
+
+        if (models['room']) {
+            models['room'].scene.position.set(-0.5, 1.45, -4);
+            models['room'].scene.rotation.y = - Math.PI / 2;
+            webglScene.add(models['room'].scene);
+        }
 
         const topPosition = getTopPosition(models['manInVest'].scene);
 
-        // Create a cube at the top position of the model
-        const cubeGeometry = new BoxGeometry(0.2, 0.2, 0.2);
-        const cubeMaterial = new MeshStandardMaterial({ color: 0xff0000 });
-        const cube = new Mesh(cubeGeometry, cubeMaterial);
-        cube.position.copy(topPosition);
+        enableModelLookAtMouse(models['manInVest'].scene.getObjectByName('mixamorigHead')!);
 
-        webglScene.add(cube);
+        if (orbitControls) {
+            // Allow 15 degree vertical look up and 10 down
+            orbitControls.minPolarAngle = Math.PI / 2 - (15 * Math.PI / 180); // 85 deg
+            orbitControls.maxPolarAngle = Math.PI / 2 + (-10 * Math.PI / 180); // 75 deg
 
-        if (directionalLight) {
-            directionalLight.intensity = 1.5;
-            directionalLight.position.set(0, 2, 3);
-            directionalLight.target.position.copy(cube.position);
-            webglScene.add(directionalLight.target);
+            // Allow 30 degree horizontal look (left/right)
+            orbitControls.minAzimuthAngle = -20 * Math.PI / 180; // -30 deg
+            orbitControls.maxAzimuthAngle = 20 * Math.PI / 180;  // 30 deg
 
-            const lightHelper = new DirectionalLightHelper(directionalLight, 1, 0x00ff00);
-            webglScene.add(lightHelper);
+            // Disable zooming
+            orbitControls.enableZoom = false;
         }
-        camera.position.set(0, 1, 5);
-        camera.lookAt(modelCenter.clone());
+
+        // if (directionalLight) {
+        //     directionalLight.intensity = 1.5;
+        //     directionalLight.position.set(0, 2, 3);
+        //     directionalLight.target.position.copy(topPosition);
+        //     webglScene.add(directionalLight.target);
+
+        //     const lightHelper = new DirectionalLightHelper(directionalLight, 1, 0x00ff00);
+        //     webglScene.add(lightHelper);
+        // }
+        camera.position.set(0, 1.5, 6.5);
+        camera.lookAt(topPosition.clone());
 
         webglScene.add(models['manInVest'].scene)
 
@@ -66,10 +79,12 @@ const ThreeScene = () => {
 
 
     return (
-        <div
-            ref={mountRef}
-        >
-            {/* 3D scene will be rendered here */}
+        <div className="three-scene-container">
+            <div
+                ref={mountRef}
+            >
+                {/* 3D scene will be rendered here */}
+            </div>
         </div>
     );
 };

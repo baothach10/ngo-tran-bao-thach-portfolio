@@ -1,6 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
 import Stats from 'stats.js';
-import * as THREE from 'three';
+import {
+  Vector3,
+  Clock,
+  AmbientLight,
+  AnimationMixer,
+  DirectionalLight,
+  PCFSoftShadowMap,
+  PerspectiveCamera,
+  Scene,
+  WebGLRenderer,
+  Object3D
+} from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { PointerLockControls } from 'three/examples/jsm/controls/PointerLockControls';
 import { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer';
@@ -38,16 +49,17 @@ export function useThree({
 }: TThreeSceneProps) {
   const mountRef = useRef<HTMLDivElement>(null);
   const [state, setState] = useState<{
-    webglScene: THREE.Scene;
-    camera: THREE.PerspectiveCamera;
-    directionalLight?: THREE.DirectionalLight;
-    ambientLight?: THREE.AmbientLight;
-    webglRenderer: THREE.WebGLRenderer;
+    webglScene: Scene;
+    camera: PerspectiveCamera;
+    enableModelLookAtMouse: (modelObjectToLookAtMouse: Object3D) => void;
+    directionalLight?: DirectionalLight;
+    ambientLight?: AmbientLight;
+    webglRenderer: WebGLRenderer;
     cssRenderer?: CSS2DRenderer;
-    cssScene?: THREE.Scene;
+    cssScene?: Scene;
     pointerLockControls?: PointerLockControls;
     orbitControls?: OrbitControls; // Placeholder for potential future use
-    initialCameraPosition: THREE.Vector3;
+    initialCameraPosition: Vector3;
     isMounted: boolean;
   } | null>(null);
   let now: number = 0;
@@ -58,15 +70,15 @@ export function useThree({
   const { animationMixers } = useAssets();
   const [isMounted, setIsMounted] = useState(false);
 
-  const animationMixersRef = useRef<{ [key: string]: THREE.AnimationMixer }>({});
+  const animationMixersRef = useRef<{ [key: string]: AnimationMixer }>({});
   animationMixersRef.current = animationMixers;
 
   const [cssRenderer, setCSSRenderer] = useState<CSS2DRenderer | undefined>();
-  const [cssScene, setCSSScene] = useState<THREE.Scene | undefined>();
+  const [cssScene, setCSSScene] = useState<Scene | undefined>();
   const orbitControls = useRef<OrbitControls | undefined>(undefined);
   const pointerLockControls = useRef<PointerLockControls | undefined>(undefined);
-  const directionalLightRef = useRef<THREE.DirectionalLight | undefined>(undefined);
-  const ambientLightRef = useRef<THREE.AmbientLight | undefined>(undefined);
+  const directionalLightRef = useRef<DirectionalLight | undefined>(undefined);
+  const ambientLightRef = useRef<AmbientLight | undefined>(undefined);
 
   const updateAnimationMixers = (delta: number) => {
     if (!animationMixers || Object.keys(animationMixersRef.current).length < 1) return;
@@ -74,16 +86,21 @@ export function useThree({
       mixer.update(delta);
     });
   };
+  const modelToLookAtMouseRef = useRef<Object3D | undefined>(undefined);
 
   // const [initialCameraPosition, setInitialCameraPosition] = useState<Vector3 | undefined>();
 
-  // const updateCSSObjects = (cssScene: THREE.Scene, camera: THREE.PerspectiveCamera) => {
+  // const updateCSSObjects = (cssScene: Scene, camera: PerspectiveCamera) => {
   //   cssScene.traverse((child) => {
   //     if (child instanceof CSS3DObject) {
   //       // child.quaternion.copy(camera.quaternion);
   //     }
   //   });
   // }
+
+  function enableModelLookAtMouse(modelObjectToLookAtMouse: Object3D) {
+    modelToLookAtMouseRef.current = modelObjectToLookAtMouse;
+  }
 
   useEffect(() => {
     if (!state || !hasPointerLockControls || !state.pointerLockControls) return;
@@ -94,19 +111,19 @@ export function useThree({
     if (!mountRef.current) return;
 
     // Scene Setup
-    const webglScene = new THREE.Scene();
-    if (hasSeparateCSSRenderer) setCSSScene(new THREE.Scene());
-    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 50);
+    const webglScene = new Scene();
+    if (hasSeparateCSSRenderer) setCSSScene(new Scene());
+    const camera = new PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 50);
     camera.position.set(0, 1.5, 0);
 
-    const webglRenderer = new THREE.WebGLRenderer({
+    const webglRenderer = new WebGLRenderer({
       alpha: true,
       antialias: true,
       powerPreference: 'high-performance'
     });
     webglRenderer.setPixelRatio(window.devicePixelRatio);
     webglRenderer.shadowMap.enabled = true;
-    webglRenderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    webglRenderer.shadowMap.type = PCFSoftShadowMap;
     webglRenderer.setSize(window.innerWidth, window.innerHeight);
     const webglDiv = document.createElement('div');
     webglDiv.id = 'webgl';
@@ -131,12 +148,12 @@ export function useThree({
 
     // Light
     if (hasAmbientLight) {
-      const ambientLight = new THREE.AmbientLight(0xffffff, 1);
+      const ambientLight = new AmbientLight(0xffffff, 1);
       webglScene.add(ambientLight);
       ambientLightRef.current = ambientLight;
     }
     if (hasDirectionalLight) {
-      const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+      const directionalLight = new DirectionalLight(0xffffff, 1);
       directionalLight.position.set(1, 1, 1);
       directionalLight.castShadow = true;
       directionalLight.shadow.mapSize.width = 1024; // default
@@ -173,10 +190,22 @@ export function useThree({
         cssRenderer.setSize(window.innerWidth, window.innerHeight);
     });
 
+    const handleMouseMove = (event: MouseEvent) => {
+      const { clientX, clientY } = event;
+      const rect = webglRenderer.domElement.getBoundingClientRect();
+      const x = ((clientX - rect.left) / rect.width) * 2 - 1; // Normalize to -1 to 1
+      const y = (-(clientY - rect.top) / rect.height) * 2 + 1; // Normalize to -1 to 1
+      const vector = new Vector3(x, y, 0.75); // z = 0.75 for the near plane
+      vector.unproject(camera);
+      (handleMouseMove as any).latestVector = vector; // Custom property to identify this function
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+
     setIsMounted(true);
 
     // Animation Loop
-    const clock = new THREE.Clock();
+    const clock = new Clock();
     const animate = () => {
       now = Date.now();
       elapsed = now - then;
@@ -189,6 +218,11 @@ export function useThree({
         // updateCSSObjects(cssScene, camera);
 
         // webglScene.updateMatrixWorld(true);
+
+        const latestVector = (handleMouseMove as any).latestVector;
+        if (latestVector) {
+          modelToLookAtMouseRef.current?.lookAt(latestVector as Vector3);
+        }
 
         if (hasOrbitControls && orbitControls.current) {
           orbitControls.current.update();
@@ -206,6 +240,7 @@ export function useThree({
       webglScene,
       camera,
       directionalLight: directionalLightRef.current,
+      enableModelLookAtMouse,
       ambientLight: ambientLightRef.current,
       webglRenderer,
       cssRenderer,
@@ -217,6 +252,7 @@ export function useThree({
     });
     // Cleanup
     return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
       mountRef.current?.removeChild(webglRenderer.domElement);
       if (hasSeparateCSSRenderer && cssRenderer) {
         mountRef.current?.removeChild(cssRenderer.domElement);
@@ -226,5 +262,5 @@ export function useThree({
     };
   }, []);
 
-  return { ...state, mountRef, isFreelyViewing, setIsFreelyViewing };
+  return { ...state, mountRef, isFreelyViewing, setIsFreelyViewing, enableModelLookAtMouse };
 }

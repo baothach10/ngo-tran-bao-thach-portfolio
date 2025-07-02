@@ -171,19 +171,21 @@ export function AssetLoaderProvider({ children }: { children: ReactNode }) {
           for (const [modelName, model] of Object.entries(parsedModels)) {
             if (model) {
               const mixer = new AnimationMixer(model.scene);
-              model.scene.traverse((child) => {
-                if (child instanceof Mesh || child instanceof SkinnedMesh) {
-                  const mesh = child;
+              if (modelName === 'manInVest') {
+                model.scene.traverse((child) => {
+                  if (child instanceof Mesh || child instanceof SkinnedMesh) {
+                    const mesh = child;
 
-                  // Copy texture map or base color if needed
-                  const oldMat = mesh.material as MeshStandardMaterial;
+                    // Copy texture map or base color if needed
+                    const oldMat = mesh.material as MeshStandardMaterial;
 
-                  mesh.material = new MeshToonMaterial({
-                    color: oldMat.color || new Color(0xffffff),
-                    map: oldMat.map || null,
-                  });
-                }
-              });
+                    mesh.material = new MeshToonMaterial({
+                      color: oldMat.color || new Color(0xffffff),
+                      map: oldMat.map || null,
+                    });
+                  }
+                });
+              }
               model.animations.forEach((clip) => {
                 const action = mixer.clipAction(clip);
                 animationActionsObj[`${modelName}-${clip.name}`] = action;
@@ -205,12 +207,7 @@ export function AssetLoaderProvider({ children }: { children: ReactNode }) {
         worker.postMessage({
           models: [
             { name: 'manInVest', url: '/assets/models/manInVest.glb' },
-            // { name: 'lamborghiniRevuelto', url: '/assets/models/lamborghiniRevuelto.glb' },
-            // { name: 'bugattiTourbillon', url: '/assets/models/bugattiTourbillon.glb' },
-            // { name: 'lamborghiniCentenario', url: '/assets/models/lamborghiniCentenario.glb' },
-            // { name: 'koenigseggOnePro', url: '/assets/models/koenigseggOnePro.glb' },
-            // { name: 'mercedesG63Amg', url: '/assets/models/mercedesG63Amg.glb' },
-            // { name: 'warehouse', url: '/assets/models/warehouse.glb' },
+            { name: 'room', url: '/assets/models/room.glb' },
           ],
           hdri: [
             // { name: 'warehouseHDRI', url: '/assets/images/warehouse.hdr' },
