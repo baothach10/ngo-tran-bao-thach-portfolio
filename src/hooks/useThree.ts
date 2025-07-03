@@ -52,6 +52,7 @@ export function useThree({
     webglScene: Scene;
     camera: PerspectiveCamera;
     enableModelLookAtMouse: (modelObjectToLookAtMouse: Object3D) => void;
+    disableModelLookAtMouse: () => void;
     directionalLight?: DirectionalLight;
     ambientLight?: AmbientLight;
     webglRenderer: WebGLRenderer;
@@ -100,6 +101,10 @@ export function useThree({
 
   function enableModelLookAtMouse(modelObjectToLookAtMouse: Object3D) {
     modelToLookAtMouseRef.current = modelObjectToLookAtMouse;
+  }
+
+  function disableModelLookAtMouse() {
+    modelToLookAtMouseRef.current = undefined;
   }
 
   useEffect(() => {
@@ -241,6 +246,7 @@ export function useThree({
       camera,
       directionalLight: directionalLightRef.current,
       enableModelLookAtMouse,
+      disableModelLookAtMouse,
       ambientLight: ambientLightRef.current,
       webglRenderer,
       cssRenderer,
@@ -262,5 +268,12 @@ export function useThree({
     };
   }, []);
 
-  return { ...state, mountRef, isFreelyViewing, setIsFreelyViewing, enableModelLookAtMouse };
+  return {
+    ...state,
+    mountRef,
+    isFreelyViewing,
+    setIsFreelyViewing,
+    enableModelLookAtMouse,
+    disableModelLookAtMouse
+  };
 }
