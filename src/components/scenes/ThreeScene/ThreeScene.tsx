@@ -15,9 +15,9 @@ const ThreeScene = () => {
         ambientLight,
         webglRenderer,
         isMounted
-    } = useThree({ hasOrbitControls: true, hasAmbientLight: true, hasDirectionalLight: true });
+    } = useThree({ hasOrbitControls: true});
 
-    const { models, isLoaded, animationActions } = useAssets()
+    const { models, isLoaded, animationActions, textures } = useAssets()
 
     useEffect(() => {
         if (
@@ -59,15 +59,11 @@ const ThreeScene = () => {
             orbitControls.enableZoom = false;
         }
 
-        // if (directionalLight) {
-        //     directionalLight.intensity = 1.5;
-        //     directionalLight.position.set(0, 2, 3);
-        //     directionalLight.target.position.copy(topPosition);
-        //     webglScene.add(directionalLight.target);
-
-        //     const lightHelper = new DirectionalLightHelper(directionalLight, 1, 0x00ff00);
-        //     webglScene.add(lightHelper);
-        // }
+        if (textures['roomHDRI']) {
+            webglScene.background = textures['roomHDRI'];
+            webglScene.environment = textures['roomHDRI'];
+            // textures['roomHDRI'].mapping = EquirectangularReflectionMapping;
+        }
         camera.position.set(0, 1.5, 6.5);
         camera.lookAt(topPosition.clone());
 

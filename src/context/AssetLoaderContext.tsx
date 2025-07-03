@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { AnimationAction, AnimationMixer, Color, DataTexture, EquirectangularReflectionMapping, LoadingManager, Mesh, MeshStandardMaterial, MeshToonMaterial, SkinnedMesh, Texture, TextureLoader } from 'three';
+import { AnimationAction, AnimationMixer, DataTexture, EquirectangularReflectionMapping, LoadingManager, Texture, TextureLoader } from 'three';
 import { DRACOLoader, EXRLoader, RGBELoader } from 'three/examples/jsm/Addons';
 import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
@@ -171,21 +171,22 @@ export function AssetLoaderProvider({ children }: { children: ReactNode }) {
           for (const [modelName, model] of Object.entries(parsedModels)) {
             if (model) {
               const mixer = new AnimationMixer(model.scene);
-              if (modelName === 'manInVest') {
-                model.scene.traverse((child) => {
-                  if (child instanceof Mesh || child instanceof SkinnedMesh) {
-                    const mesh = child;
+              // Convert materials to MeshToonMaterial if needed
+              // if (modelName === 'manInVest') {
+              //   model.scene.traverse((child) => {
+              //     if (child instanceof Mesh || child instanceof SkinnedMesh) {
+              //       const mesh = child;
 
-                    // Copy texture map or base color if needed
-                    const oldMat = mesh.material as MeshStandardMaterial;
+              //       // Copy texture map or base color if needed
+              //       const oldMat = mesh.material as MeshStandardMaterial;
 
-                    mesh.material = new MeshToonMaterial({
-                      color: oldMat.color || new Color(0xffffff),
-                      map: oldMat.map || null,
-                    });
-                  }
-                });
-              }
+              //       mesh.material = new MeshToonMaterial({
+              //         color: oldMat.color || new Color(0xffffff),
+              //         map: oldMat.map || null,
+              //       });
+              //     }
+              //   });
+              // }
               model.animations.forEach((clip) => {
                 const action = mixer.clipAction(clip);
                 animationActionsObj[`${modelName}-${clip.name}`] = action;
@@ -210,6 +211,7 @@ export function AssetLoaderProvider({ children }: { children: ReactNode }) {
             { name: 'room', url: '/assets/models/room.glb' },
           ],
           hdri: [
+            { name: 'roomHDRI', url: '/assets/images/room.hdr' },
             // { name: 'warehouseHDRI', url: '/assets/images/warehouse.hdr' },
           ],
           environment: [
