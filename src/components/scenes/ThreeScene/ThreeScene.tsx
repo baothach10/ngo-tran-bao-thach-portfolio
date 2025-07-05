@@ -23,6 +23,7 @@ const ThreeScene = () => {
 
     const { models, isLoaded, animationActions, textures } = useAssets()
     const currentAnimationActionsRef = useRef<AnimationAction | undefined>(undefined);
+    const currentRandomAnimationIsRunningRef = useRef<boolean>(false);
     // eslint-disable-next-line @typescript-eslint/naming-convention
     const [allowInteraction, setAllowInteraction] = useState<boolean>(false);
 
@@ -111,7 +112,8 @@ const ThreeScene = () => {
 
     function playRandomAnimation(animationActions: { [key: string]: AnimationAction }) {
         const animations = Object.values(animationActions);
-        if (animations.length === 0) return;
+        if (animations.length === 0 || currentRandomAnimationIsRunningRef.current) return;
+        currentRandomAnimationIsRunningRef.current = true;
 
         // Stop any currently playing animation
         if (currentAnimationActionsRef.current) {
@@ -156,6 +158,7 @@ const ThreeScene = () => {
             onComplete: () => {
                 currentAnimationActionsRef.current = randomAnimation;
                 playIdleAnimation(animationActions);
+                currentRandomAnimationIsRunningRef.current = false;
             }
         });
     }
