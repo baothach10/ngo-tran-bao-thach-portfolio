@@ -1,6 +1,8 @@
 // src/components/Header.tsx
 import { Link, useLocation } from 'react-router-dom';
+
 import './Header.css';
+import WebLogo from '@/components/logo/WebLogo';
 
 export default function Header() {
     const location = useLocation();
@@ -9,7 +11,7 @@ export default function Header() {
         <header className="site-header">
             <nav className="nav">
                 <div className="logo">
-                    <Link to="/">MyPortfolio</Link>
+                    <Link to="/"><WebLogo fillColor='black' strokeColor='black' shadowColor='white' /></Link>
                 </div>
                 <ul className="nav-links">
                     <li className={location.pathname === '/about-me' ? 'active' : ''}>

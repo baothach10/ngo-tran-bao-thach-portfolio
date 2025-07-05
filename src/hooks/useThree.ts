@@ -118,8 +118,8 @@ export function useThree({
     // Scene Setup
     const webglScene = new Scene();
     if (hasSeparateCSSRenderer) setCSSScene(new Scene());
-    const camera = new PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 50);
-    camera.position.set(0, 1.5, 0);
+    const camera = new PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 90);
+    camera.position.set(0, 0, 0);
 
     const webglRenderer = new WebGLRenderer({
       alpha: true,
@@ -200,7 +200,7 @@ export function useThree({
       const rect = webglRenderer.domElement.getBoundingClientRect();
       const x = ((clientX - rect.left) / rect.width) * 2 - 1; // Normalize to -1 to 1
       const y = (-(clientY - rect.top) / rect.height) * 2 + 1; // Normalize to -1 to 1
-      const vector = new Vector3(x, y, 0.75); // z = 0.75 for the near plane
+      const vector = new Vector3(x, y, 0.5); // z = 0.75 for the near plane
       vector.unproject(camera);
       (handleMouseMove as any).latestVector = vector; // Custom property to identify this function
     };

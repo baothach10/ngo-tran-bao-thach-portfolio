@@ -1,6 +1,6 @@
 import gsap from "gsap";
 import React, { useEffect } from "react";
-import { AnimationAction, LoopOnce } from "three";
+import { AnimationAction, LoopOnce, Vector3 } from "three";
 
 import { useAssets } from "@/context/AssetLoaderContext";
 import { useThree } from "@/hooks/useThree";
@@ -15,9 +15,10 @@ const ThreeScene = () => {
         camera,
         orbitControls,
         enableModelLookAtMouse,
+        disableModelLookAtMouse,
         ambientLight,
         webglRenderer,
-        isMounted
+        isMounted,
     } = useThree({ hasOrbitControls: true });
 
     const { models, isLoaded, animationActions, textures } = useAssets()
@@ -38,10 +39,13 @@ const ThreeScene = () => {
             ambientLight.intensity = 1.5;
         }
 
-        models['manInVest'].scene.position.set(-0.5, 0, 2.5);
+        camera.position.set(0, 0, 6)
+
+        models['manInVest'].scene.position.set(-0.75, 0, 4);
+        models['manInVest'].scene.lookAt(camera.getWorldPosition(new Vector3()));
 
         if (models['room']) {
-            models['room'].scene.position.set(-0.5, 1.45, -4);
+            models['room'].scene.position.set(0, 1.45, -4);
             models['room'].scene.rotation.y = - Math.PI / 2;
             webglScene.add(models['room'].scene);
         }
@@ -53,9 +57,9 @@ const ThreeScene = () => {
             orbitControls.minPolarAngle = Math.PI / 2 - (15 * Math.PI / 180); // 85 deg
             orbitControls.maxPolarAngle = Math.PI / 2 + (-10 * Math.PI / 180); // 75 deg
 
-            // Allow 30 degree horizontal look (left/right)
-            orbitControls.minAzimuthAngle = -10 * Math.PI / 180; // -30 deg
-            orbitControls.maxAzimuthAngle = 10 * Math.PI / 180;  // 30 deg
+            // Allow 10 degree horizontal look (left/right)
+            orbitControls.minAzimuthAngle = -10 * Math.PI / 180; // -10 deg
+            orbitControls.maxAzimuthAngle = 10 * Math.PI / 180;  // 10 deg
 
             // Disable zooming
             orbitControls.enableZoom = false;
@@ -70,17 +74,19 @@ const ThreeScene = () => {
 
         webglScene.add(models['manInVest'].scene)
 
-        playAnimation(animationActions);
+        // playAnimation(animationActions);
+        playInitialAnimation(animationActions);
+        // playSpecificAnimation(animationActions, 'manInVest-Waving');
 
     }, [isMounted, isLoaded]);
 
-    useEffect(() => {
-        if (!isLoaded || !currentAnimationActionsRef) return;
+    // useEffect(() => {
+    //     if (!isLoaded || !currentAnimationActionsRef) return;
 
 
-        playRandomAnimation(animationActions);
+    //     playRandomAnimation(animationActions);
 
-    }, [currentAnimationActionsRef]);
+    // }, [currentAnimationActionsRef]);
 
     function playRandomAnimation(animationActions: { [key: string]: AnimationAction }) {
         const animations = Object.values(animationActions);
@@ -118,19 +124,47 @@ const ThreeScene = () => {
             onStart: () => {
                 // Play the animation once
                 playAnimationOnce(randomAnimation, 0.2);
+                disableModelLookAtMouse();
             },
             onComplete: () => {
                 setCurrentAnimationActionsRef(randomAnimation);
-                // enableModelLookAtMouse(models['manInVest']!.scene.getObjectByName('mixamorigHead')!);
+                enableModelLookAtMouse(models['manInVest']!.scene.getObjectByName('mixamorigHead')!);
             }
         });
-
-
-        // Disable look at mouse while playing animation
-        // disableModelLookAtMouse();
     }
 
-    function playAnimation(animationActions: { [key: string]: AnimationAction }) {
+    function playSpecificAnimation(animationActions: { [key: string]: AnimationAction }, animationName: string) {
+        const bow = animationActions[animationName];
+        if (!bow) return;
+        // Stop any currently playing animation
+        if (currentAnimationActionsRef) {
+            currentAnimationActionsRef.fadeOut(1);
+            currentAnimationActionsRef.stop();
+            currentAnimationActionsRef.enabled = false;
+            currentAnimationActionsRef.paused = true;
+            currentAnimationActionsRef.time = 0;
+        }
+        // Reset and play the bow animation
+        bow.reset();
+        bow.setLoop(LoopOnce, 1);
+        bow.clampWhenFinished = true;
+        bow.enabled = true;
+        bow.fadeIn(1);
+        gsap.to({}, {
+            duration: bow.getClip().duration,
+            onStart: () => {
+                // Play the animation once
+                disableModelLookAtMouse();
+                playAnimationOnce(bow, 0.2);
+            },
+            onComplete: () => {
+                setCurrentAnimationActionsRef(bow);
+                enableModelLookAtMouse(models['manInVest']!.scene.getObjectByName('mixamorigHead')!);
+            }
+        });
+    }
+
+    function playInitialAnimation(animationActions: { [key: string]: AnimationAction }) {
         const timeline = gsap.timeline();
         const waving = animationActions['manInVest-Waving'];
         const idle = animationActions['manInVest-Idle'];
