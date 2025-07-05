@@ -45,7 +45,7 @@ export function useThree({
   hasOrbitControls,
   hasPointerLockControls,
   hasAmbientLight,
-  hasDirectionalLight
+  hasDirectionalLight,
 }: TThreeSceneProps) {
   const mountRef = useRef<HTMLDivElement>(null);
   const [state, setState] = useState<{
@@ -136,7 +136,7 @@ export function useThree({
     mountRef.current.appendChild(webglDiv);
 
     if (hasSeparateCSSRenderer) {
-      // CSS3D Renderer (for HTML elements)
+      // CSS2D Renderer (for HTML elements)
       const cssRenderer = new CSS2DRenderer();
       cssRenderer.setSize(window.innerWidth, window.innerHeight);
       cssRenderer.domElement.style.position = 'absolute';

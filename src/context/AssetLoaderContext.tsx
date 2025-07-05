@@ -189,6 +189,9 @@ export function AssetLoaderProvider({ children }: { children: ReactNode }) {
               // }
               model.animations.forEach((clip) => {
                 const action = mixer.clipAction(clip);
+                action.enabled = false;
+                action.paused = true;
+                action.clampWhenFinished = true;
                 animationActionsObj[`${modelName}-${clip.name}`] = action;
                 animationMixersObj[`${modelName}-${clip.name}`] = mixer;
 

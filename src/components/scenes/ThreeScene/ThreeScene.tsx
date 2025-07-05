@@ -1,6 +1,6 @@
-import gsap from "gsap";
-import React, { useEffect } from "react";
-import { AnimationAction, LoopOnce, Vector3 } from "three";
+import { gsap } from "gsap";
+import { useEffect, useRef, useState } from "react";
+import { AnimationAction, LoopOnce, Raycaster, Vector2, Vector3 } from "three";
 
 import { useAssets } from "@/context/AssetLoaderContext";
 import { useThree } from "@/hooks/useThree";
@@ -22,7 +22,9 @@ const ThreeScene = () => {
     } = useThree({ hasOrbitControls: true });
 
     const { models, isLoaded, animationActions, textures } = useAssets()
-    const [currentAnimationActionsRef, setCurrentAnimationActionsRef] = React.useState<AnimationAction | undefined>(undefined);
+    const currentAnimationActionsRef = useRef<AnimationAction | undefined>(undefined);
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    const [allowInteraction, setAllowInteraction] = useState<boolean>(false);
 
     useEffect(() => {
         if (
@@ -73,43 +75,68 @@ const ThreeScene = () => {
         camera.lookAt(topPosition.clone());
 
         webglScene.add(models['manInVest'].scene)
-
-        // playAnimation(animationActions);
         playInitialAnimation(animationActions);
-        // playSpecificAnimation(animationActions, 'manInVest-Waving');
-
     }, [isMounted, isLoaded]);
 
-    // useEffect(() => {
-    //     if (!isLoaded || !currentAnimationActionsRef) return;
+    useEffect(() => {
+        if (!camera ||
+            !webglRenderer ||
+            !allowInteraction) return;
 
+        // Setup raycaster for mouse interactions
+        const raycaster = new Raycaster();
+        const mouse = new Vector2();
 
-    //     playRandomAnimation(animationActions);
+        const handleClick = (event: MouseEvent) => {
+            // Convert mouse to NDC
+            const rect = webglRenderer.domElement.getBoundingClientRect();
+            mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+            mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
-    // }, [currentAnimationActionsRef]);
+            raycaster.setFromCamera(mouse, camera);
+
+            const intersects = raycaster.intersectObject(models['manInVest']!.scene, true); // true for recursive search in groups
+
+            if (intersects.length > 0) {
+                playRandomAnimation(animationActions);
+            }
+        }
+
+        webglRenderer?.domElement.addEventListener("click", handleClick);
+        return () => {
+            webglRenderer?.domElement.removeEventListener("click", handleClick);
+        };
+
+    }, [allowInteraction]);
 
     function playRandomAnimation(animationActions: { [key: string]: AnimationAction }) {
         const animations = Object.values(animationActions);
         if (animations.length === 0) return;
 
-
         // Stop any currently playing animation
-        if (currentAnimationActionsRef) {
-            currentAnimationActionsRef.fadeOut(1);
-            currentAnimationActionsRef.stop();
-            currentAnimationActionsRef.enabled = false;
-            currentAnimationActionsRef.paused = true;
-            currentAnimationActionsRef.time = 0;
+        if (currentAnimationActionsRef.current) {
+            currentAnimationActionsRef.current.fadeOut(1);
+            currentAnimationActionsRef.current.stop();
+            currentAnimationActionsRef.current.enabled = false;
+            currentAnimationActionsRef.current.paused = true;
+            currentAnimationActionsRef.current.time = 0;
         }
-
         // Randomly select an animation
-        let randomIndex = Math.floor(Math.random() * animations.length);
+        // Filter out the idle animation
+        const nonIdleAnimations = animations.filter(
+            (anim) =>
+                anim !== animationActions['manInVest-Idle'] &&
+                anim !== animationActions['manInVest-Sad-Idle']
+        );
+        if (nonIdleAnimations.length === 0) return;
+
+        let randomIndex = Math.floor(Math.random() * nonIdleAnimations.length);
         // Ensure the new animation is different from the current one
-        while (animations[randomIndex] === currentAnimationActionsRef) {
-            randomIndex = Math.floor(Math.random() * animations.length);
+        while (nonIdleAnimations[randomIndex] === currentAnimationActionsRef.current && nonIdleAnimations.length > 1) {
+            randomIndex = Math.floor(Math.random() * nonIdleAnimations.length);
         }
 
-        const randomAnimation = animations[randomIndex]
+        const randomAnimation = nonIdleAnimations[randomIndex];
         if (!randomAnimation) return;
 
         // Reset and play the selected animation
@@ -127,38 +154,63 @@ const ThreeScene = () => {
                 disableModelLookAtMouse();
             },
             onComplete: () => {
-                setCurrentAnimationActionsRef(randomAnimation);
-                enableModelLookAtMouse(models['manInVest']!.scene.getObjectByName('mixamorigHead')!);
+                currentAnimationActionsRef.current = randomAnimation;
+                playIdleAnimation(animationActions);
+            }
+        });
+    }
+
+    function playIdleAnimation(animationActions: { [key: string]: AnimationAction }) {
+        const idle = animationActions['manInVest-Idle'];
+        if (!idle) return;
+        enableModelLookAtMouse(models['manInVest']!.scene.getObjectByName('mixamorigHead')!);
+        // Stop any currently playing animation
+        if (currentAnimationActionsRef.current) {
+            currentAnimationActionsRef.current.fadeOut(1);
+            currentAnimationActionsRef.current.stop();
+            currentAnimationActionsRef.current.enabled = false;
+            currentAnimationActionsRef.current.paused = true;
+            currentAnimationActionsRef.current.time = 0;
+        }
+        gsap.to({}, {
+            duration: idle.getClip().duration,
+            onStart: () => {
+                idle.reset();
+                idle.enabled = true;
+                idle.fadeIn(1);
+                playAnimationLoop(idle, 0.2);
+                currentAnimationActionsRef.current = idle;
             }
         });
     }
 
     function playSpecificAnimation(animationActions: { [key: string]: AnimationAction }, animationName: string) {
-        const bow = animationActions[animationName];
-        if (!bow) return;
+        const specificAnim = animationActions[animationName];
+        if (!specificAnim) return;
         // Stop any currently playing animation
-        if (currentAnimationActionsRef) {
-            currentAnimationActionsRef.fadeOut(1);
-            currentAnimationActionsRef.stop();
-            currentAnimationActionsRef.enabled = false;
-            currentAnimationActionsRef.paused = true;
-            currentAnimationActionsRef.time = 0;
+        if (currentAnimationActionsRef.current) {
+            currentAnimationActionsRef.current.fadeOut(1);
+            currentAnimationActionsRef.current.stop();
+            currentAnimationActionsRef.current.enabled = false;
+            currentAnimationActionsRef.current.paused = true;
+            currentAnimationActionsRef.current.time = 0;
         }
         // Reset and play the bow animation
-        bow.reset();
-        bow.setLoop(LoopOnce, 1);
-        bow.clampWhenFinished = true;
-        bow.enabled = true;
-        bow.fadeIn(1);
+        specificAnim.reset();
+        specificAnim.setLoop(LoopOnce, 1);
+        specificAnim.clampWhenFinished = true;
+        specificAnim.enabled = true;
+        specificAnim.fadeIn(1);
         gsap.to({}, {
-            duration: bow.getClip().duration,
+            duration: specificAnim.getClip().duration,
             onStart: () => {
                 // Play the animation once
                 disableModelLookAtMouse();
-                playAnimationOnce(bow, 0.2);
+                playAnimationOnce(specificAnim, 0.2);
             },
             onComplete: () => {
-                setCurrentAnimationActionsRef(bow);
+                // setCurrentAnimationAction(bow);
+                currentAnimationActionsRef.current = specificAnim;
                 enableModelLookAtMouse(models['manInVest']!.scene.getObjectByName('mixamorigHead')!);
             }
         });
@@ -168,11 +220,8 @@ const ThreeScene = () => {
         const timeline = gsap.timeline();
         const waving = animationActions['manInVest-Waving'];
         const idle = animationActions['manInVest-Idle'];
-        const bow = animationActions['manInVest-Bow'];
-        const sadIdle = animationActions['manInVest-Sad-Idle'];
-        const salute = animationActions['manInVest-Salute'];
 
-        if (!waving || !idle || !bow || !sadIdle || !salute) return;
+        if (!waving || !idle) return;
 
         // Play waving animation once using gsap timeline, then play idle in loop
         waving.reset();
@@ -188,7 +237,12 @@ const ThreeScene = () => {
 
             onComplete: () => {
                 waving.fadeOut(1);
+                waving.stop();
+                waving.enabled = false;
+                waving.paused = true;
+                waving.time = 0;
                 enableModelLookAtMouse(models['manInVest']!.scene.getObjectByName('mixamorigHead')!)
+                setAllowInteraction(true);
             }
         });
         timeline.to({}, {
@@ -198,9 +252,7 @@ const ThreeScene = () => {
                 idle.enabled = true;
                 idle.fadeIn(1);
                 playAnimationLoop(idle, 0.2);
-            },
-            onComplete: () => {
-                setCurrentAnimationActionsRef(idle);
+                currentAnimationActionsRef.current = idle;
             }
         });
     }
@@ -211,7 +263,6 @@ const ThreeScene = () => {
             <div
                 ref={mountRef}
             >
-                {/* 3D scene will be rendered here */}
             </div>
         </div>
     );

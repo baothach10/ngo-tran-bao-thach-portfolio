@@ -1,4 +1,4 @@
-import gsap from 'gsap';
+import { gsap } from 'gsap';
 import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import './PageWrapper.css'

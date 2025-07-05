@@ -1,4 +1,4 @@
-import gsap from 'gsap';
+import { gsap } from 'gsap';
 import './WebLogo.css'
 import { useEffect, useRef } from 'react';
 
