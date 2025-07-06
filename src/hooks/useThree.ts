@@ -45,7 +45,7 @@ export function useThree({
   hasOrbitControls,
   hasPointerLockControls,
   hasAmbientLight,
-  hasDirectionalLight,
+  hasDirectionalLight
 }: TThreeSceneProps) {
   const mountRef = useRef<HTMLDivElement>(null);
   const [state, setState] = useState<{
@@ -70,6 +70,7 @@ export function useThree({
   const [isFreelyViewing, setIsFreelyViewing] = useState(1);
   const { animationMixers } = useAssets();
   const [isMounted, setIsMounted] = useState(false);
+  const frameId = useRef<number | null>(null);
 
   const animationMixersRef = useRef<{ [key: string]: AnimationMixer }>({});
   animationMixersRef.current = animationMixers;
@@ -225,8 +226,8 @@ export function useThree({
         // webglScene.updateMatrixWorld(true);
 
         const latestVector = (handleMouseMove as any).latestVector;
-        if (latestVector) {
-          modelToLookAtMouseRef.current?.lookAt(latestVector as Vector3);
+        if (latestVector && modelToLookAtMouseRef.current) {
+          modelToLookAtMouseRef.current.lookAt(latestVector as Vector3);
         }
 
         if (hasOrbitControls && orbitControls.current) {
@@ -237,7 +238,7 @@ export function useThree({
         if (hasSeparateCSSRenderer && cssScene && cssRenderer) cssRenderer.render(cssScene, camera);
       }
 
-      requestAnimationFrame(animate);
+      frameId.current = requestAnimationFrame(animate);
     };
     animate();
 
@@ -258,6 +259,19 @@ export function useThree({
     });
     // Cleanup
     return () => {
+      if (frameId.current) {
+        cancelAnimationFrame(frameId.current);
+        frameId.current = null;
+      }
+      if (animationMixersRef.current) {
+        Object.values(animationMixersRef.current).forEach(mixer => {
+          if (mixer) {
+            mixer.uncacheRoot(webglScene);
+            mixer.stopAllAction();
+          }
+        });
+      }
+
       window.removeEventListener('mousemove', handleMouseMove);
       mountRef.current?.removeChild(webglRenderer.domElement);
       if (hasSeparateCSSRenderer && cssRenderer) {

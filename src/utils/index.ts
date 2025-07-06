@@ -7,16 +7,24 @@ export const convertImageBufferToBlobUrl = (imageBuffer: ArrayBuffer, type: stri
 
 export const playAnimationOnce = (animAction: AnimationAction, timeScale: number = 1) => {
   if (animAction.isRunning()) return;
-  const animTime = animAction.getClip().duration;
+  // const animTime = animAction.getClip().duration;
   if (animAction.paused) animAction.paused = false;
   animAction.timeScale = timeScale;
-  animAction.play();
-  setTimeout(
-    () => {
+  animAction.reset().play();
+
+  animAction.getMixer().addEventListener('finished', function onFinished(event) {
+    if (event.action === animAction) {
+      animAction.getMixer().removeEventListener('finished', onFinished);
       animAction.paused = true;
-    },
-    Math.floor(animTime * 900)
-  );
+    }
+  });
+
+  // setTimeout(
+  //   () => {
+  //     animAction.paused = true;
+  //   },
+  //   Math.floor(animTime * 900)
+  // );
 };
 
 export const playAnimationLoop = (animAction: AnimationAction, timeScale: number = 1) => {

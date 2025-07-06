@@ -1,5 +1,6 @@
 import { gsap } from "gsap";
 import { useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { AnimationAction, LoopOnce, Raycaster, Vector2, Vector3 } from "three";
 
 import { useAssets } from "@/context/AssetLoaderContext";
@@ -20,12 +21,15 @@ const ThreeScene = () => {
         webglRenderer,
         isMounted,
     } = useThree({ hasOrbitControls: true });
+    const location = useLocation();
 
     const { models, isLoaded, animationActions, textures } = useAssets()
     const currentAnimationActionsRef = useRef<AnimationAction | undefined>(undefined);
     const currentRandomAnimationIsRunningRef = useRef<boolean>(false);
     // eslint-disable-next-line @typescript-eslint/naming-convention
     const [allowInteraction, setAllowInteraction] = useState<boolean>(false);
+
+    const timelineRef = useRef<gsap.core.Timeline | null>(null);
 
     useEffect(() => {
         if (
@@ -76,8 +80,38 @@ const ThreeScene = () => {
         camera.lookAt(topPosition.clone());
 
         webglScene.add(models['manInVest'].scene)
+
+        timelineRef.current = gsap.timeline();
+
         playInitialAnimation(animationActions);
-    }, [isMounted, isLoaded]);
+        return () => {
+            currentAnimationActionsRef.current = undefined;
+            currentRandomAnimationIsRunningRef.current = false;
+            // Stop and pause all currently running animations
+            Object.values(animationActions).forEach((action) => {
+                if (action) {
+                    action.fadeOut(0.2);
+                    action.stop();
+                    action.enabled = false;
+                    action.paused = true;
+                    action.time = 0;
+                }
+            });
+
+            // Clear all gsap timeline actions
+            if (timelineRef.current) {
+                timelineRef.current.clear();
+                timelineRef.current.kill();
+                timelineRef.current = null;
+            }
+            // Remove any running gsap animations in the home page scene
+            gsap.globalTimeline.getChildren().forEach((anim) => {
+                if (anim.vars?.id === 'scene-home-page-animation') {
+                    anim.kill();
+                }
+            });
+        };
+    }, [isMounted, isLoaded, location.pathname]);
 
     useEffect(() => {
         if (!camera ||
@@ -150,6 +184,7 @@ const ThreeScene = () => {
 
         gsap.to({}, {
             duration: randomAnimation.getClip().duration,
+            id: 'scene-home-page-animation',
             onStart: () => {
                 // Play the animation once
                 playAnimationOnce(randomAnimation, 0.2);
@@ -177,6 +212,7 @@ const ThreeScene = () => {
         }
         gsap.to({}, {
             duration: idle.getClip().duration,
+            id: 'scene-home-page-animation',
             onStart: () => {
                 idle.reset();
                 idle.enabled = true;
@@ -206,6 +242,7 @@ const ThreeScene = () => {
         specificAnim.fadeIn(1);
         gsap.to({}, {
             duration: specificAnim.getClip().duration,
+            id: 'scene-home-page-animation',
             onStart: () => {
                 // Play the animation once
                 disableModelLookAtMouse();
@@ -220,18 +257,27 @@ const ThreeScene = () => {
     }
 
     function playInitialAnimation(animationActions: { [key: string]: AnimationAction }) {
-        const timeline = gsap.timeline();
+        if (!timelineRef.current) return;
         const waving = animationActions['manInVest-Waving'];
         const idle = animationActions['manInVest-Idle'];
 
         if (!waving || !idle) return;
 
+        // Stop any currently playing animation
+        if (currentAnimationActionsRef.current) {
+            currentAnimationActionsRef.current.fadeOut(1);
+            currentAnimationActionsRef.current.stop();
+            currentAnimationActionsRef.current.enabled = false;
+            currentAnimationActionsRef.current.paused = true;
+            currentAnimationActionsRef.current.time = 0;
+        }
+
         // Play waving animation once using gsap timeline, then play idle in loop
         waving.reset();
-        waving.setLoop(LoopOnce, 1);
+        // waving.setLoop(LoopOnce, 1);
         waving.clampWhenFinished = true;
         waving.enabled = true;
-        timeline.to({}, {
+        timelineRef.current.to({}, {
             duration: waving.getClip().duration,
             onStart: () => {
                 waving.fadeIn(1);
@@ -248,7 +294,7 @@ const ThreeScene = () => {
                 setAllowInteraction(true);
             }
         });
-        timeline.to({}, {
+        timelineRef.current.to({}, {
             duration: idle.getClip().duration,
             onStart: () => {
                 idle.reset();
