@@ -53,6 +53,7 @@ export function useThree({
     camera: PerspectiveCamera;
     enableModelLookAtMouse: (modelObjectToLookAtMouse: Object3D) => void;
     disableModelLookAtMouse: () => void;
+    updateIsSceneReadyForModelToLookAtMouse?: (val: boolean) => void;
     directionalLight?: DirectionalLight;
     ambientLight?: AmbientLight;
     webglRenderer: WebGLRenderer;
@@ -81,6 +82,7 @@ export function useThree({
   const pointerLockControls = useRef<PointerLockControls | undefined>(undefined);
   const directionalLightRef = useRef<DirectionalLight | undefined>(undefined);
   const ambientLightRef = useRef<AmbientLight | undefined>(undefined);
+  const isSceneReadyForModelToLookAtMouse = useRef<boolean>(false);
 
   const updateAnimationMixers = (delta: number) => {
     if (!animationMixers || Object.keys(animationMixersRef.current).length < 1) return;
@@ -106,6 +108,10 @@ export function useThree({
 
   function disableModelLookAtMouse() {
     modelToLookAtMouseRef.current = undefined;
+  }
+
+  function updateIsSceneReadyForModelToLookAtMouse(val: boolean) {
+    isSceneReadyForModelToLookAtMouse.current = val;
   }
 
   useEffect(() => {
@@ -203,7 +209,9 @@ export function useThree({
       const y = (-(clientY - rect.top) / rect.height) * 2 + 1; // Normalize to -1 to 1
       const vector = new Vector3(x, y, 0.5); // z = 0.75 for the near plane
       vector.unproject(camera);
-      (handleMouseMove as any).latestVector = vector; // Custom property to identify this function
+      if (!isSceneReadyForModelToLookAtMouse.current)
+        (handleMouseMove as any).latestVector = undefined;
+      else (handleMouseMove as any).latestVector = vector; // Custom property to identify this function
     };
 
     window.addEventListener('mousemove', handleMouseMove);
@@ -248,6 +256,7 @@ export function useThree({
       directionalLight: directionalLightRef.current,
       enableModelLookAtMouse,
       disableModelLookAtMouse,
+      updateIsSceneReadyForModelToLookAtMouse,
       ambientLight: ambientLightRef.current,
       webglRenderer,
       cssRenderer,
@@ -288,6 +297,7 @@ export function useThree({
     isFreelyViewing,
     setIsFreelyViewing,
     enableModelLookAtMouse,
+    updateIsSceneReadyForModelToLookAtMouse,
     disableModelLookAtMouse
   };
 }

@@ -16,6 +16,7 @@ const ThreeScene = () => {
         camera,
         orbitControls,
         enableModelLookAtMouse,
+        updateIsSceneReadyForModelToLookAtMouse,
         disableModelLookAtMouse,
         ambientLight,
         webglRenderer,
@@ -82,6 +83,9 @@ const ThreeScene = () => {
         webglScene.add(models['manInVest'].scene)
 
         timelineRef.current = gsap.timeline();
+
+        // update isSceneReadyForModelToLookAtMouse
+        updateIsSceneReadyForModelToLookAtMouse(true);
 
         playInitialAnimation(animationActions);
         return () => {
@@ -187,8 +191,9 @@ const ThreeScene = () => {
             id: 'scene-home-page-animation',
             onStart: () => {
                 // Play the animation once
+                if (randomAnimation.getClip().name === 'Bow')
+                    disableModelLookAtMouse();
                 playAnimationOnce(randomAnimation, 0.2);
-                disableModelLookAtMouse();
             },
             onComplete: () => {
                 currentAnimationActionsRef.current = randomAnimation;
@@ -280,6 +285,7 @@ const ThreeScene = () => {
         timelineRef.current.to({}, {
             duration: waving.getClip().duration,
             onStart: () => {
+                enableModelLookAtMouse(models['manInVest']!.scene.getObjectByName('mixamorigHead')!)
                 waving.fadeIn(1);
                 playAnimationOnce(waving, 0.2);
             },
@@ -290,7 +296,6 @@ const ThreeScene = () => {
                 waving.enabled = false;
                 waving.paused = true;
                 waving.time = 0;
-                enableModelLookAtMouse(models['manInVest']!.scene.getObjectByName('mixamorigHead')!)
                 setAllowInteraction(true);
             }
         });
