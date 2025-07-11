@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Layout from './components/layout/Layout';
+import LoadingPage from './components/LoadingPage/LoadingPage';
 import HomePage from './pages/HomePage/HomePage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 
@@ -15,7 +16,7 @@ const ContactMePage = lazy(() => import('./pages/ContactMePage'));
 const App: React.FC = () => {
     return (
         <BrowserRouter>
-            <Suspense fallback={<div className="loading">Loading portfolio...</div>}>
+            <Suspense fallback={<LoadingPage />}>
                 <Routes>
                     <Route path="/" element={<Layout />}>
                         <Route index element={<HomePage />} />
