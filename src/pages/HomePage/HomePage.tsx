@@ -1,9 +1,8 @@
-import { gsap } from 'gsap';
-
+import HomePageContent from '@/components/HomePage/HomePageContent/HomePageContent';
 import ThreeScene from '@/components/scenes/ThreeScene/ThreeScene';
 import './HomePage.css';
 
-const HomePage= () => {
+const HomePage = () => {
 
     return (
         <div className="home-page-container">
@@ -11,17 +10,8 @@ const HomePage= () => {
                 <ThreeScene />
             </div>
             <div className='home-page-content-wrapper'>
-                <h1>Welcome to My Portfolio</h1>
-                <p>
-                    Explore my projects and experiences in web development, 3D modeling, and more.
-                    This portfolio showcases my skills and creativity.
-                </p>
-                <p>
-                    Feel free to navigate through the 3D scene above to see a virtual representation of my work.
-                </p>
+                <HomePageContent />
             </div>
-
-
         </div>
     );
 };

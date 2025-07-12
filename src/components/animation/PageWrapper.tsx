@@ -14,7 +14,7 @@ export default function PageWrapper({ children }: { children: React.ReactNode })
         gsap.fromTo(
             el,
             { opacity: 0, y: 0 },
-            { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }
+            { opacity: 1, y: 0, duration: 2, ease: 'power2.out' }
         );
     }, [location.pathname]);
 

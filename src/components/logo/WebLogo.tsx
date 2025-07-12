@@ -10,7 +10,7 @@ type TWebLogo = {
     shadowColor?: string;
 };
 
-const WebLogo = ({ width = 198, height = 24, fillColor = 'black', strokeColor = 'black', shadowColor = 'white' }: TWebLogo) => {
+const WebLogo = ({ width = 198, height = 24, fillColor = 'black', strokeColor = 'gray', shadowColor = 'black' }: TWebLogo) => {
     const svgRef = useRef<SVGSVGElement>(null);
 
     useEffect(() => {
@@ -31,12 +31,17 @@ const WebLogo = ({ width = 198, height = 24, fillColor = 'black', strokeColor = 
                 duration: 1,
                 delay: i * 0.2,
                 ease: "ease.inOut",
-                onComplete: () => {
-                    path.style.fill = fillColor; // fill after each char animates
-                },
             });
         });
 
+        gsap.to(paths, {
+            fill: fillColor,
+            duration: 0.5,
+            delay: paths.length * 0.1,
+            ease: "ease.inOut",
+            stagger: 0.1,
+        });
+        
         // Add shadow effect
         if (svgRef.current) {
             svgRef.current.style.filter = `drop-shadow(0px 0px 4px ${shadowColor})`;

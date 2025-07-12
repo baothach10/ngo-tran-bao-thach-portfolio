@@ -11,7 +11,7 @@ export default function Header() {
         <header className="site-header">
             <nav className="nav">
                 <div className="logo">
-                    <Link to="/"><WebLogo fillColor='black' strokeColor='black' shadowColor='white' /></Link>
+                    <Link to="/"><WebLogo fillColor='white' strokeColor='white' shadowColor='black' /></Link>
                 </div>
                 <ul className="nav-links">
                     <li className={location.pathname === '/about-me' ? 'active' : ''}>
@@ -21,7 +21,7 @@ export default function Header() {
                         <Link to="/projects">Projects</Link>
                     </li>
                     <li className={location.pathname === '/honors-and-awards' ? 'active' : ''}>
-                        <Link to="/honors-and-awards">Awards</Link>
+                        <Link to="/honors-and-awards">Certificates & Awards</Link>
                     </li>
                     <li className={location.pathname === '/contact-me' ? 'active' : ''}>
                         <Link to="/contact-me">Contact</Link>

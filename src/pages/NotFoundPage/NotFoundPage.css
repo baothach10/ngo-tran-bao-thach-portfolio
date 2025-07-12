@@ -69,7 +69,7 @@ p {
   justify-content: center;
 }
 
-.title {
+.notfound-title {
   animation: swing var(--speed) infinite alternate ease-in-out;
   font-size: clamp(5rem, 40vmin, 20rem);
   font-family: 'Open Sans', sans-serif;

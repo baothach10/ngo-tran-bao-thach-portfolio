@@ -14,7 +14,7 @@ export default function NotFoundPage() {
             </div>
             <div className="title-wrapper">
                 <h1 className="title title--shadow">404</h1>
-                <h1 className="title">404</h1>
+                <h1 className="notfound-title">404</h1>
             </div>
             <div className="info">
                 <h2>We can't find that page</h2>
