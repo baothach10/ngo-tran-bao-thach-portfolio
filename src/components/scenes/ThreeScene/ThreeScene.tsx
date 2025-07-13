@@ -1,11 +1,11 @@
 import { gsap } from "gsap";
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { AnimationAction, LoopOnce, Raycaster, Vector2, Vector3 } from "three";
+import { AnimationAction, Color, LoopOnce, Raycaster, Vector2, Vector3 } from "three";
 
 import { useAssets } from "@/context/AssetLoaderContext";
 import { useThree } from "@/hooks/useThree";
-import { getTopPosition, playAnimationLoop, playAnimationOnce } from "@/utils";
+import { getTopPosition, isMobileDevice, playAnimationLoop, playAnimationOnce } from "@/utils";
 
 import './ThreeScene.css';
 
@@ -21,7 +21,7 @@ const ThreeScene = () => {
         ambientLight,
         webglRenderer,
         isMounted,
-    } = useThree({ hasOrbitControls: true });
+    } = useThree({ hasOrbitControls: isMobileDevice() ? false : true });
     const location = useLocation();
 
     const { models, isLoaded, animationActions, textures } = useAssets()
@@ -47,14 +47,18 @@ const ThreeScene = () => {
             ambientLight.intensity = 1.5;
         }
 
+        webglScene.background = new Color(0x000000);
+
         camera.position.set(0, 0, 6)
 
         models['manInVest'].scene.position.set(-0.75, 0, 4);
         models['manInVest'].scene.lookAt(camera.getWorldPosition(new Vector3()));
 
+
         if (models['room']) {
             models['room'].scene.position.set(0, 1.45, -4);
             models['room'].scene.rotation.y = - Math.PI / 2;
+
             webglScene.add(models['room'].scene);
         }
 
@@ -79,6 +83,14 @@ const ThreeScene = () => {
         }
         camera.position.set(0, 1.5, 6.5);
         camera.lookAt(topPosition.clone());
+
+        if (isMobileDevice()) {
+            models['manInVest'].scene.position.set(-0.3, 0, 4);
+            // models['manInVest'].scene.rotation.y = Math.PI * 0.05;
+            models['manInVest'].scene.rotation.y = 0;
+            camera.position.set(0, 1.5, 8)
+            camera.lookAt(new Vector3(0, 1.5, 4));
+        }
 
         webglScene.add(models['manInVest'].scene)
 
@@ -224,39 +236,6 @@ const ThreeScene = () => {
                 idle.fadeIn(1);
                 playAnimationLoop(idle, 0.2);
                 currentAnimationActionsRef.current = idle;
-            }
-        });
-    }
-
-    function playSpecificAnimation(animationActions: { [key: string]: AnimationAction }, animationName: string) {
-        const specificAnim = animationActions[animationName];
-        if (!specificAnim) return;
-        // Stop any currently playing animation
-        if (currentAnimationActionsRef.current) {
-            currentAnimationActionsRef.current.fadeOut(1);
-            currentAnimationActionsRef.current.stop();
-            currentAnimationActionsRef.current.enabled = false;
-            currentAnimationActionsRef.current.paused = true;
-            currentAnimationActionsRef.current.time = 0;
-        }
-        // Reset and play the bow animation
-        specificAnim.reset();
-        specificAnim.setLoop(LoopOnce, 1);
-        specificAnim.clampWhenFinished = true;
-        specificAnim.enabled = true;
-        specificAnim.fadeIn(1);
-        gsap.to({}, {
-            duration: specificAnim.getClip().duration,
-            id: 'scene-home-page-animation',
-            onStart: () => {
-                // Play the animation once
-                disableModelLookAtMouse();
-                playAnimationOnce(specificAnim, 0.2);
-            },
-            onComplete: () => {
-                // setCurrentAnimationAction(bow);
-                currentAnimationActionsRef.current = specificAnim;
-                enableModelLookAtMouse(models['manInVest']!.scene.getObjectByName('mixamorigHead')!);
             }
         });
     }

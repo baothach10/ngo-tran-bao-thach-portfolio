@@ -84,14 +84,16 @@ p {
 }
 
 .title--shadow {
+  z-index: -1;
   animation: swing var(--speed) infinite alternate ease-in-out;
+  font-size: clamp(5rem, 40vmin, 20rem);
   content: '404';
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 4%;
+  left: 6%;
   color: var(--shadow);
   filter: blur(1.5vmin);
-  transform: scale(1.05) translate3d(0, 12%, -10vmin)
+  transform: scale(1.1) translate3d(0, 12%, -10vmin)
     translate(calc((var(--swing-x, 0) * 0.05) * 1%), calc((var(--swing-y) * 0.05) * 1%));
 }
 
