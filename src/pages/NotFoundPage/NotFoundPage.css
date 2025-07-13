@@ -1,5 +1,3 @@
-
-
 :root {
   --button: hsl(44, 0%, 70%);
   --button-color: hsl(0, 0%, 4%);
@@ -35,14 +33,19 @@
   box-sizing: border-box;
   transform-style: preserve-3d;
 }
-.button {
+
+.button_link {
+  position: relative;
+  padding: 1rem 4rem;
+
   z-index: 10;
-  width: fit-content;
+  width: max-content;
+  height: max-content;
   text-transform: uppercase;
   text-decoration: none;
   background: var(--button);
   color: var(--button-color);
-  padding: 1rem 4rem;
+
   border-radius: 4rem;
   font-size: 0.875rem;
   letter-spacing: 0.05rem;
@@ -51,11 +54,6 @@
   &:hover {
     transform: scale(1.2);
   }
-}
-
-.button_link {
-  text-decoration: none;
-  color: var(--button-color);
 }
 
 p {

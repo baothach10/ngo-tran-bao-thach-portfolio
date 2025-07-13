@@ -19,13 +19,12 @@ export default function NotFoundPage() {
             <div className="info">
                 <h2>We can't find that page</h2>
                 <p>
-                    We're fairly sure that page used to be here, but seems to have gone missing. We do apologise on its behalf.
+                    We're fairly sure that page used to be here, but seems to have gone missing. We do apologize on its behalf.
                 </p>
-                <div className="button">
-                    <Link to="/" className="button_link" >
-                        Home
-                    </Link>
-                </div>
+                <Link to="/" className="button_link">
+                    Home
+                </Link>
+
             </div>
         </div>
     );
