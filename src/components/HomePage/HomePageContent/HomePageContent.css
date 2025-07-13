@@ -50,17 +50,20 @@
 }
 
 .home-roller-animation div:first-child {
-  animation: text-animation 8s infinite;
+  animation: text-animation 10s infinite;
 }
 
 .first div {
   background-color: #20a7d8;
   font-weight: bold;
+  white-space: nowrap;
 }
 .second div {
+  font-weight: bold;
   background-color: #cd921e;
 }
 .third div {
+  font-weight: bold;
   background-color: #c10528;
 }
 
@@ -94,6 +97,126 @@
   }
   100% {
     margin-top: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-page-content {
+    font-size: 1.1rem;
+    padding-left: 0;
+  }
+
+  .divider {
+    width: 80%;
+  }
+
+  .animation-container {
+    font-size: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .home-roller-animation {
+    height: 2rem;
+  }
+
+  @keyframes text-animation {
+    0% {
+      margin-top: 0;
+    }
+    10% {
+      margin-top: 0;
+    }
+    20% {
+      margin-top: -2.2rem;
+    }
+    30% {
+      margin-top: -2.2rem;
+    }
+    40% {
+      margin-top: -5rem;
+    }
+    60% {
+      margin-top: -5rem;
+    }
+    70% {
+      margin-top: -2.2rem;
+    }
+    80% {
+      margin-top: -2.2rem;
+    }
+    90% {
+      margin-top: 0;
+    }
+    100% {
+      margin-top: 0;
+    }
+  }
+
+  .home-roller-animation > div > div {
+    padding: 0.5rem 0.25rem;
+    height: 1rem;
+    margin-bottom: 1.2rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .home-page-content {
+    height: 50%;
+    font-size: 1rem;
+    padding-left: 0;
+  }
+  .divider {
+    width: 70%;
+  }
+
+  .animation-container {
+    font-size: 0.9rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .home-roller-animation {
+    height: 2rem;
+  }
+
+  @keyframes text-animation {
+    0% {
+      margin-top: 0;
+    }
+    10% {
+      margin-top: 0;
+    }
+    20% {
+      margin-top: -2.2rem;
+    }
+    30% {
+      margin-top: -2.2rem;
+    }
+    40% {
+      margin-top: -5rem;
+    }
+    60% {
+      margin-top: -5rem;
+    }
+    70% {
+      margin-top: -2.2rem;
+    }
+    80% {
+      margin-top: -2.2rem;
+    }
+    90% {
+      margin-top: 0;
+    }
+    100% {
+      margin-top: 0;
+    }
+  }
+
+  .home-roller-animation > div > div {
+    padding: 0.5rem 0.25rem;
+    height: 1rem;
+    margin-bottom: 1.2rem;
   }
 }
 

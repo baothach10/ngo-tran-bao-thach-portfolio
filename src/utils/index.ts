@@ -89,6 +89,17 @@ export function getTopPosition(model: Object3D): Vector3 {
 
 export function isMobileDevice(): boolean {
   if (typeof window === 'undefined') return false;
-  return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+  const userAgent = navigator.userAgent || '';
+  const isMobileUA = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    userAgent
+  );
+
+  // Detect iPadOS 13+ which reports as Mac
+  const isModerniPad = /Intel Mac/i.test(userAgent) && navigator.maxTouchPoints >= 1;
+
+  const isSurface = /Windows NT 10.0/i.test(userAgent) && navigator.maxTouchPoints >= 1;
+
+  return isMobileUA || isModerniPad || isSurface;
 }
 
