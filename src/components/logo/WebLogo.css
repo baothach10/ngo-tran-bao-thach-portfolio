@@ -1,3 +1,12 @@
 .char {
   transition: fill 0.5s ease-in-out;
 }
+
+.web-logo {
+  transform-origin: 0 0;
+  transform: scale(1.5);
+
+  @media (max-width: 600px) {
+    transform: scale(0.9);
+  }
+}

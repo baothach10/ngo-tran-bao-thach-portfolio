@@ -18,13 +18,6 @@ export const playAnimationOnce = (animAction: AnimationAction, timeScale: number
       animAction.paused = true;
     }
   });
-
-  // setTimeout(
-  //   () => {
-  //     animAction.paused = true;
-  //   },
-  //   Math.floor(animTime * 900)
-  // );
 };
 
 export const playAnimationLoop = (animAction: AnimationAction, timeScale: number = 1) => {
@@ -92,5 +85,10 @@ export function listAllMeshNames(object: Object3D): string[] {
 export function getTopPosition(model: Object3D): Vector3 {
   const box = new Box3().setFromObject(model);
   return new Vector3((box.min.x + box.max.x) / 2, box.max.y, (box.min.z + box.max.z) / 2);
+}
+
+export function isMobileDevice(): boolean {
+  if (typeof window === 'undefined') return false;
+  return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 }
 
