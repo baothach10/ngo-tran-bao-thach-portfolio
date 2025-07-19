@@ -7,7 +7,7 @@ import LoadingPage from './pages/LoadingPage/LoadingPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 
 
-const AboutMePage = lazy(() => import('./pages/AboutMePage'));
+const AboutMePage = lazy(() => import('./pages/AboutMePage/AboutMePage'));
 const ProjectsPage = lazy(() => import('./pages/ProjectsPage'));
 const HonorsAndAwardsPage = lazy(() => import('./pages/HonorsAndAwardsPage'));
 const ContactMePage = lazy(() => import('./pages/ContactMePage'));
