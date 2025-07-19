@@ -1,5 +1,5 @@
 :root {
-  --name-animation-transition: 10px;
+  --name-animation-transition: 4px;
 }
 
 @media (max-width: 600px) {
