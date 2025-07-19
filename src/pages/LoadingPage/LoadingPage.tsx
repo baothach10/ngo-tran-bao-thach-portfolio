@@ -10,23 +10,12 @@ const LoadingPage: React.FC = () => {
         const ctx = gsap.context(() => {
             gsap.fromTo(
                 containerRef.current,
-                { opacity: 0, y: 40 },
+                { opacity: 0, y: 0 },
                 { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }
             );
         }, containerRef);
 
-        // Function to trigger disappear animation
-        const playDisappear = () => {
-            gsap.to(containerRef.current, {
-                opacity: 0,
-                y: -40,
-                duration: 1,
-                ease: 'power2.in',
-            });
-        };
-
         return () => {
-            playDisappear();
             ctx.revert();
         };
     }, []);

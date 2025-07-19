@@ -1,0 +1,9 @@
+.about-me-page-container {
+  background-color: black;
+  color: white;
+  overflow: scroll;
+  position: relative;
+  width: 100%;
+  height: 300%;
+}
+
