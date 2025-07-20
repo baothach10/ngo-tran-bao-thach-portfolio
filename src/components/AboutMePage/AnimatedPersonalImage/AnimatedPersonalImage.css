@@ -1,0 +1,20 @@
+.animated-personal-image-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 10%;
+}
+
+svg image, svg feImage {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  pointer-events: auto; /* Optional: allow click/touch, just no selection */
+  -webkit-user-drag: none;
+  /* user-drag: none; */
+}
+

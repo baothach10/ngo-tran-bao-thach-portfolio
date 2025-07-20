@@ -1,8 +1,6 @@
 .site-footer {
   position: relative;
-  width: 100%;
-  /* height: 100%; */
-  background: #0f0f0f;
+  background: #111111;
   color: white;
   padding: 2rem 1rem;
   text-align: center;
