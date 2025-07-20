@@ -1,0 +1,16 @@
+.layout-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+}
+.layout-wrapper {
+  width: 100%;
+  min-height: 100%;
+  /* height: 100%; */
+  /* display: flex;
+  flex-direction: column; */
+  position: relative;
+  /* overflow: scroll; */
+}
+

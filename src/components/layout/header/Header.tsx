@@ -1,13 +1,56 @@
+import { gsap } from 'gsap';
+import { useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import './Header.css';
 import WebLogo from '@/components/logo/WebLogo';
+import { useHeaderScroll } from '@/context/HeaderShownByScrollContext';
 import { isMobileDevice } from '@/utils';
 
 export default function Header() {
     const location = useLocation();
+    const { isShownByScroll } = useHeaderScroll()
+
+    const headerRef = useRef<HTMLDivElement>(null);
+
+    const hiddenOnPaths = ["/about-me"];
+
+    useEffect(() => {
+        const shouldHideInitially = hiddenOnPaths.includes(location.pathname);
+        const header = headerRef.current;
+
+        if (!header) return;
+
+        if (shouldHideInitially) {
+            gsap.set(header, { y: "-100%", opacity: 0 });
+        } else {
+            gsap.set(header, { y: "0%", opacity: 1 });
+        }
+    }, [location.pathname]);
+
+    useEffect(() => {
+        const shouldHideInitially = hiddenOnPaths.includes(location.pathname);
+        if (shouldHideInitially)
+            if (isShownByScroll) {
+                gsap.to(headerRef.current, {
+                    y: "0%",
+                    opacity: 1,
+                    duration: 0.5,
+                    ease: "power3.out",
+                });
+            } else {
+                gsap.to(headerRef.current, {
+                    y: "-100%",
+                    opacity: 0,
+                    duration: 0.5,
+                    ease: "power3.out",
+                });
+            }
+    }, [isShownByScroll]);
+
+
     return (
-        <header className="site-header">
+        <header className="site-header" ref={headerRef}>
             {isMobileDevice() ? (
                 <>
                     <input className="menu-icon" type="checkbox" id="menu-icon" name="menu-icon" />
