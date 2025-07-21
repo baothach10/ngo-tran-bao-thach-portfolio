@@ -223,7 +223,7 @@ export function useThree({
     const animate = () => {
       now = Date.now();
       elapsed = now - then;
-      const fpsInterval = 1000 / 144; // 60 fps
+      const fpsInterval = 1000 / 144; // 144 fps
       if (elapsed > fpsInterval) {
         then = now - (elapsed % fpsInterval);
         const delta = clock.getDelta();

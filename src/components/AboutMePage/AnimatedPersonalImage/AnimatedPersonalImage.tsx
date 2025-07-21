@@ -4,6 +4,7 @@ import React, { useRef, useEffect } from 'react';
 
 
 import './AnimatedPersonalImage.css'
+import { isMobileDevice } from '@/utils';
 type TAnimatedPersonalImage = {
     image1: string;
     image2: string;
@@ -24,29 +25,50 @@ const AnimatedPersonalImage: React.FC<TAnimatedPersonalImage> = ({
         const el = containerRef.current;
         if (!el || !slopeRef.current) return;
 
-        const handleMouseEnter = () => {
-            gsap.to(slopeRef.current, {
+        if (isMobileDevice()) {
+            const tl = gsap.timeline({ repeat: -1, repeatDelay: 1 });
+
+            tl.to(slopeRef.current, {
                 attr: { slope: 2 },
-                duration: 1.5,
+                duration: 3,
                 ease: 'power2.out',
-            });
-        };
+            }, "+=1")
+                .to(slopeRef.current, {
+                    attr: { slope: 0 },
+                    duration: 3,
+                    ease: 'power2.out',
+                }, "+=1");
 
-        const handleMouseLeave = () => {
-            gsap.to(slopeRef.current, {
-                attr: { slope: 0 },
-                duration: 1.5,
-                ease: 'power2.out',
-            });
-        };
+            return () => {
+                tl.kill(); // clean up on unmount
+            };
 
-        el.addEventListener('mouseenter', handleMouseEnter);
-        el.addEventListener('mouseleave', handleMouseLeave);
+        } else {
+            const handleMouseEnter = () => {
+                gsap.to(slopeRef.current, {
+                    attr: { slope: 2 },
+                    duration: 1.5,
+                    ease: 'power2.out',
+                });
+            };
 
-        return () => {
-            el.removeEventListener('mouseenter', handleMouseEnter);
-            el.removeEventListener('mouseleave', handleMouseLeave);
-        };
+            const handleMouseLeave = () => {
+                gsap.to(slopeRef.current, {
+                    attr: { slope: 0 },
+                    duration: 1.5,
+                    ease: 'power2.out',
+                });
+            };
+
+            el.addEventListener('mouseenter', handleMouseEnter);
+            el.addEventListener('mouseleave', handleMouseLeave);
+
+            return () => {
+                el.removeEventListener('mouseenter', handleMouseEnter);
+                el.removeEventListener('mouseleave', handleMouseLeave);
+            };
+        }
+
     }, []);
 
     return (
