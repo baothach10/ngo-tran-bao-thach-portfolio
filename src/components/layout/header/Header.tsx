@@ -67,7 +67,7 @@ export default function Header() {
                 <div className='mobile-site-header'>
                     <input className="menu-icon" type="checkbox" id="menu-icon" name="menu-icon" checked={isMobileMenuBarOpened} onChange={(e) => setIsMobileMenuBarOpened(e.target.checked)} />
                     <label htmlFor="menu-icon" ></label>
-                    <div className="nav-mobile-logo">
+                    <div className="nav-mobile-logo logo">
                         <Link to="/" onClick={() => setIsMobileMenuBarOpened(false)}><WebLogo fillColor='white' strokeColor='white' shadowColor='black' /></Link>
                     </div >
                     <nav className="nav-mobile">
@@ -92,17 +92,17 @@ export default function Header() {
                 (
                     <nav className="nav">
                         <div className="logo">
-                            <Link to="/"><WebLogo fillColor='white' strokeColor='white' shadowColor='black' /></Link>
+                            <Link to="/"><WebLogo haveHoverEffect fillColor='white' strokeColor='white' shadowColor='black' /></Link>
                         </div >
                         <ul className="nav-links">
                             <li className={location.pathname === '/about-me' ? 'active' : ''}>
                                 <Link to="/about-me">About</Link>
                             </li>
                             <li className={location.pathname === '/projects' ? 'active' : ''}>
-                                <Link to="/projects">Projects</Link>
+                                <Link to="/projects">Work Highlights</Link>
                             </li>
                             <li className={location.pathname === '/honors-and-awards' ? 'active' : ''}>
-                                <Link to="/honors-and-awards">Certificates & Awards</Link>
+                                <Link to="/honors-and-awards">Achievements</Link>
                             </li>
                             <li className={location.pathname === '/contact-me' ? 'active' : ''}>
                                 <Link to="/contact-me">Contact</Link>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const HonorsAndAwardsPage: React.FC = () => {
+const AchievementsPage: React.FC = () => {
     return (
         <div>
             HonorsAndAwardsPage
@@ -8,4 +8,4 @@ const HonorsAndAwardsPage: React.FC = () => {
     );
 };
 
-export default HonorsAndAwardsPage;
+export default AchievementsPage;

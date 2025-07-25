@@ -1,5 +1,3 @@
-import portrait1 from '@assets/images/portrait1.webp';
-import portrait2 from '@assets/images/portrait2.webp';
 import { gsap } from 'gsap';
 import { useEffect, useRef } from 'react';
 
@@ -24,15 +22,14 @@ export const PersonalInformation = () => {
             <div className="personal-information-container">
 
                 <div className="personal-information-image" ref={imageRef}>
-                    <AnimatedPersonalImage image1={portrait2} image2={portrait1} width={300} height={300} />
+                    <AnimatedPersonalImage image1={'./assets/images/portrait1.webp'} image2={'./assets/images/portrait2.webp'} width={300} height={300} />
                 </div>
 
 
                 <div className="personal-information-text" ref={textRef}>
                     <h1>From Code to Insights:<br /><span>Frontend, Playables & AI Developer</span></h1>
                     <p>
-                        Hi, I’m <strong>Ngo Tran Bao Thach</strong>, a multidimensional developer specializing in
-                        <strong> frontend development</strong>, <strong>interactive playable ads</strong>, and <strong>AI-driven data insights</strong>.
+                        Hi, I’m <strong>Ngo Tran Bao Thach</strong>, a versatile developer based in Ho Chi Minh City, Vietnam specializing in <strong>frontend development</strong>, <strong>interactive playable ads</strong>, and <strong>AI-driven data insights</strong>.
                         I blend sleek, responsive UI design with engaging ad experiences and intelligent backend
                         systems to create products that look great and deliver measurable impact.
                     </p>

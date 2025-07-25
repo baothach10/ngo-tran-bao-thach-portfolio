@@ -7,8 +7,8 @@ import LoadingPage from './pages/LoadingPage/LoadingPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 
 const AboutMePage = lazy(() => import('./pages/AboutMePage/AboutMePage'));
-const ProjectsPage = lazy(() => import('./pages/ProjectsPage'));
-const HonorsAndAwardsPage = lazy(() => import('./pages/HonorsAndAwardsPage'));
+const WorkHighlightsPage = lazy(() => import('./pages/WorkHighlightsPage'));
+const AchievementsPage = lazy(() => import('./pages/AchievementsPage'));
 const ContactMePage = lazy(() => import('./pages/ContactMePage'));
 
 
@@ -20,8 +20,8 @@ const App: React.FC = () => {
                     <Route path="/" element={<Layout />}>
                         <Route index element={<HomePage />} />
                         <Route path="about-me" element={<AboutMePage />} />
-                        <Route path="projects" element={<ProjectsPage />} />
-                        <Route path="honors-and-awards" element={<HonorsAndAwardsPage />} />
+                        <Route path="work-highlights" element={<WorkHighlightsPage />} />
+                        <Route path="achievements" element={<AchievementsPage />} />
                         <Route path="contact-me" element={<ContactMePage />} />
                     </Route>
                     <Route path="*" element={<NotFoundPage />} />
