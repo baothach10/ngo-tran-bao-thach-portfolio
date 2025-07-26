@@ -27,7 +27,7 @@ export const PersonalInformation = () => {
 
 
                 <div className="personal-information-text" ref={textRef}>
-                    <h1>From Code to Insights:<br /><span>Frontend, Playables & AI Developer</span></h1>
+                    <h2>From Code to Insights:<br /><span>Frontend, Playables & AI Developer</span></h2>
                     <p>
                         Hi, I’m <strong>Ngo Tran Bao Thach</strong>, a versatile developer based in Ho Chi Minh City, Vietnam specializing in <strong>frontend development</strong>, <strong>interactive playable ads</strong>, and <strong>AI-driven data insights</strong>.
                         I blend sleek, responsive UI design with engaging ad experiences and intelligent backend

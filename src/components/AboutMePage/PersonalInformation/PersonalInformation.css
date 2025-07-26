@@ -1,5 +1,4 @@
 .personal-information-section {
-  background-color: black;
   color: white;
   padding: 2rem 1rem;
 }
@@ -23,13 +22,13 @@
   align-items: center;
 }
 
-.personal-information-text h1 {
+.personal-information-text h2 {
   font-size: 2rem;
   margin-bottom: 20px;
   line-height: 1.4;
 }
 
-.personal-information-text h1 span {
+.personal-information-text h2 span {
   color: #0066ff;
 }
 

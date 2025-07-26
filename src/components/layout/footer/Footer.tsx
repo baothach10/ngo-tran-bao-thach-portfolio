@@ -22,9 +22,9 @@ export default function Footer() {
                         <h3>Services</h3>
                         <ul>
                             <li><span>Web Development</span></li>
-                            <li><span>Game Development</span></li>
-                            <li><span>Playable Ads Development</span></li>
-                            <li><span>AI Integration and Development</span></li>
+                            <li><span>SEO Optimization</span></li>
+                            <li><span>AI Integration & Development</span></li>
+                            <li><span>Playable Ads & Game Development</span></li>
                         </ul>
                     </div>
                     <div className="footer-column">

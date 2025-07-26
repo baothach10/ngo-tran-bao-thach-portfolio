@@ -1,0 +1,68 @@
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  color: white;
+}
+.icon {
+  position: relative;
+  width: 100%;
+  background-color: #222222;
+  border-radius: 15px;
+  padding: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  & > svg {
+    transition: all 0.3s ease-in-out;
+    margin-left: 1rem;
+    z-index: 1;
+  }
+}
+
+.wrapper {
+  position: relative;
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  &:hover {
+    .icon > svg {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.blurry {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  background-color: rgba(100, 100, 100, 0.5);
+  filter: blur(20px);
+  -webkit-filter: blur(20px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.description {
+}
+
+.tools {
+  display: flex;
+  gap: 1rem;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.tool {
+  position: relative;
+
+  border: 1px white solid;
+  border-radius: 10px;
+}
+
