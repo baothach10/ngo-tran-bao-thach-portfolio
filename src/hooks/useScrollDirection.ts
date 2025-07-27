@@ -7,12 +7,6 @@ const useScrollDirection = () => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      if (currentScrollY > lastScrollY.current) {
-        console.log('Scrolling down');
-      } else if (currentScrollY < lastScrollY.current) {
-        console.log('Scrolling up');
-      }
-
       lastScrollY.current = currentScrollY;
     };
 

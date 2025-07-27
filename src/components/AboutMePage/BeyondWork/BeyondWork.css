@@ -41,11 +41,9 @@
   width: 80%;
   height: 100%;
   overflow: hidden;
-  padding: 2rem 0;
+  padding-top: 2rem;
 }
 
-@media (max-width: 768px) {
-}
 @media (max-width: 480px) {
   .beyond-work-container {
     padding: 2rem 0;

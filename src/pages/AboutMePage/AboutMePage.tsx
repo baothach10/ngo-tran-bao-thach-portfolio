@@ -9,6 +9,7 @@ const MainSkillsSection = lazy(() => import('@/components/AboutMePage/MainSkills
 const PersonalInformationSection = lazy(() => import('@/components/AboutMePage/PersonalInformation/PersonalInformation'));
 const TechnologyCarousel = lazy(() => import('@/components/Carousel/TechnologyCarousel/TechnologyCarousel'));
 const BeyondWorkSection = lazy(() => import('@/components/AboutMePage/BeyondWork/BeyondWork'));
+const ReadyToDiscussSection = lazy(() => import('@/components/AboutMePage/ReadyToDiscuss/ReadyToDiscuss'));
 
 
 const AboutMePage = () => {
@@ -37,6 +38,11 @@ const AboutMePage = () => {
                 <div className="beyond-work">
                     <Suspense fallback={<LoadingComponent />}>
                         <BeyondWorkSection />
+                    </Suspense>
+                </div>
+                <div className="ready-to-discuss">
+                    <Suspense fallback={<LoadingComponent />}>
+                        <ReadyToDiscussSection />
                     </Suspense>
                 </div>
             </div>
