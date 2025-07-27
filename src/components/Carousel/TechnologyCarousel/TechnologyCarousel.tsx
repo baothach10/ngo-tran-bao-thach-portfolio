@@ -26,7 +26,7 @@ import { TechnologyItem } from '../TechnologyItem/TechnologyItem';
 
 import { isMobileDevice } from '@/utils';
 
-export const TechnologyCarousel = () => {
+const TechnologyCarousel = () => {
 
     const iconSize = isMobileDevice() ? 40 : 60; // Adjust icon size based on device type
     const slidesPerView = isMobileDevice() ? document.documentElement.clientWidth < 768 ? 4 : 6 : 10;
@@ -66,3 +66,5 @@ export const TechnologyCarousel = () => {
         </div >
     );
 };
+
+export default TechnologyCarousel

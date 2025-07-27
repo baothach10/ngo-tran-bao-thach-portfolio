@@ -1,3 +1,5 @@
+import { gsap } from 'gsap';
+import { useEffect, useRef } from 'react';
 
 import './MainSkills.css';
 import { ExpertiseBlock } from '../ExpertiseBlock/ExpertiseBlock';
@@ -12,8 +14,25 @@ import { SectionTitle } from '@/components/layout/SectionTitle/SectionTitle';
 import { isMobileDevice } from '@/utils';
 
 
-export const MainSkills = () => {
+const MainSkills = () => {
     const iconSize = isMobileDevice() ? 40 : 60; // Adjust icon size based on device type
+
+    const expertiseBlock1 = useRef<HTMLDivElement>(null);
+    const expertiseBlock2 = useRef<HTMLDivElement>(null);
+    const expertiseBlock3 = useRef<HTMLDivElement>(null);
+    const expertiseBlock4 = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const tl = gsap.timeline({
+            defaults: { duration: 1.5, ease: 'power3.out' }
+        });
+
+        tl.from(expertiseBlock1.current, { x: -200, opacity: 0 })
+            .from(expertiseBlock2.current, { x: 200, opacity: 0 }, '<') // '<' means animate simultaneously
+            .from(expertiseBlock3.current, { x: -200, opacity: 0 }, '<') // '<' means animate simultaneously
+            .from(expertiseBlock4.current, { x: 200, opacity: 0 }, '<'); // '<' means animate simultaneously
+    }, []);
+
     return (
         <section className='main-skills-section'>
             <div className="background-container">
@@ -24,7 +43,7 @@ export const MainSkills = () => {
             </div>
 
             <div className="main-skills-container">
-                <div className="expertise-block-container">
+                <div className="expertise-block-container" ref={expertiseBlock1}>
 
                     <ExpertiseBlock
                         icon={<DevelopmentIcon width={iconSize} height={iconSize} />}
@@ -34,7 +53,7 @@ export const MainSkills = () => {
                         tools={['ReactJS', 'NextJS', 'ThreeJS', 'TailwindCSS', 'GSAP', 'VueJS', 'NuxtJS', 'Adobe Xd', 'Figma', 'Vite', 'Webpack']}
                     />
                 </div>
-                <div className="expertise-block-container">
+                <div className="expertise-block-container" ref={expertiseBlock2}>
                     <ExpertiseBlock
                         icon={<GameIcon width={iconSize} height={iconSize} />}
                         title='Playable Ads & Game Development'
@@ -43,7 +62,7 @@ export const MainSkills = () => {
                         tools={['ReactJS', 'PhaserJS', 'ThreeJS', 'TailwindCSS', 'GSAP', 'Blender', 'Vite', 'Adobe Xd', 'Figma', 'Interactive End Card (IEC)']}
                     />
                 </div>
-                <div className="expertise-block-container">
+                <div className="expertise-block-container" ref={expertiseBlock3}>
                     <ExpertiseBlock
                         icon={<AiIcon width={iconSize} height={iconSize} />}
                         title='AI & Data Analytics'
@@ -52,7 +71,7 @@ export const MainSkills = () => {
                         tools={['Python', 'SQL', 'NoSQL', 'Tableau', "Kaggle", 'Google Colab', 'Large Language Models (LLMs)', 'Statistical Testing', "Machine Learning", 'Deep Learning']}
                     />
                 </div>
-                <div className="expertise-block-container">
+                <div className="expertise-block-container" ref={expertiseBlock4}>
                     <ExpertiseBlock
                         icon={<SeoIcon width={iconSize} height={iconSize} />}
                         title='SEO Optimization'
@@ -64,3 +83,5 @@ export const MainSkills = () => {
         </section>
     )
 }
+
+export default MainSkills;

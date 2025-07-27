@@ -75,11 +75,11 @@ export default function Header() {
                             <li className={location.pathname === '/about-me' ? 'active' : ''} >
                                 <Link to="/about-me" onClick={() => setIsMobileMenuBarOpened(false)}>About</Link>
                             </li>
-                            <li className={location.pathname === '/projects' ? 'active' : ''} >
-                                <Link to="/projects" onClick={() => setIsMobileMenuBarOpened(false)}>Projects</Link>
+                            <li className={location.pathname === '/work-highlights' ? 'active' : ''} >
+                                <Link to="/work-highlights" onClick={() => setIsMobileMenuBarOpened(false)}>Projects</Link>
                             </li>
-                            <li className={location.pathname === '/honors-and-awards' ? 'active' : ''}>
-                                <Link to="/honors-and-awards" onClick={() => setIsMobileMenuBarOpened(false)} >Certificates & Awards</Link>
+                            <li className={location.pathname === '/achievements' ? 'active' : ''}>
+                                <Link to="/achievements" onClick={() => setIsMobileMenuBarOpened(false)} >Certificates & Awards</Link>
                             </li>
                             <li className={location.pathname === '/contact-me' ? 'active' : ''}>
                                 <Link to="/contact-me" onClick={() => setIsMobileMenuBarOpened(false)}>Contact</Link>
@@ -98,11 +98,11 @@ export default function Header() {
                             <li className={location.pathname === '/about-me' ? 'active' : ''}>
                                 <Link to="/about-me">About</Link>
                             </li>
-                            <li className={location.pathname === '/projects' ? 'active' : ''}>
-                                <Link to="/projects">Work Highlights</Link>
+                            <li className={location.pathname === '/work-highlights' ? 'active' : ''}>
+                                <Link to="/work-highlights">Work Highlights</Link>
                             </li>
-                            <li className={location.pathname === '/honors-and-awards' ? 'active' : ''}>
-                                <Link to="/honors-and-awards">Achievements</Link>
+                            <li className={location.pathname === '/achievements' ? 'active' : ''}>
+                                <Link to="/achievements">Achievements</Link>
                             </li>
                             <li className={location.pathname === '/contact-me' ? 'active' : ''}>
                                 <Link to="/contact-me">Contact</Link>

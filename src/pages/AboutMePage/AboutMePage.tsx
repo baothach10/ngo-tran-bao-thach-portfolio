@@ -1,13 +1,15 @@
+import { lazy, Suspense } from 'react';
+
 import { AnimatedNameGraphic } from '@/components/AboutMePage/AnimatedNameGraphic/AnimatedNameGraphic';
-import { MainSkills } from '@/components/AboutMePage/MainSkills/MainSkills';
-import { PersonalInformation } from '@/components/AboutMePage/PersonalInformation/PersonalInformation';
-import './AboutMePage.css';
-import { TechnologyCarousel } from '@/components/Carousel/TechnologyCarousel/TechnologyCarousel';
 import { SectionTitle } from '@/components/layout/SectionTitle/SectionTitle';
+import './AboutMePage.css';
+import LoadingComponent from '@/components/LoadingComponent/LoadingComponent';
+
+const MainSkillsSection = lazy(() => import('@/components/AboutMePage/MainSkills/MainSkills'));
+const PersonalInformationSection = lazy(() => import('@/components/AboutMePage/PersonalInformation/PersonalInformation'));
+const TechnologyCarousel = lazy(() => import('@/components/Carousel/TechnologyCarousel/TechnologyCarousel'));
 
 const AboutMePage = () => {
-
-
     return (
         <div className='about-me-page-container' >
             <div className="name-graphic-container">
@@ -15,14 +17,20 @@ const AboutMePage = () => {
             </div>
             <div className="about-me-page-content-container">
                 <div className="personal-detail">
-                    <PersonalInformation />
+                    <Suspense fallback={<LoadingComponent />}>
+                        <PersonalInformationSection />
+                    </Suspense>
                     <SectionTitle content='My Tech Stack' />
                     <div className="tech-stack-container">
-                        <TechnologyCarousel  />
+                        <Suspense fallback={<LoadingComponent />}>
+                            <TechnologyCarousel />
+                        </Suspense>
                     </div>
                 </div>
                 <div className="main-skills">
-                    <MainSkills />
+                    <Suspense fallback={<LoadingComponent />}>
+                        <MainSkillsSection />
+                    </Suspense>
                 </div>
                 <div className="tech-stack-container">
                 </div>

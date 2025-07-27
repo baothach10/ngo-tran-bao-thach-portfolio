@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import AnimatedPersonalImage from '../AnimatedPersonalImage/AnimatedPersonalImage';
 import './PersonalInformation.css';
 
-export const PersonalInformation = () => {
+const PersonalInformation = () => {
     const imageRef = useRef<HTMLDivElement>(null);
     const textRef = useRef<HTMLDivElement>(null);
 
@@ -43,3 +43,5 @@ export const PersonalInformation = () => {
         </section>
     )
 }
+
+export default PersonalInformation
