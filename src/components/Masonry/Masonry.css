@@ -1,0 +1,39 @@
+.list,
+.item-img,
+.item-img-container,
+.item-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.list {
+  column-count: 4;
+  column-gap: 10px;
+}
+
+.item-wrapper {
+  margin-bottom: 10px;
+}
+
+.item-img-container > * {
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .list {
+    column-count: 4;
+  }
+}
+@media (max-width: 480px) {
+  .list {
+    column-count: 3;
+    column-gap: 5px;
+  }
+  
+  .item-wrapper {
+    margin-bottom: 2px;
+  }
+  
+}
+

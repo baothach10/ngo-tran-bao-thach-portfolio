@@ -8,6 +8,8 @@ import LoadingComponent from '@/components/LoadingComponent/LoadingComponent';
 const MainSkillsSection = lazy(() => import('@/components/AboutMePage/MainSkills/MainSkills'));
 const PersonalInformationSection = lazy(() => import('@/components/AboutMePage/PersonalInformation/PersonalInformation'));
 const TechnologyCarousel = lazy(() => import('@/components/Carousel/TechnologyCarousel/TechnologyCarousel'));
+const BeyondWorkSection = lazy(() => import('@/components/AboutMePage/BeyondWork/BeyondWork'));
+
 
 const AboutMePage = () => {
     return (
@@ -32,7 +34,10 @@ const AboutMePage = () => {
                         <MainSkillsSection />
                     </Suspense>
                 </div>
-                <div className="tech-stack-container">
+                <div className="beyond-work">
+                    <Suspense fallback={<LoadingComponent />}>
+                        <BeyondWorkSection />
+                    </Suspense>
                 </div>
             </div>
         </div>
