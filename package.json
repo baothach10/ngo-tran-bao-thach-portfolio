@@ -70,6 +70,7 @@
     "ogl": "^1.0.11",
     "path": "^0.12.7",
     "react": "^19.0.0",
+    "react-chrono": "^2.9.1",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.6.3",
     "stats.js": "^0.17.0",

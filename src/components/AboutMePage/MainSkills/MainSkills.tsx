@@ -35,9 +35,9 @@ const MainSkills = () => {
 
     return (
         <section className='main-skills-section'>
-            <div className="background-container">
+            {/* <div className="background-container">
                 <AuroraBackground colorStops={['#ffffff', '#cccccc', '#8c8c8c']} />
-            </div>
+            </div> */}
             <div className="main-skills-title-container">
                 <SectionTitle content='My Expertise' />
             </div>

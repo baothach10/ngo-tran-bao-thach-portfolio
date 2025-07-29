@@ -49,7 +49,7 @@
 .technology-name {
   text-align: center;
   font-size: 0.8rem;
-  font-weight: bold;
+  font-weight: 500;
   transition: all 0.1s ease-in-out;
   color: white;
 }

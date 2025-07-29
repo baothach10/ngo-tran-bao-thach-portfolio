@@ -1,0 +1,110 @@
+.education-section-container,
+.education-section-title {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.education-section-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0rem;
+}
+
+.education-section-content {
+  position: relative;
+  width: 80%;
+  height: auto;
+  & strong {
+    font-weight: 500;
+  }
+}
+
+#timeline-main-wrapper {
+  padding: 0;
+}
+
+.custom-card {
+  color: black !important;
+  max-width: 600px !important;
+}
+
+.custom-card.active {
+  box-shadow: 0 0 30px white;
+}
+
+.card-title {
+  color: black !important;
+  font-size: 1.2rem !important;
+  margin-bottom: 0 !important;
+}
+
+.card-title.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.card-subtitle {
+  font-size: 1rem !important;
+  font-weight: 300 !important;
+  font-style: italic;
+  padding: 0 0 0 0.5rem !important;
+}
+
+.card-text {
+  max-height: max-content !important;
+
+  & p {
+    color: black !important;
+    font-size: 1rem !important;
+    font-weight: 300 !important;
+  }
+
+  &::after {
+    background: none !important;
+  }
+}
+
+.timeline-title {
+  color: white !important;
+}
+
+.timeline-title.active {
+  color: black !important;
+  background-color: white !important;
+}
+
+.card-media {
+  background-color: white !important;
+
+  & img {
+    object-fit: cover !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .custom-card.active {
+    box-shadow: 0 0 20px white;
+  }
+  .custom-card {
+    width: 90% !important;
+    padding: 0.5rem !important;
+  }
+
+  .card-title {
+    font-size: 1rem !important;
+  }
+
+  .card-subtitle {
+    font-size: 0.8rem !important;
+  }
+
+  .card-text {
+    & p {
+      font-size: 0.6rem !important;
+    }
+  }
+}
+
