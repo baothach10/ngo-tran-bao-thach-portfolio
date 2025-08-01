@@ -9,7 +9,7 @@ import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 const AboutMePage = lazy(() => import('./pages/AboutMePage/AboutMePage'));
 const WorkHighlightsPage = lazy(() => import('./pages/WorkHighlightsPage'));
 const AchievementsPage = lazy(() => import('./pages/AchievementsPage'));
-const ContactMePage = lazy(() => import('./pages/ContactMePage'));
+const ContactMePage = lazy(() => import('./pages/ContactMePage/ContactMePage'));
 
 
 const App: React.FC = () => {

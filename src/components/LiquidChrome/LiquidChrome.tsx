@@ -109,13 +109,10 @@ export const LiquidChrome: React.FC<ILiquidChromeProps> = ({
 
         function resize() {
             const scale = 1;
-            console.log(container)
-            console.log(renderer.width, renderer.height)
             renderer.setSize(
                 container.offsetWidth * scale,
                 container.offsetHeight * scale
             );
-            console.log(renderer.width, renderer.height)
             const resUniform = program.uniforms.uResolution.value as Float32Array;
             resUniform[0] = gl.canvas.width;
             resUniform[1] = gl.canvas.height;

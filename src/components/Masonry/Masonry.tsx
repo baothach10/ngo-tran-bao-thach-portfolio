@@ -223,7 +223,7 @@ const Masonry: React.FC<TMasonryProps> = ({
                         <div
                             className="item-img-container"
                         >
-                            <img className="item-img" src={item.img} alt="image" />
+                            <img loading="lazy" className="item-img" src={item.img} alt="image" />
                             {colorShiftOnHover && (
                                 <div
                                     className="color-overlay"
@@ -235,7 +235,7 @@ const Masonry: React.FC<TMasonryProps> = ({
                                         width: "100%",
                                         height: "100%",
                                         background:
-                                            "linear-gradient(45deg, rgba(255,0,150,0.5), rgba(0,150,255,0.5))",
+                                            "linear-gradient(45deg, rgba(255,255,255,0.8), rgba(0,0,0,0.8))",
                                         opacity: 0,
                                         pointerEvents: "none",
                                         borderRadius: "8px",

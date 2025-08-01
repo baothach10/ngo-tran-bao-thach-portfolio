@@ -96,9 +96,14 @@ export function isMobileDevice(): boolean {
   );
 
   // Detect iPadOS 13+ which reports as Mac
-  const isModerniPad = /Intel Mac/i.test(userAgent) && navigator.maxTouchPoints >= 1;
+  const isModerniPad =
+    /Intel Mac/i.test(userAgent) &&
+    ((document.documentElement.clientWidth > 768 && document.documentElement.clientWidth <= 1024) ||
+      navigator.maxTouchPoints >= 1);
 
   const isSurface = /Windows NT 10.0/i.test(userAgent) && navigator.maxTouchPoints >= 1;
+
+  console.log(isModerniPad);
 
   return isMobileUA || isModerniPad || isSurface;
 }

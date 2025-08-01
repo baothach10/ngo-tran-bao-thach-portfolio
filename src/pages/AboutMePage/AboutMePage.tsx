@@ -1,59 +1,92 @@
-import { lazy, Suspense } from 'react';
+import { lazy } from 'react';
 
 import { AnimatedNameGraphic } from '@/components/AboutMePage/AnimatedNameGraphic/AnimatedNameGraphic';
-import { SectionTitle } from '@/components/layout/SectionTitle/SectionTitle';
+import BeyondWorkSkeleton from '@/components/AboutMePage/BeyondWork/BeyondWorkSkeleton';
+import EducationSkeleton from '@/components/AboutMePage/Education/EducationSkeleton';
+import MainSkillsSkeleton from '@/components/AboutMePage/MainSkills/MainSkillsSkeleton';
+import PersonalInformationSkeleton from '@/components/AboutMePage/PersonalInformation/PersonalInformationSkeleton';
+import ReadyToDiscussSkeleton from '@/components/AboutMePage/ReadyToDiscuss/ReadyToDiscussSkeleton';
+import TechnologyCarouselSkeleton from '@/components/Carousel/TechnologyCarousel/TechnologyCarouselSkeleton';
+import LazyOnScroll from '@/components/layout/LazyOnScroll';
 import './AboutMePage.css';
-import LoadingComponent from '@/components/LoadingComponent/LoadingComponent';
 
 const MainSkillsSection = lazy(() => import('@/components/AboutMePage/MainSkills/MainSkills'));
-const PersonalInformationSection = lazy(() => import('@/components/AboutMePage/PersonalInformation/PersonalInformation'));
-const TechnologyCarousel = lazy(() => import('@/components/Carousel/TechnologyCarousel/TechnologyCarousel'));
+const PersonalInformationSection = lazy(
+  () => import('@/components/AboutMePage/PersonalInformation/PersonalInformation')
+);
+const TechStackSection = lazy(
+  () => import('@/components/Carousel/TechnologyCarousel/TechStackSection')
+);
 const BeyondWorkSection = lazy(() => import('@/components/AboutMePage/BeyondWork/BeyondWork'));
-const ReadyToDiscussSection = lazy(() => import('@/components/AboutMePage/ReadyToDiscuss/ReadyToDiscuss'));
+const ReadyToDiscussSection = lazy(
+  () => import('@/components/AboutMePage/ReadyToDiscuss/ReadyToDiscuss')
+);
 const EducationSection = lazy(() => import('@/components/AboutMePage/Education/Education'));
 
-
 const AboutMePage = () => {
-    return (
-        <div className='about-me-page-container' >
-            <div className="name-graphic-container">
-                <AnimatedNameGraphic className='half-graphic' shadowColor='white' strokeColor='white' />
-            </div>
-            <div className="about-me-page-content-container">
-                <div className="personal-detail">
-                    <Suspense fallback={<LoadingComponent />}>
-                        <PersonalInformationSection />
-                    </Suspense>
-                    <SectionTitle content='My Tech Stack' />
-                    <div className="tech-stack-container">
-                        <Suspense fallback={<LoadingComponent />}>
-                            <TechnologyCarousel />
-                        </Suspense>
-                    </div>
-                </div>
-                <div className="education">
-                    <Suspense fallback={<LoadingComponent />}>
-                        <EducationSection />
-                    </Suspense>
-                </div>
-                <div className="main-skills">
-                    <Suspense fallback={<LoadingComponent />}>
-                        <MainSkillsSection />
-                    </Suspense>
-                </div>
-                <div className="beyond-work">
-                    <Suspense fallback={<LoadingComponent />}>
-                        <BeyondWorkSection />
-                    </Suspense>
-                </div>
-                <div className="ready-to-discuss">
-                    <Suspense fallback={<LoadingComponent />}>
-                        <ReadyToDiscussSection />
-                    </Suspense>
-                </div>
-            </div>
+  return (
+    <div className="about-me-page-container">
+      <div className="name-graphic-container">
+        <AnimatedNameGraphic className="half-graphic" shadowColor="white" strokeColor="white" />
+      </div>
+      <div className="about-me-page-content-container">
+        <div className="personal-detail">
+          <LazyOnScroll
+            Component={PersonalInformationSection}
+            fallback={<PersonalInformationSkeleton />}
+            estimatedHeight="400px"
+            autoAdjustHeight={true}
+            placeholder={<PersonalInformationSkeleton />}
+          />
+          <div className="tech-stack-container">
+            <LazyOnScroll
+              Component={TechStackSection}
+              fallback={<TechnologyCarouselSkeleton />}
+              estimatedHeight="300px"
+              autoAdjustHeight={true}
+              placeholder={<TechnologyCarouselSkeleton />}
+            />
+          </div>
         </div>
-    );
+        <div className="education">
+          <LazyOnScroll
+            Component={EducationSection}
+            fallback={<EducationSkeleton />}
+            estimatedHeight="100vh"
+            autoAdjustHeight={true}
+            placeholder={<EducationSkeleton />}
+          />
+        </div>
+        <div className="main-skills">
+          <LazyOnScroll
+            Component={MainSkillsSection}
+            fallback={<MainSkillsSkeleton />}
+            estimatedHeight="500px"
+            autoAdjustHeight={true}
+            placeholder={<MainSkillsSkeleton />}
+          />
+        </div>
+        <div className="beyond-work">
+          <LazyOnScroll
+            Component={BeyondWorkSection}
+            fallback={<BeyondWorkSkeleton />}
+            estimatedHeight="100px"
+            autoAdjustHeight={true}
+            placeholder={<BeyondWorkSkeleton />}
+          />
+        </div>
+        <div className="ready-to-discuss">
+          <LazyOnScroll
+            Component={ReadyToDiscussSection}
+            fallback={<ReadyToDiscussSkeleton />}
+            estimatedHeight="200px"
+            autoAdjustHeight={true}
+            placeholder={<ReadyToDiscussSkeleton />}
+          />
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default AboutMePage;

@@ -1,24 +1,39 @@
-import ContactMeButton from '@/components/ContactMeButton/ContactMeButton'
-import { SectionTitle } from '@/components/layout/SectionTitle/SectionTitle'
-import './ReadyToDiscuss.css'
+import { gsap } from 'gsap';
+import { useEffect, useRef } from 'react';
+
+import ContactMeButton from '@/components/ContactMeButton/ContactMeButton';
+import { SectionTitle } from '@/components/layout/SectionTitle/SectionTitle';
+import './ReadyToDiscuss.css';
 
 const ReadyToDiscuss = () => {
-    return (
-        <section className="ready-to-discuss-container">
-            <div className="ready-to-discuss-title">
-                <SectionTitle content='Ready To Discuss About Your Project?' />
-            </div>
-            <div className="ready-to-discuss-content">
-                <p>
-                    Just send an email to explore how I can help you achieve your digital goals.
-                </p>
+  const contentRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLDivElement>(null);
 
-            </div>
-            <div className="contact-button-container">
-                <ContactMeButton content='Get in touch' />
-            </div>
-        </section>
-    )
-}
+  useEffect(() => {
+    if (contentRef.current && buttonRef.current) {
+      gsap.fromTo(contentRef.current, { opacity: 0, x: -100 }, { opacity: 1, x: 0, duration: 1 });
+      gsap.fromTo(
+        buttonRef.current,
+        { opacity: 0, x: -100 },
+        { opacity: 1, x: 0, duration: 1, delay: 0.5 }
+      );
+    }
+  }, []);
 
-export default ReadyToDiscuss
+  return (
+    <section className="ready-to-discuss-container">
+      <div className="ready-to-discuss-title">
+        <SectionTitle content="Ready To Discuss About Your Project?" />
+      </div>
+      <div className="ready-to-discuss-content" ref={contentRef}>
+        <p>Just send an email to explore how I can help you achieve your digital goals.</p>
+      </div>
+      <div className="contact-button-container" ref={buttonRef}>
+        <ContactMeButton content="Get in touch" />
+      </div>
+    </section>
+  );
+};
+
+export default ReadyToDiscuss;
+

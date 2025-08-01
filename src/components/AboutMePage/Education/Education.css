@@ -13,12 +13,17 @@
   padding: 2rem 0rem;
 }
 
-.education-section-content {
+.education-section-content,
+.education-section-content-skeleton {
   position: relative;
   width: 80%;
   height: auto;
   & strong {
     font-weight: 500;
+  }
+
+  @media screen and (max-width: 480px) {
+    width: 100%;
   }
 }
 

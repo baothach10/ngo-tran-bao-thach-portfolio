@@ -14,6 +14,7 @@
 .loading-name {
   text-decoration: none;
   color: inherit;
+  font-weight: 300;
   font-size: 24px;
 }
 
@@ -39,6 +40,17 @@
   }
   100% {
     background-position-x: 500%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .loading-page-wrapper {
+    font-size: 24px;
+    letter-spacing: 2px;
+  }
+
+  .loading-name {
+    font-size: 16px;
   }
 }
 
