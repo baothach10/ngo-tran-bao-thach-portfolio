@@ -23,20 +23,20 @@ const BeyondWorkSkeleton: React.FC<IBeyondWorkSkeletonProps> = ({
   const sizes = {
     // Container dimensions
     containerWidth: isMobile ? 350 : 1000,
-    containerHeight: isMobile ? 1200 : 1700,
+    containerHeight: isMobile ? 1200 : 1550,
 
     // Section title
     titleWidth: isMobile ? 180 : 280,
     titleHeight: isMobile ? 32 : 48,
-    titleMarginBottom: isMobile ? 40 : 60,
+    titleMarginBottom: isMobile ? 40 : 30,
 
     // Paragraph section
     paragraphWidth: isMobile ? 280 : 600, // 80% on mobile, 60% on desktop
-    paragraphGap: isMobile ? 24 : 32,
+    paragraphGap: isMobile ? 24 : 16,
 
     // Individual paragraph
-    paragraphLineHeight: isMobile ? 14 : 16,
-    paragraphLineSpacing: isMobile ? 18 : 20,
+    paragraphLineHeight: isMobile ? 14 : 8,
+    paragraphLineSpacing: isMobile ? 18 : 10,
     paragraphLineWidths: {
       // First paragraph (2 lines)
       p1: isMobile ? [270, 250] : [580, 520],

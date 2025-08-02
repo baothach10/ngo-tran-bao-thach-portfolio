@@ -103,8 +103,6 @@ export function isMobileDevice(): boolean {
 
   const isSurface = /Windows NT 10.0/i.test(userAgent) && navigator.maxTouchPoints >= 1;
 
-  console.log(isModerniPad);
-
   return isMobileUA || isModerniPad || isSurface;
 }
 

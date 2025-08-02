@@ -32,7 +32,6 @@ const LazyOnScroll: React.FC<ILazyOnScrollProps> = ({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry?.isIntersecting) {
-          console.log('LazyOnScroll: Component becoming visible');
           setIsVisible(true);
           observer.disconnect();
         }
