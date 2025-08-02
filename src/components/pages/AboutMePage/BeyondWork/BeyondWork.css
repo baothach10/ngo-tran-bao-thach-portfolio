@@ -53,3 +53,9 @@
   }
 }
 
+@media (max-width: 1024px) {
+  .beyond-work__paragraph {
+    text-align: center;
+  }
+}
+

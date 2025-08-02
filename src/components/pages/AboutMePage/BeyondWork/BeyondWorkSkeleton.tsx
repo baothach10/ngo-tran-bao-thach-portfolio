@@ -28,11 +28,11 @@ const BeyondWorkSkeleton: React.FC<IBeyondWorkSkeletonProps> = ({
     // Section title
     titleWidth: isMobile ? 180 : 280,
     titleHeight: isMobile ? 32 : 48,
-    titleMarginBottom: isMobile ? 40 : 30,
+    titleMarginBottom: isMobile ? 20 : 30,
 
     // Paragraph section
     paragraphWidth: isMobile ? 280 : 600, // 80% on mobile, 60% on desktop
-    paragraphGap: isMobile ? 24 : 16,
+    paragraphGap: isMobile ? 12 : 16,
 
     // Individual paragraph
     paragraphLineHeight: isMobile ? 14 : 8,
@@ -48,7 +48,7 @@ const BeyondWorkSkeleton: React.FC<IBeyondWorkSkeletonProps> = ({
 
     // Masonry gallery
     masonryContainerWidth: isMobile ? 320 : 800, // 80% width
-    masonryTopPadding: isMobile ? 32 : 40,
+    masonryTopPadding: isMobile ? 16 : 40,
     masonryItemGap: isMobile ? 8 : 12,
 
     // Masonry item dimensions (varied heights for masonry effect)
@@ -86,7 +86,7 @@ const BeyondWorkSkeleton: React.FC<IBeyondWorkSkeletonProps> = ({
         paragraphs.push(
           <rect
             key={`paragraph-${paragraphIndex}-line-${lineIndex}`}
-            x={(sizes.containerWidth - sizes.paragraphWidth) / 2}
+            x={(sizes.containerWidth - (isMobile ? lineWidth : sizes.paragraphWidth)) / 2}
             y={currentY}
             width={lineWidth}
             height={sizes.paragraphLineHeight}
@@ -173,14 +173,7 @@ const BeyondWorkSkeleton: React.FC<IBeyondWorkSkeletonProps> = ({
     <section
       className="beyond-work-container"
       style={{
-        position: 'relative',
-        width: '100%',
-        height: '100%',
         padding: '2rem 0rem',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center'
       }}
     >
       <ContentLoader

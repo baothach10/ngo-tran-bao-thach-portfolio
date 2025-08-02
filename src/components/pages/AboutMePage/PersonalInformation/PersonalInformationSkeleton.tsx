@@ -72,7 +72,7 @@ const PersonalInformationSkeleton: React.FC<IPersonalInformationSkeletonProps> =
           padding: '2rem 0',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: '32px'
+          // gap: '32px'
         }}
         className="personal-information-skeleton"
       >

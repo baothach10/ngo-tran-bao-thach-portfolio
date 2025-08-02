@@ -23,26 +23,26 @@ const ReadyToDiscussSkeleton: React.FC<IReadyToDiscussSkeletonProps> = ({
   const sizes = {
     // Container dimensions
     containerWidth: isMobile ? 350 : 800,
-    containerHeight: isMobile ? 160 : 120,
+    containerHeight: isMobile ? 100 : 120,
 
     // Section title
-    titleWidth: isMobile ? 280 : 500,
-    titleHeight: isMobile ? 32 : 24,
-    titleMarginBottom: isMobile ? 20 : 15,
+    titleWidth: isMobile ? 200 : 500,
+    titleHeight: isMobile ? 16 : 24,
+    titleMarginBottom: isMobile ? 10 : 15,
 
     // Content paragraph
-    contentWidth: isMobile ? 280 : 80, // 80% of container
-    paragraphLineHeight: isMobile ? 14 : 10,
-    paragraphLineSpacing: isMobile ? 18 : 10,
+    contentWidth: isMobile ? 190 : 80, // 80% of container
+    paragraphLineHeight: isMobile ? 7 : 10,
+    paragraphLineSpacing: isMobile ? 9 : 10,
     paragraphLineWidths: isMobile
       ? [270, 240] // 2 lines on mobile
       : [460], // 1 line on desktop (shorter text)
-    paragraphMarginBottom: isMobile ? 24 : 15,
+    paragraphMarginBottom: isMobile ? 12 : 15,
 
     // Contact button
-    buttonWidth: isMobile ? 140 : 90,
-    buttonHeight: isMobile ? 40 : 40,
-    buttonBorderRadius: isMobile ? 20 : 25,
+    buttonWidth: isMobile ? 100 : 90,
+    buttonHeight: isMobile ? 30 : 40,
+    buttonBorderRadius: isMobile ? 15 : 25,
 
     // Border radius
     borderRadius: isMobile ? 4 : 6,

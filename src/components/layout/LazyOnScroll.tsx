@@ -6,6 +6,7 @@ interface ILazyOnScrollProps {
   componentProps?: Record<string, unknown>;
   placeholder?: React.ReactNode;
   estimatedHeight?: string;
+  rootMargin?: string;
   autoAdjustHeight?: boolean;
 }
 
@@ -13,6 +14,7 @@ const LazyOnScroll: React.FC<ILazyOnScrollProps> = ({
   Component,
   fallback = null,
   componentProps = {},
+  rootMargin = '100px 0px',
   placeholder,
   autoAdjustHeight = true
 }) => {
@@ -37,7 +39,7 @@ const LazyOnScroll: React.FC<ILazyOnScrollProps> = ({
         }
       },
       {
-        rootMargin: '100px 0px', // Start loading 100px before the element enters viewport
+        rootMargin: rootMargin, // Start loading 100px before the element enters viewport or it can be customized
         threshold: 0.1 // Trigger when 10% becomes visible
       }
     );

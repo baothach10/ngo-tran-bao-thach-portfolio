@@ -1,33 +1,35 @@
 import { lazy } from 'react';
 
-import { AnimatedNameGraphic } from '@/components/AboutMePage/AnimatedNameGraphic/AnimatedNameGraphic';
-import BeyondWorkSkeleton from '@/components/AboutMePage/BeyondWork/BeyondWorkSkeleton';
-import EducationSkeleton from '@/components/AboutMePage/Education/EducationSkeleton';
-import MainSkillsSkeleton from '@/components/AboutMePage/MainSkills/MainSkillsSkeleton';
-import PersonalInformationSkeleton from '@/components/AboutMePage/PersonalInformation/PersonalInformationSkeleton';
-import ReadyToDiscussSkeleton from '@/components/AboutMePage/ReadyToDiscuss/ReadyToDiscussSkeleton';
 import TechnologyCarouselSkeleton from '@/components/Carousel/TechnologyCarousel/TechnologyCarouselSkeleton';
 import LazyOnScroll from '@/components/layout/LazyOnScroll';
+import { AnimatedNameGraphic } from '@/components/pages/AboutMePage/AnimatedNameGraphic/AnimatedNameGraphic';
+import BeyondWorkSkeleton from '@/components/pages/AboutMePage/BeyondWork/BeyondWorkSkeleton';
+import EducationSkeleton from '@/components/pages/AboutMePage/Education/EducationSkeleton';
+import MainSkillsSkeleton from '@/components/pages/AboutMePage/MainSkills/MainSkillsSkeleton';
+import PersonalInformationSkeleton from '@/components/pages/AboutMePage/PersonalInformation/PersonalInformationSkeleton';
+import ReadyToDiscussSkeleton from '@/components/pages/AboutMePage/ReadyToDiscuss/ReadyToDiscussSkeleton';
 import './AboutMePage.css';
+import { isMobileDevice } from '@/utils';
 
-const MainSkillsSection = lazy(() => import('@/components/AboutMePage/MainSkills/MainSkills'));
+const MainSkillsSection = lazy(() => import('@/components/pages/AboutMePage/MainSkills/MainSkills'));
 const PersonalInformationSection = lazy(
-  () => import('@/components/AboutMePage/PersonalInformation/PersonalInformation')
+  () => import('@/components/pages/AboutMePage/PersonalInformation/PersonalInformation')
 );
 const TechStackSection = lazy(
   () => import('@/components/Carousel/TechnologyCarousel/TechStackSection')
 );
-const BeyondWorkSection = lazy(() => import('@/components/AboutMePage/BeyondWork/BeyondWork'));
+const BeyondWorkSection = lazy(() => import('@/components/pages/AboutMePage/BeyondWork/BeyondWork'));
 const ReadyToDiscussSection = lazy(
-  () => import('@/components/AboutMePage/ReadyToDiscuss/ReadyToDiscuss')
+  () => import('@/components/pages/AboutMePage/ReadyToDiscuss/ReadyToDiscuss')
 );
-const EducationSection = lazy(() => import('@/components/AboutMePage/Education/Education'));
+const EducationSection = lazy(() => import('@/components/pages/AboutMePage/Education/Education'));
 
 const AboutMePage = () => {
+  const animatedNameHeight = isMobileDevice() ? document.documentElement.clientWidth < 768 ? "4rem" : "7rem" : '10rem'
   return (
     <div className="about-me-page-container">
       <div className="name-graphic-container">
-        <AnimatedNameGraphic className="half-graphic" shadowColor="white" strokeColor="white" />
+        <AnimatedNameGraphic className="half-graphic" shadowColor="white" strokeColor="white" height={animatedNameHeight} />
       </div>
       <div className="about-me-page-content-container">
         <div className="personal-detail">
@@ -71,6 +73,7 @@ const AboutMePage = () => {
             Component={BeyondWorkSection}
             fallback={<BeyondWorkSkeleton />}
             estimatedHeight="100px"
+            rootMargin='1000px 0px'
             autoAdjustHeight={true}
             placeholder={<BeyondWorkSkeleton />}
           />

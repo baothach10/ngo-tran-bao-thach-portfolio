@@ -7,7 +7,7 @@
 }
 
 .name-graphic-container {
-  background-color: #111111;
+  background-color: #000000;
   position: relative;
   width: 100%;
   display: flex;
@@ -18,7 +18,11 @@
 }
 
 .half-graphic {
-  transform: translateY(30%) scale(1.2);
+  position: relative;
+  transform: translateY(20%) scale(1.2);
+  @media (max-width: 1023px) {
+    transform: translateY(10%) scale(1.2);
+  }
 }
 
 .about-me-page-content-container {
