@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { useLocation, Outlet } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 import PageWrapper from '../animation/PageWrapper';
 
@@ -37,8 +38,9 @@ const Layout: React.FC = () => {
 
   return (
     <div className="layout-container">
+      <ToastContainer />
       <div className="layout-wrapper">
-          <Header />
+        <Header />
         <PageWrapper key={location.pathname}>
           <Outlet />
           {location.pathname != '/' && <Footer />}

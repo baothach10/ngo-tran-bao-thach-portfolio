@@ -14,7 +14,7 @@ export default function Header() {
 
     const headerRef = useRef<HTMLDivElement>(null);
 
-    const hiddenOnPaths = ["/about-me"];
+    const hiddenOnPaths = ["/about-me", "/contact-me"];
 
     useEffect(() => {
         if (!isMobileDevice() || !headerRef.current) return

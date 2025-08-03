@@ -46,13 +46,13 @@ export const AnimatedNameGraphic = ({ width, height, className }: TAanimatedName
     }, []);
     return (
         <>
-            <svg ref={svgRef} className={`animated-name-graphic ${className}`} width={width} height={height} viewBox={`0 0 198 24`} fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg ref={svgRef} preserveAspectRatio="xMidYMid meet" className={`animated-name-graphic ${className}`} width={width} height={height} viewBox={`0 0 198 24`} fill="none" xmlns="http://www.w3.org/2000/svg">
 
                 <path className='char' d="M0.384 1.24H17.984V6.744H17.088L16.064 3.192C16 2.91467 15.9253 2.72267 15.84 2.616C15.776 2.488 15.6373 2.41333 15.424 2.392C15.2107 2.37067 14.848 2.36 14.336 2.36H11.104V20.312C11.104 21.0373 11.136 21.4747 11.2 21.624C11.264 21.752 11.4667 21.8373 11.808 21.88L13.568 22.104V23H4.8V22.104L6.56 21.88C6.90133 21.8373 7.104 21.752 7.168 21.624C7.232 21.4747 7.264 21.0373 7.264 20.312V2.36H4.032C3.54133 2.36 3.17867 2.37067 2.944 2.392C2.73067 2.41333 2.592 2.488 2.528 2.616C2.464 2.72267 2.38933 2.91467 2.304 3.192L1.28 6.744H0.384V1.24Z" fill={'url(#linear-gradient-white-to-black)'} />
                 <defs fill="none">
                     <linearGradient gradientUnits="userSpaceOnUse" y2="29" x2="85.5" y1="-8" x1="85.5" id="linear-gradient-white-to-black">
-                        <stop stopColor="#ffffff"></stop>
-                        <stop stopColor="#000000" offset="0.67"></stop>
+                        <stop stopColor="#E6E6E6"></stop>
+                        <stop stopColor="#090A0D" offset="0.67"></stop>
                     </linearGradient>
                 </defs>
                 <path className='char' d="M40.4 22.104V23H31.632V22.104L33.392 21.88C33.7333 21.8373 33.936 21.752 34 21.624C34.064 21.4747 34.096 21.0373 34.096 20.312V12.568H25.68V20.312C25.68 21.0373 25.712 21.4747 25.776 21.624C25.84 21.752 26.0427 21.8373 26.384 21.88L28.144 22.104V23H19.376V22.104L21.136 21.88C21.4773 21.8373 21.68 21.752 21.744 21.624C21.808 21.4747 21.84 21.0373 21.84 20.312V3.928C21.84 3.20267 21.808 2.776 21.744 2.648C21.68 2.49867 21.4773 2.40267 21.136 2.36L19.376 2.136V1.24H28.144V2.136L26.384 2.36C26.0427 2.40267 25.84 2.49867 25.776 2.648C25.712 2.776 25.68 3.20267 25.68 3.928V11.448H34.096V3.928C34.096 3.20267 34.064 2.776 34 2.648C33.936 2.49867 33.7333 2.40267 33.392 2.36L31.632 2.136V1.24H40.4V2.136L38.64 2.36C38.2987 2.40267 38.096 2.49867 38.032 2.648C37.968 2.776 37.936 3.20267 37.936 3.928V20.312C37.936 21.0373 37.968 21.4747 38.032 21.624C38.096 21.752 38.2987 21.8373 38.64 21.88L40.4 22.104Z" fill={'url(#linear-gradient-white-to-black)'} />

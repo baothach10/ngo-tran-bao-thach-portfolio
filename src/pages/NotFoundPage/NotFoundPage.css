@@ -70,7 +70,6 @@ p {
 .notfound-title {
   animation: swing var(--speed) infinite alternate ease-in-out;
   font-size: clamp(5rem, 40vmin, 20rem);
-  font-family: 'Open Sans', sans-serif;
   margin: 0 0 1rem 0;
   letter-spacing: 1rem;
   transform: translate3d(0, 0, 0vmin);

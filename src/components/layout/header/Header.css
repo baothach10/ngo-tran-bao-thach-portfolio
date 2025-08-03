@@ -145,7 +145,7 @@
   z-index: 9;
   overflow: hidden;
   box-shadow: 0 8px 30px 0 rgba(0, 0, 0, 0.3);
-  background-color: #000;
+  background-color: #222;
   animation: border-transform 7s linear infinite;
   transition:
     top 350ms 1100ms cubic-bezier(0.23, 1, 0.32, 1),
@@ -243,7 +243,7 @@
 }
 
 .nav-mobile ul .active a {
-  color: #66fcf1;
+  color: gray;
   text-decoration: underline;
 }
 
@@ -283,7 +283,7 @@
   display: block;
 }
 
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 1024px) {
 
   .menu-icon:checked + label,
   .menu-icon:not(:checked) + label {
