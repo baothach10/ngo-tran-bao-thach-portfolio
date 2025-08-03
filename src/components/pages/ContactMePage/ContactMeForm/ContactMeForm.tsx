@@ -1,11 +1,27 @@
 import './ContactMeForm.css'
+import { send, init } from '@emailjs/browser';
+import DOMPurify from 'dompurify';
 import { gsap } from 'gsap';
-import emailjs from 'emailjs-com';
 import { useCallback, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { ToastContentProps, toast } from 'react-toastify';
 
 import CustomProgressBar from '../CustomProgressBar/CustomProgressBar';
+
+type TFormResponse = {
+    firstName: string, lastName: string, email: string, subject: string, message: string
+}
+
+(function () {
+    init({
+        publicKey: import.meta.env.VITE_REACT_APP_PUBLIC_KEY,
+        blockHeadless: true,
+        limitRate: {
+            throttle: 10000, // 10s
+          },
+    });
+})();
+
 
 const ContactMeForm = () => {
     const {
@@ -13,7 +29,7 @@ const ContactMeForm = () => {
         handleSubmit,
         reset,
         formState: { errors }
-    } = useForm();
+    } = useForm<TFormResponse>();
     const [disabled, setDisabled] = useState(false);
     const animationRef = useRef<gsap.core.Tween | null>(null);
 
@@ -76,34 +92,39 @@ const ContactMeForm = () => {
 
 
     // Function called on submit that uses emailjs to send email of valid contact form
-    const onSubmit = async (data) => {
+    const onSubmit = async (data: TFormResponse) => {
         // Destrcture data object
         const { firstName, lastName, email, subject, message } = data;
+
+        const cleanedFirstName = DOMPurify.sanitize(firstName)
+        const cleanedLastName = DOMPurify.sanitize(lastName)
+        const cleanedEmail = DOMPurify.sanitize(email)
+        const cleanedSubject = DOMPurify.sanitize(subject)
+        const cleanedMessage = DOMPurify.sanitize(message)
+
+        const now = new Date();
+        const readableDateTime = now.toLocaleString();
+
         try {
             // Disable form while processing submission
             setDisabled(true);
 
             // Define template params
             const templateParams = {
-                firstName,
-                lastName,
-                email,
-                subject,
-                message
+                name: cleanedFirstName + ' ' + cleanedLastName,
+                email: cleanedEmail,
+                subject: cleanedSubject,
+                message: cleanedMessage,
+                time: readableDateTime
             };
-
-            // await new Promise(() => setTimeout(() => { console.log('submitted: ', data); console.log('template: ', templateParams) }, 1000))
-            console.log('submitted: ', data);
-            console.log('template: ', templateParams);
             scrollToTop()
 
             // Use emailjs to email contact form data
-            // await emailjs.send(
-            //     process.env.REACT_APP_SERVICE_ID,
-            //     process.env.REACT_APP_TEMPLATE_ID,
-            //     templateParams,
-            //     process.env.REACT_APP_USER_ID
-            // );
+            await send(
+                import.meta.env.VITE_REACT_APP_SERVICE_ID as string,
+                import.meta.env.VITE_REACT_APP_TEMPLATE_ID as string,
+                templateParams
+            );
 
 
 
@@ -143,7 +164,7 @@ const ContactMeForm = () => {
                                 className='form-control form-input'
                                 placeholder='First Name'
                             ></input>
-                            {errors.firstName && <span className='error-message'>{errors.firstName.message?.toString()}</span>}
+                            {errors.firstName && <span className='error-message'>{errors.firstName.message?.toString()}.</span>}
 
                         </div>
 
@@ -167,7 +188,7 @@ const ContactMeForm = () => {
                                 className='form-control form-input'
                                 placeholder='Last Name'
                             ></input>
-                            {errors.lastName && <span className='error-message'>{errors.lastName.message?.toString()}</span>}
+                            {errors.lastName && <span className='error-message'>{errors.lastName.message?.toString()}.</span>}
                         </div>
                     </div>
 
@@ -185,7 +206,7 @@ const ContactMeForm = () => {
                                 placeholder='Email address'
                             ></input>
                             {errors.email && (
-                                <span className='error-message'>Please enter a valid email address like example@mysite.com</span>
+                                <span className='error-message'>Please enter a valid email address like "example@mysite.com".</span>
                             )}
                         </div>
                     </div>
@@ -210,7 +231,7 @@ const ContactMeForm = () => {
                                 placeholder='Your requirements'
                             ></input>
                             {errors.subject && (
-                                <span className='error-message'>{errors.subject.message?.toString()}</span>
+                                <span className='error-message'>{errors.subject.message?.toString()}.</span>
                             )}
                         </div>
                     </div>
@@ -227,7 +248,7 @@ const ContactMeForm = () => {
                                 className='form-control form-input textarea'
                                 placeholder='Please feel free to outline your ideas and needs...'
                             ></textarea>
-                            {errors.message && <span className='error-message'>Please enter delivery information</span>}
+                            {errors.message && <span className='error-message'>Please enter your message.</span>}
                         </div>
                     </div>
 

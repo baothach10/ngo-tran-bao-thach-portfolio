@@ -48,7 +48,6 @@
   position: relative;
   width: fit-content;
   height: fit-content;
-  margin-bottom: 0.5rem;
 }
 
 .input-container {
@@ -77,6 +76,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
   height: 100%;
 }
 
@@ -173,9 +173,11 @@
   padding: 15px 50px;
   border: 2px solid white;
   border-radius: 10px;
+  transition: all 0.3s ease-in-out;
 }
 
 .submit-btn:hover {
+  scale: 1.2;
   background-color: white;
   color: black !important;
 }
