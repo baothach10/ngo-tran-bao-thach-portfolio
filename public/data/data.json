@@ -1,0 +1,629 @@
+{
+  "projects": {
+    "portfolio": {
+      "name": "Ngo Tran Bao Thach's Portfolio",
+      "owner": "Personal",
+      "startDate": "Jul 2025",
+      "thumbnail": "/assets/images/testing.png",
+      "endDate": "Present",
+      "type": "Personal Project",
+      "description": "Designed and developed a fully responsive, interactive personal portfolio website that showcases my projects, professional experience, certifications, awards, and personal background. Built with ReactJS and enhanced by ThreeJS and OGL, the site features a dynamic 3D environment with smooth WebGL animations and cinematic web motions, delivering an engaging and modern user experience across all devices. Implemented SEO-optimized content using AI-assisted tools to improve discoverability and search engine ranking. Integrated EmailJS and React-Hook-Form for seamless contact form handling and efficient email management. All 3D models used were manually optimized and rigged to ensure performance and visual consistency. This portfolio is a reflection of my passion for combining design, interactivity, and performance into a unified web experience.",
+      "roles": [
+        "UI/UX Designer",
+        "SEO Optimizer",
+        "Front-End Developer",
+        "3D Model Optimizer",
+        "Responsive Web Designer",
+        "3D Model Rigger"
+      ],
+      "techStack": [
+        "ReactJS",
+        "ThreeJS",
+        "TypeScript",
+        "WebGL",
+        "OGL",
+        "CSS3",
+        "HTML5 Canvas",
+        "EmailJS",
+        "React-Hook-Form",
+        "Blender"
+      ],
+      "highlights": [
+        {
+          "image": "/assets/images/testing.png",
+          "title": "Portfolio Project 1",
+          "subtitle": "Interactive 3D Environment"
+        },
+        {
+          "image": "/assets/images/testing.png",
+          "title": "Portfolio Project 2",
+          "subtitle": "Responsive Design System"
+        },
+        {
+          "image": "/assets/images/testing.png",
+          "title": "Portfolio Project 3",
+          "subtitle": "WebGL Animations"
+        },
+        {
+          "image": "/assets/images/testing.png",
+          "title": "Portfolio Project 4",
+          "subtitle": "SEO Optimization"
+        }
+      ],
+      "liveLink": "To Be Updated",
+      "responsibilities": [
+        "Designed and implemented a fully responsive, mobile-first UI/UX layout using ReactJS and CSS3.",
+        "Developed a 3D interactive scene with ThreeJS and OGL for real-time animations and immersive navigation.",
+        "Integrated WebGL components and animations to enhance user interactivity and engagement.",
+        "Optimized and rigged 3D models for performance and seamless integration within the web environment.",
+        "Applied AI-powered tools to fine-tune written content for SEO, AEO, and voice search optimization.",
+        "Configured EmailJS and React-Hook-Form to manage contact form submissions and email interactions securely.",
+        "Maintained cross-browser and cross-device compatibility through responsive design techniques.",
+        "Ensured fast load times, accessibility, and high performance for an optimal user experience."
+      ]
+    },
+    "my-dream-garage": {
+      "name": "My Dream Garage",
+      "owner": "Personal",
+      "thumbnail": "/assets/images/testing.png",
+      "startDate": "Mar 2025",
+      "endDate": "Jun 2025",
+      "type": "Personal Project",
+      "highlights": [
+        {
+          "image": "/assets/images/testing.png",
+          "title": "Portfolio Project 1",
+          "subtitle": "Interactive 3D Environment"
+        },
+        {
+          "image": "/assets/images/testing.png",
+          "title": "Portfolio Project 2",
+          "subtitle": "Responsive Design System"
+        },
+        {
+          "image": "/assets/images/testing.png",
+          "title": "Portfolio Project 3",
+          "subtitle": "WebGL Animations"
+        },
+        {
+          "image": "/assets/images/testing.png",
+          "title": "Portfolio Project 4",
+          "subtitle": "SEO Optimization"
+        }
+      ],
+      "description": "Designed and developed an interactive 3D supercar showroom with immersive visuals and cinematic animations. Built using ReactJS and ThreeJS, the application features real-time rendering of 3D models, smooth animations with GSAP, and a fully responsive UI. I handled UI/UX design, integrated ThreeJS seamlessly within the React component architecture, and optimized 3D assets in Blender to ensure performance without sacrificing visual quality. The result is a visually rich, engaging web experience tailored for modern browsers.",
+      "roles": ["Front-End Developer", "UI/UX Designer", "3D Model Optimization"],
+      "techStack": ["ReactJS", "ThreeJS", "GSAP", "TypeScript", "CSS", "Vite", "Blender"],
+      "liveLink": "https://my-dream-garage.vercel.app",
+      "responsibilities": [
+        "Designed and developed responsive UI components using ReactJS and TypeScript.",
+        "Integrated real-time 3D rendering and animations with ThreeJS within the React application architecture.",
+        "Crafted immersive user experiences with GSAP-powered cinematic transitions and interactions.",
+        "Optimized 3D assets in Blender for performance and visual fidelity across devices.",
+        "Managed the entire UI/UX flow, from layout design to interaction behavior, ensuring a seamless visual journey."
+      ]
+    },
+    "nexon-projects": {
+      "name": "Game Development Projects",
+      "owner": "Nexon Company",
+      "thumbnail": "/assets/images/testing.png",
+      "startDate": "Sep 2024",
+      "endDate": "Present",
+      "type": "Company Project",
+      "highlights": [
+        {
+          "image": "/assets/images/testing.png",
+          "title": "Portfolio Project 1",
+          "subtitle": "Interactive 3D Environment"
+        },
+        {
+          "image": "/assets/images/testing.png",
+          "title": "Portfolio Project 2",
+          "subtitle": "Responsive Design System"
+        },
+        {
+          "image": "/assets/images/testing.png",
+          "title": "Portfolio Project 3",
+          "subtitle": "WebGL Animations"
+        },
+        {
+          "image": "/assets/images/testing.png",
+          "title": "Portfolio Project 4",
+          "subtitle": "SEO Optimization"
+        }
+      ],
+      "description": "Contributed to the development of multiple HTML5-based game titles across various genres and platforms, deployed to global servers. Focused on delivering high-performance gameplay, optimized 2D/3D mechanics, and visually polished interfaces for both desktop and mobile browsers. Built gameplay experiences using Phaser and ThreeJS, applying Object-Oriented Programming principles for scalable and reusable game architecture across multiple projects.\nIntegrated custom GLSL shaders and GSAP-driven animations to elevate visual fidelity and player immersion. Supported source code structure initialization, collaborated on UI component development using ReactJS, and optimized 3D assets via Blender. Titles contributed to include: Kart Rider, FC Online, Mabinogi M, The First Descendant, Crazy Arcade (Boom Online), and Blue Archive.\nAdditionally, performed manual QA, developed internal testing tools, and streamlined the asset pipeline to improve development efficiency and delivery quality.",
+      "roles": ["HTML5 Game Developer", "Shader Integrator", "Tester"],
+      "techStack": ["TypeScript", "Phaser", "ThreeJS", "Blender", "GSAP", "GLSL"],
+      "liveLink": "Live exclusively in Nexon Company platforms and other nations",
+      "responsibilities": [
+        "Developed UI components with ReactJS.",
+        "Built engaging 2D/3D gameplay mechanics using Phaser and ThreeJS, optimized for web and mobile browsers.",
+        "Created and maintained shared game architecture using OOP for reusability and scalability across multiple projects.",
+        "Integrated custom GLSL shaders and animations to enhance graphics and user immersion.",
+        "Initialized source code structure and foundations for development.",
+        "Worked on game titles including Kart Rider, FC Online, Mabinogi M, The First Descendant, Crazy Arcade (Boom Online), and Blue Archive.",
+        "Performed manual QA and built internal tools for testing and asset pipeline optimization."
+      ]
+    },
+    "deheus-myanmar-ai-adoption-roadmap": {
+      "name": "AI Adoption Roadmap for De Heus Myanmar",
+      "owner": "RMIT University",
+      "thumbnail": "/assets/images/testing.png",
+      "startDate": "Mar 2024",
+      "endDate": "Sep 2024",
+      "type": "Research Project",
+      "highlights": [
+        {
+          "image": "/assets/images/testing.png",
+          "title": "Portfolio Project 1",
+          "subtitle": "Interactive 3D Environment"
+        },
+        {
+          "image": "/assets/images/testing.png",
+          "title": "Portfolio Project 2",
+          "subtitle": "Responsive Design System"
+        },
+        {
+          "image": "/assets/images/testing.png",
+          "title": "Portfolio Project 3",
+          "subtitle": "WebGL Animations"
+        },
+        {
+          "image": "/assets/images/testing.png",
+          "title": "Portfolio Project 4",
+          "subtitle": "SEO Optimization"
+        }
+      ],
+      "description": "Led a comprehensive research project to develop an AI adoption roadmap for De Heus Myanmar's broiler farming operations. The project focused on identifying operational inefficiencies and proposing data-driven solutions for real-time farm monitoring and broiler weight optimization. Conducted in-depth analysis of environmental factors affecting broiler performance, developed predictive models for weight forecasting, and delivered actionable insights to support strategic AI implementation in agricultural operations.",
+      "roles": [
+        "Data Analyst",
+        "Machine Learning Developer",
+        "AI Researcher",
+        "Statistical Analyst"
+      ],
+      "techStack": [
+        "Python",
+        "ARIMA",
+        "Prophet",
+        "XGBoost",
+        "Random Forest",
+        "Ridge Regression",
+        "WeatherAPI",
+        "Statistical Testing",
+        "GitHub",
+        "Microsoft Teams",
+        "Pandas",
+        "NumPy",
+        "Scikit-learn"
+      ],
+      "liveLink": "Research project - not publicly available",
+      "responsibilities": [
+        "Identified key operational inefficiencies in broiler farming through systematic research and data analysis.",
+        "Researched and evaluated current AI solutions and best practices in agricultural technology.",
+        "Conducted comprehensive statistical testing to identify environmental factors with significant impact on broiler performance.",
+        "Performed data preprocessing, feature engineering, and mock data generation for model development.",
+        "Developed and compared multiple machine learning models including time series forecasting and regression techniques.",
+        "Integrated real-time environmental data using WeatherAPI for enhanced predictive accuracy.",
+        "Conducted hyperparameter tuning and model validation to optimize forecasting performance.",
+        "Collaborated with cross-functional team members using GitHub for version control and Microsoft Teams for communication.",
+        "Delivered comprehensive AI adoption roadmap with strategic recommendations for De Heus Myanmar operations."
+      ]
+    },
+    "salto-japan-media-site": {
+      "name": "Salto Japan Media Site",
+      "owner": "Salto Vietnam",
+      "startDate": "Feb 2024",
+      "thumbnail": "/assets/images/testing.png",
+      "endDate": "Jun 2024",
+      "type": "Company Project",
+      "description": "Contributed to the development of a dynamic media platform for Salto Japan, leveraging NextJS for the frontend and Strapi CMS for content management. My role focused on creating reusable, responsive UI components, integrating backend content via Strapi APIs, and embedding Google Analytics for traffic tracking and user behavior insights. Additionally, I designed and implemented end-to-end test cases using Cypress to ensure the stability and functionality of key user flows across the site.",
+      "roles": ["Front-End Developer", "End-to-End Tester"],
+      "techStack": ["ReactJS", "NextJS", "Strapi", "Google Analytics", "TailwindCSS", "Cypress"],
+      "liveLink": "https://salto.site/media",
+      "responsibilities": [
+        "Developed reusable and responsive frontend components using ReactJS, NextJS, and TailwindCSS.",
+        "Integrated dynamic content from Strapi CMS via custom API endpoints.",
+        "Embedded Google Analytics to monitor user behavior and track performance metrics.",
+        "Implemented end-to-end test cases using Cypress to ensure UI/UX stability and functional reliability across user flows.",
+        "Collaborated with the design and backend teams to align component development with content strategy and site architecture."
+      ]
+    }
+  },
+  "experience": {
+    "nexon-company": {
+      "position": "JavaScript Developer",
+      "company": "Nexon Company",
+      "companyLogo": "/testing/nexon.svg",
+      "employmentType": "Full-time",
+      "startDate": "Sep 2024",
+      "endDate": "Present",
+      "location": "Ho Chi Minh City, Vietnam",
+      "workType": "On-site",
+      "abstract": "I focus on creating engaging web-based 2D/3D games for interactive advertisements. My role involves leveraging modern web technologies to deliver high-performance gaming experiences.",
+      "responsibilities": [
+        "Developed web-based 2D/3D games for interactive advertisements using Vite for fast module bundling and optimized builds.",
+        "Utilized HTML5, CSS3, JavaScript, and TypeScript to build engaging gameplay mechanics and polished visual experiences.",
+        "Leveraged Phaser and ThreeJS with WebGL rendering to create high-performance, visually rich graphics for immersive gameplay.",
+        "Applied Object-Oriented Programming (OOP) principles to efficiently structure game logic and manage in-game objects.",
+        "Engineered custom algorithms to support key game features while optimizing for performance and smooth user interaction.",
+        "Optimized and exported 3D models from Blender, ensuring proper configurations for real-time web rendering.",
+        "Integrated GLSL shaders to enhance visual effects and elevate the aesthetic quality of 3D web applications.",
+        "Implemented GSAP animations to enrich user experience and provide smooth in-game transitions.",
+        "Embedded and integrated core game components into a ReactJS web application for seamless hosting and deployment on the web."
+      ],
+      "skills": [
+        "Phaser",
+        "Three.js",
+        "Front-End Development",
+        "Game Development",
+        "Object-Oriented Programming (OOP)",
+        "Vanilla JavaScript",
+        "TypeScript",
+        "HTML5",
+        "CSS3",
+        "HTML5 Canvas",
+        "Algorithm Development",
+        "React.js",
+        "Blender",
+        "OpenGL Shading Language (GLSL)",
+        "GreenSock Animation Platform (GSAP)"
+      ]
+    },
+    "salto-vietnam": {
+      "position": "Frontend Engineer",
+      "company": "Salto Vietnam",
+      "companyLogo": "/testing/salto.svg",
+      "employmentType": "Full-time",
+      "startDate": "Sep 2023",
+      "endDate": "Sep 2024",
+      "location": "Ho Chi Minh City, Vietnam",
+      "workType": "On-site",
+      "abstract": "I focused on developing responsive web applications using modern frameworks and integrating backend services through APIs. My role involved collaborating with design teams to create user-friendly interfaces and implementing testing strategies to ensure high-quality deliverables.",
+      "responsibilities": [
+        "Developed responsive web applications using NuxtJS (VueJS framework) and CSS for frontend interfaces.",
+        "Integrated GraphQL APIs into the frontend to connect with backend services.",
+        "Implemented end-to-end testing for frontend components using Cypress.",
+        "Collaborated with design specifications to build pixel-perfect user interfaces as a Frontend Developer.",
+        "Integrated Google Analytics to track and enhance user experience and engagement.",
+        "Created and configured sitemaps to support SEO and improve web structure.",
+        "Explored both REST API and GraphQL for full-stack API integration and testing.",
+        "Gained foundational experience in backend development using Laravel (PHP framework).",
+        "Developed frontend applications using ReactJS and NextJS, expanding framework versatility.",
+        "Adapted quickly to new technologies and frameworks as per project demands.",
+        "Participated in the full web development lifecycle, from backend learning to frontend delivery and testing."
+      ],
+      "skills": [
+        "Frontend Development",
+        "Vue.js",
+        "Nuxt.js",
+        "React.js",
+        "Next.js",
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "GraphQL",
+        "REST API",
+        "Cypress",
+        "Google Analytics",
+        "SEO",
+        "Laravel",
+        "PHP",
+        "Responsive Web Design",
+        "Cross-Browser Compatibility",
+        "Git",
+        "Problem Solving",
+        "Technical Communication",
+        "Time Management",
+        "Project Collaboration"
+      ]
+    },
+    "de-heus-vietnam": {
+      "position": "Artificial Intelligence Trainee",
+      "company": "De Heus Vietnam Ltd.",
+      "companyLogo": "/testing/deheus.svg",
+      "employmentType": "Full-time",
+      "startDate": "Mar 2024",
+      "endDate": "Sep 2024",
+      "location": "Ho Chi Minh City, Vietnam",
+      "workType": "Remote",
+      "abstract": "I conducted research to identify operational challenges in broiler farming and proposed AI-driven solutions. My work involved developing predictive models for real-time farm monitoring and broiler weight optimization, utilizing machine learning techniques and statistical analysis.",
+      "responsibilities": [
+        "Conducted in-depth research to identify operational inefficiencies and key challenges in broiler farming processes.",
+        "Collaborated on the Capstone research project to support AI adoption strategies within De Heus Myanmar.",
+        "Designed and proposed an AI Roadmap for real-time farm monitoring and broiler weight optimization using environmental data.",
+        "Developed time series forecasting models to predict broiler weight based on factors like temperature, humidity, and feed efficiency.",
+        "Utilized statistical testing and data preprocessing to validate dataset integrity and identify key variables affecting broiler performance.",
+        "Implemented and compared machine learning models including ARIMA, Prophet, XGBoost, Random Forest, and Ridge Regression.",
+        "Integrated WeatherAPI data to incorporate real-time environmental variables into predictive models.",
+        "Interpreted results to provide actionable insights for operational enhancement and data-driven decision-making.",
+        "Worked in a remote, cross-functional team environment, ensuring timely reporting and delivery of research findings."
+      ],
+      "skills": [
+        "Time Series Forecasting",
+        "Machine Learning",
+        "Statistical Data Analysis",
+        "Research Skills",
+        "Data Processing",
+        "Python Programming",
+        "ARIMA Modeling",
+        "Facebook Prophet",
+        "XGBoost",
+        "Random Forest",
+        "Ridge Regression",
+        "Predictive Modeling",
+        "Model Evaluation & Validation",
+        "Feature Engineering",
+        "API Integration (WeatherAPI)",
+        "Data Visualization (Matplotlib, Seaborn, or similar)",
+        "Problem Solving",
+        "Data Interpretation & Insight Generation",
+        "Remote Collaboration & Communication",
+        "Technical Documentation"
+      ]
+    }
+  },
+  "certifications": {
+    "nextjs-15-react-the-complete-guide": {
+      "title": "Next.js 15 & React - The Complete Guide",
+      "issuer": "Udemy",
+      "issuerImage": "/testing/udemy.svg",
+      "issueDate": "Jul 2025",
+      "description": "Completed a comprehensive course on full-stack web development using React and Next.js 15. Gained hands-on experience with modern routing strategies, server-side rendering, static site generation, and advanced data handling techniques. Emphasized SEO optimization, scalable web architecture, and core to advanced features of Next.js 15.",
+      "skillsLearned": [
+        "Full-Stack Development",
+        "React.js",
+        "Next.js",
+        "Server Side Rendering",
+        "Static Site Generation",
+        "Incremental Static Regeneration",
+        "Page Router",
+        "App Router",
+        "Routing",
+        "Form Validation",
+        "Data Fetching",
+        "Data Mutation",
+        "SEO Optimization"
+      ]
+    },
+    "webpack-5-ninja-build-micro-frontend-and-web-apps": {
+      "title": "Webpack 5 Ninja - Build Micro frontend and web apps",
+      "issuer": "Udemy",
+      "issuerImage": "/testing/udemy.svg",
+      "issueDate": "Jul 2025",
+      "description": "Completed an in-depth course on Webpack 5, focusing on building modular and scalable micro frontends. Developed skills in bundling optimization, dynamic module federation, and seamless integration of modern front-end frameworks like React.",
+      "skillsLearned": ["Webpack", "Microfrontend", "Front-End Development", "React.js"]
+    },
+    "microfrontends-with-react-a-complete-developers-guide": {
+      "title": "Microfrontends with React: A Complete Developer's Guide",
+      "issuer": "Udemy",
+      "issuerImage": "/testing/udemy.svg",
+      "issueDate": "Jun 2025",
+      "description": "Completed a specialized course focused on building and deploying scalable microfrontend architectures using React. Gained hands-on experience with Webpack module federation, CI/CD pipelines, and deploying apps via Amazon S3 and CloudFront.",
+      "skillsLearned": [
+        "Microfrontend",
+        "Webpack",
+        "Amazon S3",
+        "Amazon CloudFront",
+        "Continuous Integration and Continuous Delivery (CI/CD)",
+        "React.js",
+        "Front-End Development"
+      ]
+    },
+    "buildwithai-hackathon-2024-participant-certificate": {
+      "title": "BuildwithAI Hackathon 2024: Participant Certificate",
+      "issuer": "Canvas Credentials (Badgr)",
+      "issuerImage": "/testing/canvas.svg",
+      "issueDate": "Feb 2025",
+      "description": "Participated in the BuildwithAI Hackathon 2024, collaborating in a team environment to design and develop innovative AI-driven applications. Applied knowledge in full-stack development, Retrieval-Augmented Generation (RAG), and Generative AI to build scalable solutions.",
+      "skillsLearned": [
+        "Teamwork",
+        "Full-Stack Development",
+        "Retrieval-Augmented Generation (RAG)",
+        "Generative AI"
+      ]
+    },
+    "aws-academy-machine-learning-foundations": {
+      "title": "AWS Academy Machine Learning Foundations",
+      "issuer": "Amazon Web Services (AWS)",
+      "issuerImage": "/testing/aws.svg",
+      "issueDate": "Jan 2025",
+      "description": "Completed foundational training in machine learning using AWS Cloud infrastructure. Gained practical experience in applying AWS services to real-world scenarios including time series forecasting, computer vision, and cloud-based ML deployment using core AWS tools.",
+      "skillsLearned": [
+        "AWS Cloud",
+        "Cloud Computing",
+        "Machine Learning",
+        "Computer Vision",
+        "Time Series Forecasting",
+        "AWS Core Services"
+      ]
+    },
+    "novartis-datathon-2024-participant-certificate": {
+      "title": "Novartis Datathon 2024: Participant Certificate",
+      "issuer": "Eurecat - Technology Centre",
+      "issuerImage": "/testing/eurecat.svg",
+      "issueDate": "Nov 2024",
+      "description": "Participated in the Novartis Datathon 2024, contributing to data-driven innovation in healthcare using Generative AI and Retrieval-Augmented Generation (RAG). Collaborated in a cross-functional team to apply research-based machine learning techniques and full-stack development skills in a real-world challenge environment.",
+      "skillsLearned": [
+        "Research Machine Learning",
+        "RAG",
+        "Teamwork",
+        "Generative AI",
+        "Fullstack development"
+      ]
+    },
+    "aws-academy-graduate-aws-academy-cloud-foundations": {
+      "title": "AWS Academy Graduate - AWS Academy Cloud Foundations",
+      "issuer": "Amazon Web Services (AWS)",
+      "issuerImage": "/testing/aws.svg",
+      "issueDate": "Jun 2024",
+      "description": "Completed the AWS Academy Cloud Foundations course, gaining a strong understanding of AWS global infrastructure, core cloud services, architectural principles, pricing models, and support plans. Built foundational knowledge essential for deploying and managing applications in the AWS environment.",
+      "skillsLearned": [
+        "AWS Architecture",
+        "AWS Cloud",
+        "AWS Core Services",
+        "AWS Pricing",
+        "AWS Support"
+      ]
+    },
+    "deep-learning-specialization": {
+      "title": "Deep Learning Specialization",
+      "issuer": "DeepLearning.AI",
+      "issuerImage": "/testing/deepLearningAI.svg",
+      "issueDate": "May 2023",
+      "description": "Completed the Deep Learning Specialization, gaining in-depth knowledge of neural network architectures including CNNs, RNNs, and Transformers. Acquired hands-on experience using TensorFlow to build, train, and optimize deep learning models for real-world applications.",
+      "skillsLearned": [
+        "Convolutional Neural Networks (CNN)",
+        "TensorFlow",
+        "Recurrent Neural Networks (RNN)",
+        "Artificial Neural Networks",
+        "Transformers"
+      ]
+    },
+    "data-structures-and-algorithms-deep-dive-using-java": {
+      "title": "Data Structures and Algorithms: Deep Dive Using Java",
+      "issuer": "Udemy",
+      "issuerImage": "/testing/udemy.svg",
+      "issueDate": "Feb 2023",
+      "description": "Completed an in-depth course on data structures and algorithms using Java. Developed strong problem-solving skills by implementing key algorithms and data structures, enhancing computational thinking and software engineering foundations.",
+      "skillsLearned": ["Java", "Data Structures", "Algorithms"]
+    },
+    "statistics-for-data-science-and-business-analysis": {
+      "title": "Statistics for Data Science and Business Analysis",
+      "issuer": "Udemy",
+      "issuerImage": "/testing/udemy.svg",
+      "issueDate": "Feb 2023",
+      "description": "Completed a foundational course in statistics tailored for data science and business analysis. Gained practical skills in interpreting data, applying statistical methods, and drawing insights to support data-driven decision-making in business contexts.",
+      "skillsLearned": ["Statistics", "Data Analysis", "Business Intelligence"]
+    },
+    "beginning-cpp-programming-from-beginner-to-beyond": {
+      "title": "Beginning C++ Programming - From Beginner to Beyond",
+      "issuer": "Udemy",
+      "issuerImage": "/testing/udemy.svg",
+      "issueDate": "Dec 2022",
+      "description": "Completed a comprehensive C++ programming course covering core concepts including object-oriented programming, data structures, and algorithms. Built a strong foundation for developing efficient and scalable applications using C++.",
+      "skillsLearned": [
+        "C++ Programming",
+        "Object-Oriented Programming",
+        "Data Structures",
+        "Algorithms"
+      ]
+    },
+    "google-data-analytics-certificate": {
+      "title": "Google Data Analytics Certificate",
+      "issuer": "Coursera",
+      "issuerImage": "/testing/coursera.svg",
+      "issueDate": "Oct 2022",
+      "description": "Completed the Google Data Analytics Professional Certificate, developing strong skills in data analysis, data cleaning, and visualization using tools such as SQL, R, and Tableau. Gained practical experience in preparing, analyzing, and interpreting data to support data-driven decision-making.",
+      "skillsLearned": [
+        "R (Programming Language)",
+        "Data Analysis",
+        "Data Visualization",
+        "Tableau",
+        "SQL",
+        "Data-driven Decision Making",
+        "Data Cleaning"
+      ]
+    },
+    "innovations-for-global-cities": {
+      "title": "Innovations For Global Cities",
+      "issuer": "RMIT University",
+      "issuerImage": "/testing/rmit.svg",
+      "issueDate": "Nov 2021",
+      "description": "Participated in a multidisciplinary program exploring innovative solutions for urban challenges in global cities. Developed skills in teamwork, problem solving, and public presentation through collaborative research and project-based learning.",
+      "skillsLearned": ["Teamwork", "Problem Solving", "Presentations"]
+    },
+    "ielts-academic-certificate-70-overall": {
+      "title": "IELTS Academic Certificate - 7.0 Overall",
+      "issuer": "British Council",
+      "issuerImage": "/testing/britishCouncil.svg",
+      "issueDate": "Sep 2020",
+      "description": "Demonstrates English language proficiency at an academic level, with strong performance across listening, reading, writing, and speaking skills, as assessed by the British Council.",
+      "skillsLearned": ["8.0 Listening", "7.0 Reading", "6.5 Writing", "7.0 Speaking"]
+    }
+  },
+  "awards": {
+    "2nd-runner-up-in-neo-league-2025": {
+      "title": "2nd Runner-Up in Neo League 2025",
+      "issuer": "RMIT Neo Culture Technology Club",
+      "issuerImage": "/testing/neoculturetech.svg",
+      "issueDate": "May 2025",
+      "description": "Achieved Second Runner-Up in Neo League 2025, a competitive AI-focused challenge hosted by the RMIT Neo Culture Technology Club at RMIT University. The competition centered on solving real-world business cases using prompt engineering and generative AI tools.\nCollaborated in a multidisciplinary team to design innovative, AI-driven business solutions, leveraging deep understanding of language models, structured thinking, and prompt optimization. Recognized for strategic thinking, creativity, and practical application of emerging AI technologies in a business context.",
+      "achievements": [
+        "Prompt Engineering",
+        "Business Strategic Planning",
+        "Teamwork",
+        "AI real-world application",
+        "2D/3D Generative AI"
+      ]
+    },
+    "scholars-list-for-academic-excellence-top-5-percent": {
+      "title": "Scholar's List for Academic Excellence (Top 5%)",
+      "issuer": "RMIT University",
+      "issuerImage": "/testing/rmit.svg",
+      "issueDate": "Apr 2025",
+      "description": "I am honored to have been recognized on the Scholar's List for Academic Excellence at RMIT University, an achievement awarded to the top 5% of students across both undergraduate and postgraduate programs based on cumulative GPA. This recognition reflects my consistent academic dedication throughout the Bachelor of Information Technology program, supported by a strong work ethic, collaborative learning, and the encouragement of peers, mentors, and family. It marks a significant milestone in my journey toward becoming a well-rounded and impact-driven technology professional.",
+      "achievements": [
+        "Academic Excellence",
+        "Analytical Thinking",
+        "Time Management",
+        "Self-Discipline",
+        "Research & Information Synthesis",
+        "Problem Solving",
+        "Attention to Detail",
+        "Adaptability in Learning",
+        "Persistence & Resilience",
+        "Critical Thinking",
+        "Collaboration & Peer Engagement",
+        "Goal Setting & Achievement",
+        "Effective Communication (written and technical)"
+      ]
+    },
+    "de-heus-award-certificate": {
+      "title": "De Heus Award Certificate",
+      "issuer": "De Heus Vietnam Ltd.",
+      "issuerImage": "/testing/deheus.svg",
+      "issueDate": "Jan 2025",
+      "description": "This award was jointly issued by RMIT University Vietnam and De Heus Vietnam in recognition of outstanding performance in the Capstone Project titled \"An AI Adoption Roadmap Within De Heus.\" As part of a five-member team, I conducted in-depth research into operational challenges faced by De Heus Vietnam, Myanmar, and the Netherlands (Royal De Heus), identifying inefficiencies that could be addressed through AI and machine learning. Our final proposal presented a strategic AI Adoption Roadmap to optimize broiler performance in poultry farming operations at De Heus Myanmar, combining data-driven insights with real-world impact.",
+      "achievements": [
+        "Research Machine Learning",
+        "Time-series Forecasting",
+        "AI Adoption Roadmap",
+        "AI Solutions",
+        "Teamwork"
+      ]
+    },
+    "certificate-of-commendation": {
+      "title": "Certificate of Commendation",
+      "issuer": "Dean, School of Computing Technologies RMIT STEM College (Australia)",
+      "issuerImage": "/testing/rmit.svg",
+      "issueDate": "May 2024",
+      "description": "This award was granted in recognition of my academic excellence during my exchange semester at RMIT University Melbourne in 2023. As part of the Bachelor of Information Technology program, I achieved a GPA of 3.8/4.0, reflecting strong performance in advanced coursework focused on AI, data analytics, and blockchain technologies within a globally competitive academic environment.",
+      "achievements": [
+        "Academic Performance",
+        "AI Development",
+        "Data Analytics",
+        "Blockchain Foundations"
+      ]
+    },
+    "rmit-technology-scholarship": {
+      "title": "RMIT Technology Scholarship",
+      "issuer": "RMIT University",
+      "issuerImage": "/testing/rmit.svg",
+      "issueDate": "Oct 2021",
+      "description": "I was awarded the Technology Scholarship at RMIT University Vietnam for exceptional academic achievement in high school, where I graduated with a GPA equivalent to approximately 3.84/4.0. This merit-based scholarship, covering 50% of my Bachelor of Information Technology tuition, recognized my strong potential in the tech field. Receiving this award granted me the opportunity to study at one of Vietnam's leading international universities and laid the foundation for my continued growth in software development, AI, and data-driven technologies.",
+      "achievements": [
+        "Academic Excellence",
+        "Critical Thinking",
+        "Problem Solving",
+        "Time Management",
+        "STEM Proficiency",
+        "Analytical Thinking",
+        "Technical Aptitude",
+        "Discipline & Consistency",
+        "Goal-Oriented Mindset",
+        "Independent Learning"
+      ]
+    }
+  }
+}
