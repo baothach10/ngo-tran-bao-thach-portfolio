@@ -25,7 +25,7 @@ const ContactMePage: React.FC = () => {
     );
   }, [])
   return (
-    <div className="contact-me-page-container">
+    <section className="contact-me-page-container">
       <div className="contact-me-page-background-container" ref={backgroundRef}>
         <LightRayBackground
           fadeDistance={isMobileDevice() ? 2 : 0.5}
@@ -39,7 +39,7 @@ const ContactMePage: React.FC = () => {
       <div className="contact-me-page-content" ref={formRef}>
         <ContactMeForm />
       </div>
-    </div>
+    </section>
   );
 };
 export default ContactMePage;
