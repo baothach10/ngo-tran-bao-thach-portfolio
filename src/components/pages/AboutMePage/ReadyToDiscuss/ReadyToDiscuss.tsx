@@ -1,23 +1,56 @@
+import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
-import { useEffect, useRef } from 'react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useRef } from 'react';
 
 import ContactMeButton from '@/components/ContactMeButton/ContactMeButton';
 import { SectionTitle } from '@/components/layout/SectionTitle/SectionTitle';
 import './ReadyToDiscuss.css';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const ReadyToDiscuss = () => {
   const contentRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (contentRef.current && buttonRef.current) {
-      gsap.fromTo(contentRef.current, { opacity: 0, x: -100 }, { opacity: 1, x: 0, duration: 1 });
-      gsap.fromTo(
-        buttonRef.current,
-        { opacity: 0, x: -100 },
-        { opacity: 1, x: 0, duration: 1, delay: 0.5 }
-      );
-    }
+  useGSAP(() => {
+    const observer = new MutationObserver(() => {
+      if (contentRef.current && buttonRef.current) {
+        observer.disconnect();
+
+        ScrollTrigger.create({
+          trigger: contentRef.current,
+          id: 'ready-to-discuss-content',
+          start: 'top 90%',
+          end: 'bottom 10%',
+
+          toggleActions: 'play reverse play reverse',
+          animation: gsap.from(contentRef.current, {
+            y: 100,
+            opacity: 0,
+            duration: 1,
+            ease: 'power3.out'
+          })
+        });
+
+        ScrollTrigger.create({
+          trigger: buttonRef.current,
+          id: 'contact-button',
+          start: 'top 90%',
+          end: 'bottom 10%',
+
+          toggleActions: 'play reverse play reverse',
+          animation: gsap.from(buttonRef.current, {
+            y: 100,
+            opacity: 0,
+            duration: 1,
+            ease: 'power3.out'
+          })
+        });
+      }
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
   }, []);
 
   return (

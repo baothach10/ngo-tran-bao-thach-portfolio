@@ -14,7 +14,7 @@
   flex-direction: column;
   justify-content: center;
   & > svg {
-    transition: all 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
     margin-left: 1rem;
     z-index: 1;
   }
@@ -47,9 +47,6 @@
 .title {
   font-size: 1.2rem;
   font-weight: bold;
-}
-
-.description {
 }
 
 .tools {

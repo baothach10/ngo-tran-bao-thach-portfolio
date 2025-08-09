@@ -1,9 +1,13 @@
-import gsap from 'gsap';
-import { useEffect, useRef } from 'react';
+import { useGSAP } from '@gsap/react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useRef } from 'react';
 
 import { SectionTitle } from '@/components/layout/SectionTitle/SectionTitle';
 import './BeyondWork.css';
 import Masonry from '@/components/Masonry/Masonry';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const BeyondWork = () => {
   const items = [
@@ -106,21 +110,28 @@ const BeyondWork = () => {
   const contentRef = useRef<HTMLDivElement>(null);
   const masonryRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (contentRef.current) {
-      gsap.fromTo(
-        contentRef.current,
-        { x: -100, opacity: 0 },
-        { x: 0, opacity: 1, duration: 1, ease: 'power3.out' }
-      );
-    }
-    if (masonryRef.current) {
-      gsap.fromTo(
-        masonryRef.current,
-        { y: 100, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.5 }
-      );
-    }
+  useGSAP(() => {
+    if (!contentRef.current) return;
+    const contentParagraphs = contentRef.current.querySelectorAll('.beyond-work__paragraph');
+
+    const observer = new MutationObserver(() => {
+      observer.disconnect();
+
+      ScrollTrigger.create({
+        trigger: contentParagraphs,
+        start: 'top 90%',
+        end: 'bottom 10%',
+        toggleActions: 'play reverse play reverse',
+        animation: gsap.from(contentParagraphs, {
+          y: 50,
+          opacity: 0,
+          duration: 0.5,
+          ease: 'power3.out',
+          stagger: 0.2
+        })
+      });
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
   }, []);
 
   return (

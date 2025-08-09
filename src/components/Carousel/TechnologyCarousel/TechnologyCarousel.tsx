@@ -1,5 +1,7 @@
+import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
-import { useEffect, useRef } from 'react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useRef } from 'react';
 import './TechnologyCarousel.css';
 // Import Swiper React components
 import { Autoplay } from 'swiper/modules';
@@ -28,6 +30,8 @@ import { TechnologyItem } from '../TechnologyItem/TechnologyItem';
 
 import { isMobileDevice } from '@/utils';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const TechnologyCarousel = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const iconSize = isMobileDevice() ? 40 : 60; // Adjust icon size based on device type
@@ -37,20 +41,20 @@ const TechnologyCarousel = () => {
       : 6
     : 10;
 
-  useEffect(() => {
-    if (!carouselRef.current) return;
+  useGSAP(() => {
+    ScrollTrigger.create({
+      trigger: carouselRef.current,
+      start: 'top 95%',
+      end: 'bottom 10%',
 
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        carouselRef.current,
-        { y: 100, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }
-      );
-    }, carouselRef);
-
-    return () => {
-      ctx.revert();
-    };
+      toggleActions: 'play reverse play reverse',
+      animation: gsap.from(carouselRef.current, {
+        y: 100,
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.out'
+      })
+    });
   }, []);
 
   return (

@@ -1,7 +1,6 @@
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 
 import TechnologyCarouselSkeleton from '@/components/Carousel/TechnologyCarousel/TechnologyCarouselSkeleton';
-import LazyOnScroll from '@/components/layout/LazyOnScroll';
 import { AnimatedNameGraphic } from '@/components/pages/AboutMePage/AnimatedNameGraphic/AnimatedNameGraphic';
 import BeyondWorkSkeleton from '@/components/pages/AboutMePage/BeyondWork/BeyondWorkSkeleton';
 import EducationSkeleton from '@/components/pages/AboutMePage/Education/EducationSkeleton';
@@ -31,61 +30,41 @@ const AboutMePage = () => {
       <div className="name-graphic-container">
         <AnimatedNameGraphic className="half-graphic" shadowColor="white" strokeColor="white" height={animatedNameHeight} />
       </div>
+
       <div className="about-me-page-content-container">
         <div className="personal-detail">
-          <LazyOnScroll
-            Component={PersonalInformationSection}
-            fallback={<PersonalInformationSkeleton />}
-            estimatedHeight="400px"
-            autoAdjustHeight={true}
-            placeholder={<PersonalInformationSkeleton />}
-          />
+          <Suspense fallback={<PersonalInformationSkeleton />}>
+            <PersonalInformationSection />
+          </Suspense>
           <div className="tech-stack-container">
-            <LazyOnScroll
-              Component={TechStackSection}
-              fallback={<TechnologyCarouselSkeleton />}
-              estimatedHeight="300px"
-              autoAdjustHeight={true}
-              placeholder={<TechnologyCarouselSkeleton />}
-            />
+            <Suspense fallback={<TechnologyCarouselSkeleton />}>
+              <TechStackSection />
+            </Suspense>
           </div>
         </div>
+
         <div className="education">
-          <LazyOnScroll
-            Component={EducationSection}
-            fallback={<EducationSkeleton />}
-            estimatedHeight="100vh"
-            autoAdjustHeight={true}
-            placeholder={<EducationSkeleton />}
-          />
+          <Suspense fallback={<EducationSkeleton />}>
+            <EducationSection />
+          </Suspense>
         </div>
+
         <div className="main-skills">
-          <LazyOnScroll
-            Component={MainSkillsSection}
-            fallback={<MainSkillsSkeleton />}
-            estimatedHeight="500px"
-            autoAdjustHeight={true}
-            placeholder={<MainSkillsSkeleton />}
-          />
+          <Suspense fallback={<MainSkillsSkeleton />}>
+            <MainSkillsSection />
+          </Suspense>
         </div>
+
         <div className="beyond-work">
-          <LazyOnScroll
-            Component={BeyondWorkSection}
-            fallback={<BeyondWorkSkeleton />}
-            estimatedHeight="100px"
-            rootMargin='1000px 0px'
-            autoAdjustHeight={true}
-            placeholder={<BeyondWorkSkeleton />}
-          />
+          <Suspense fallback={<BeyondWorkSkeleton />}>
+            <BeyondWorkSection />
+          </Suspense>
         </div>
+
         <div className="ready-to-discuss">
-          <LazyOnScroll
-            Component={ReadyToDiscussSection}
-            fallback={<ReadyToDiscussSkeleton />}
-            estimatedHeight="200px"
-            autoAdjustHeight={true}
-            placeholder={<ReadyToDiscussSkeleton />}
-          />
+          <Suspense fallback={<ReadyToDiscussSkeleton />}>
+            <ReadyToDiscussSection />
+          </Suspense>
         </div>
       </div>
     </div>

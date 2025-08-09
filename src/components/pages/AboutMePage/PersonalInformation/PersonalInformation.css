@@ -31,7 +31,6 @@
 
 .personal-information-text h2 {
   font-size: 2rem;
-  margin-bottom: 20px;
   line-height: 1.4;
 }
 
@@ -42,8 +41,7 @@
 .personal-information-text p {
   font-size: 1.1rem;
   line-height: 1.7;
-  margin-bottom: 20px;
-  transition: all 0.3s ease-in-out;
+  transition: hover 0.3s ease-in-out;
 }
 
 .personal-information-text p strong {
@@ -68,7 +66,6 @@
 
 .personal-information-text ul {
   list-style-type: disc;
-  padding-left: 20px;
   margin-bottom: 20px;
   color: #333;
 }
@@ -79,6 +76,14 @@
   line-height: 1.6;
 }
 
+.personal-information-text-wrapper {
+  position: relative;
+  width: 100%;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .personal-information-container {
@@ -86,7 +91,6 @@
   }
 
   .personal-information-text h2 {
-
   }
 
   .personal-information-image {
@@ -104,7 +108,6 @@
   .personal-information-text-wrapper {
     position: relative;
     width: 80%;
-    text-align: center;
   }
 }
 
@@ -115,7 +118,6 @@
 
   .personal-information-text h2 {
     font-size: 1.8rem;
-    margin-bottom: 20px;
     line-height: 1.4;
   }
 

@@ -53,7 +53,7 @@
   }
 }
 
-@media (max-width: 1024px) {
+@media (min-width: 500px) and (max-width: 1024px) {
   .beyond-work__paragraph {
     text-align: center;
   }

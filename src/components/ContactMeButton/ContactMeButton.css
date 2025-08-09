@@ -19,7 +19,10 @@
   align-items: center;
   border-radius: 99px;
   position: relative;
-  transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+  /* Only background-color, border-radius, and box-shadow are likely to transition on the button itself */
+  transition:
+    background-color 0.5s cubic-bezier(0.77, 0, 0.175, 1),
+    border-radius 0.5s cubic-bezier(0.77, 0, 0.175, 1);
 
   .contact-me-text {
     text-shadow: none;
@@ -30,7 +33,8 @@
     position: relative;
     z-index: 5;
     margin-right: 32px;
-    transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    /* Only color transitions */
+    transition: color 0.5s cubic-bezier(0.77, 0, 0.175, 1);
   }
 
   svg {
@@ -39,7 +43,8 @@
     z-index: 5;
     transform: rotate(0deg) translateX(0);
     transform-origin: left;
-    transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    /* Only transform transitions */
+    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
   }
 
   &::before {
@@ -54,7 +59,12 @@
     top: 50%;
     right: 16px;
     transform: translateY(-50%);
-    transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    /* Only width, height, right, and background-color transitions */
+    transition:
+      width 0.5s cubic-bezier(0.77, 0, 0.175, 1),
+      height 0.5s cubic-bezier(0.77, 0, 0.175, 1),
+      right 0.5s cubic-bezier(0.77, 0, 0.175, 1),
+      background-color 0.5s cubic-bezier(0.77, 0, 0.175, 1);
   }
 }
 

@@ -1,25 +1,47 @@
+import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
-import { useEffect, useRef } from 'react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useRef } from 'react';
 
 import AnimatedPersonalImage from '../AnimatedPersonalImage/AnimatedPersonalImage';
 
 import './PersonalInformation.css';
 import { isMobileDevice } from '@/utils';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const PersonalInformation = () => {
   const imageRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const tl = gsap.timeline({
-      defaults: { duration: 1.5, ease: 'power3.out' }
+  useGSAP(() => {
+    ScrollTrigger.create({
+      trigger: imageRef.current,
+      start: 'top 90%',
+      end: 'bottom 10%',
+
+      toggleActions: 'play reverse play reverse',
+      animation: gsap.from(imageRef.current, {
+        x: -100,
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.out'
+      })
     });
 
-    tl.from(imageRef.current, { x: -200, opacity: 0 }).from(
-      textRef.current,
-      { x: 200, opacity: 0 },
-      '<'
-    ); // '<' means animate simultaneously
+    ScrollTrigger.create({
+      trigger: textRef.current,
+      start: 'top 90%',
+      end: 'bottom 10%',
+
+      toggleActions: 'play reverse play reverse',
+      animation: gsap.from(textRef.current, {
+        x: 100,
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.out'
+      })
+    });
   }, []);
 
   return (

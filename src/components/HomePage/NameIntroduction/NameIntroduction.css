@@ -200,17 +200,21 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (min-width: 500px) and (max-width: 1024px) {
+  .home-page-content {
+    height: 50%;
+  }
   .home-name {
     padding-right: 8%;
-    font-size: 1.8rem;
+    font-size: 4rem;
+    /* white-space: nowrap; */
   }
   .name-letter {
     min-width: 0.7em;
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 480px) {
   .home-name {
     padding-right: 8%;
     font-size: 1.6rem;

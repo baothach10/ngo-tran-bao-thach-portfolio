@@ -1,10 +1,14 @@
+import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
-import { useEffect, useRef } from 'react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useRef } from 'react';
 import { Chrono } from 'react-chrono';
 
 import { SectionTitle } from '@/components/layout/SectionTitle/SectionTitle';
 import './Education.css';
 import { isMobileDevice } from '@/utils';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Education = () => {
   const items = [
@@ -101,21 +105,53 @@ const Education = () => {
 
   const timelineRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     if (!timelineRef.current) return;
 
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        timelineRef.current,
-        { y: 100, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }
-      );
-    }, timelineRef);
+    const observer = new MutationObserver(() => {
+      const leftCards = timelineRef.current!.querySelectorAll('.card-content-wrapper.left .custom-card');
+      const rightCards = timelineRef.current!.querySelectorAll('.card-content-wrapper.right .custom-card');
+      const timelineItems = timelineRef.current!.querySelectorAll('.timeline-item-title');
 
-    return () => {
-      ctx.revert();
-    };
+      if (leftCards.length && rightCards.length) {
+
+        observer.disconnect();
+
+        leftCards.forEach((card) => {
+          ScrollTrigger.create({
+            trigger: card,
+            start: 'top 95%',
+            end: 'bottom 15%',
+            toggleActions: 'play reverse play reverse',
+            animation: gsap.from(card, { x: -100, opacity: 0, duration: 1, ease: 'power3.out' })
+          });
+        });
+
+        rightCards.forEach((card) => {
+          ScrollTrigger.create({
+            trigger: card,
+            start: 'top 95%',
+            end: 'bottom 15%',
+            toggleActions: 'play reverse play reverse',
+            animation: gsap.from(card, { x: 100, opacity: 0, duration: 1, ease: 'power3.out' })
+          });
+        });
+
+        timelineItems.forEach((item) => {
+          ScrollTrigger.create({
+            trigger: item,
+            start: 'top 95%',
+            end: 'bottom 15%',
+            toggleActions: 'play reverse play reverse',
+            animation: gsap.from(item, { opacity: 0, y: 100, duration: 1, ease: 'power3.out' })
+          });
+        });
+      }
+    });
+
+    observer.observe(timelineRef.current, { childList: true, subtree: true });
   }, []);
+
   return (
     <section className="education-section-container">
       <div className="education-section-title">
@@ -136,7 +172,8 @@ const Education = () => {
             cardSubTitle: 'card-subtitle',
             cardText: 'card-text',
             cardTitle: 'card-title',
-            title: 'timeline-title'
+            title: 'timeline-title',
+
           }}
           cardWidth={isMobileDevice() ? 300 : 400}
           parseDetailsAsHTML
@@ -144,7 +181,8 @@ const Education = () => {
           useReadMore
           contentDetailsHeight={50}
           mode="VERTICAL_ALTERNATING"
-        />
+        >
+        </Chrono>
       </div>
     </section>
   );

@@ -1,5 +1,5 @@
-
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import React, {
     useEffect,
     useLayoutEffect,
@@ -9,6 +9,9 @@ import React, {
 } from "react";
 
 import './Masonry.css';
+import MasonryImage from "./MasonryImage";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const useMedia = (
     queries: string[],
@@ -38,25 +41,26 @@ const useMeasure = <T extends HTMLElement>() => {
 
     useLayoutEffect(() => {
         if (!ref.current) return;
-        const ro = new ResizeObserver(([entry]) => {
-            const { width, height } = entry.contentRect;
+        const resizeObserver = new ResizeObserver(([entry]) => {
+            const { width, height } = entry!.contentRect;
             setSize({ width, height });
         });
-        ro.observe(ref.current);
-        return () => ro.disconnect();
+        resizeObserver.observe(ref.current);
+        return () => resizeObserver.disconnect();
     }, []);
 
     return [ref, size] as const;
 };
 
-const preloadImages = async (urls: string[]): Promise<void> => {
-    await Promise.all(
+const preloadImages = async (urls: string[]): Promise<{ src: string; width: number; height: number }[]> => {
+    return Promise.all(
         urls.map(
             (src) =>
-                new Promise<void>((resolve) => {
+                new Promise<{ src: string; width: number; height: number }>((resolve) => {
                     const img = new Image();
                     img.src = src;
-                    img.onload = img.onerror = () => resolve();
+                    img.onload = () => resolve({ src, width: img.naturalWidth, height: img.naturalHeight });
+                    img.onerror = () => resolve({ src, width: 0, height: 0 }); // Fallback
                 })
         )
     );
@@ -103,37 +107,46 @@ const Masonry: React.FC<TMasonryProps> = ({
 
     const [containerRef, { width }] = useMeasure<HTMLDivElement>();
     const [imagesReady, setImagesReady] = useState(false);
+    const [imageData, setImageData] = useState<{ src: string; width: number; height: number }[]>([]);
 
     useEffect(() => {
-        preloadImages(items.map((i) => i.img)).then(() => setImagesReady(true)).catch((e) => console.log(e));
+        preloadImages(items.map((i) => i.img)).then((data) => {
+            setImageData(data);
+            setImagesReady(true);
+        }).catch((e) => console.log(e));
     }, [items]);
 
-    const grid = useMemo(() => {
-        if (!width) return [];
+    const { gridItems, maxHeight } = useMemo(() => {
+        if (!width || !imageData.length) return { gridItems: [], maxHeight: 0 };
 
         const colHeights = new Array<number>(columns).fill(0);
         const columnWidth = width / columns;
 
-        return items.map((child) => {
+        const gridItems = items.map((child, index) => {
+            const { width: imgWidth, height: imgHeight } = imageData[index] || { width: 0, height: 0 };
+            const aspectRatio = imgWidth / imgHeight || 1;
+            const height = columnWidth / aspectRatio;
             const col = colHeights.indexOf(Math.min(...colHeights));
-            const x = columnWidth;
-            const height = child.height / 2;
-            const y = colHeights[col];
 
             colHeights[col] += height;
 
-            return { ...child, x, y, w: columnWidth, h: height };
+            return { ...child, imgWidth, imgHeight };
         });
-    }, [columns, items, width]);
+
+        const maxHeight = Math.max(...colHeights);
+
+        return { gridItems, maxHeight };
+    }, [columns, items, width, imageData]);
 
     const hasMounted = useRef(false);
 
     useLayoutEffect(() => {
         if (!imagesReady) return;
 
-        grid.forEach((item, index) => {
+        gridItems.forEach((item, index) => {
             const selector = `[data-key="${item.id}"]`;
             const animationProps = {
+                // Add logic for animateFrom if needed
             };
 
             if (!hasMounted.current) {
@@ -161,7 +174,10 @@ const Masonry: React.FC<TMasonryProps> = ({
         });
 
         hasMounted.current = true;
-    }, [grid, imagesReady, stagger, animateFrom, blurToFocus, duration, ease]);
+
+        // Refresh ScrollTrigger after animations and layout stabilization
+        ScrollTrigger.refresh(true);
+    }, [gridItems, imagesReady, stagger, animateFrom, blurToFocus, duration, ease]);
 
     const handleMouseEnter = (e: React.MouseEvent, item: any) => {
         const element = e.currentTarget as HTMLElement;
@@ -210,42 +226,29 @@ const Masonry: React.FC<TMasonryProps> = ({
     };
 
     return (
-        <div ref={containerRef} className="list">
-            {grid.map((item) => {
-                return (
-                    <div
-                        key={item.id}
-                        data-key={item.id}
-                        className="item-wrapper"
-                        onMouseEnter={(e) => handleMouseEnter(e, item)}
-                        onMouseLeave={(e) => handleMouseLeave(e, item)}
-                    >
-                        <div
-                            className="item-img-container"
-                        >
-                            <img loading="lazy" className="item-img" src={item.img} alt="image" />
-                            {colorShiftOnHover && (
-                                <div
-                                    className="color-overlay"
-                                    style={{
-                                        position: "absolute",
-                                        top: 0,
-                                        left: 0,
-                                        zIndex: 1,
-                                        width: "100%",
-                                        height: "100%",
-                                        background:
-                                            "linear-gradient(45deg, rgba(255,255,255,0.8), rgba(0,0,0,0.8))",
-                                        opacity: 0,
-                                        pointerEvents: "none",
-                                        borderRadius: "8px",
-                                    }}
-                                />
-                            )}
-                        </div>
-                    </div>
-                );
-            })}
+        <div
+            ref={containerRef}
+            className="list"
+            style={{
+                minHeight: `${maxHeight}px`
+            }}
+        >
+            {gridItems.map((item) => (
+                <div
+                    key={item.id}
+                    data-key={item.id}
+                    className="item-wrapper"
+                    onMouseEnter={(e) => handleMouseEnter(e, item)}
+                    onMouseLeave={(e) => handleMouseLeave(e, item)}
+                >
+                    <MasonryImage
+                        imgSrc={item.img}
+                        colorShiftOnHover={colorShiftOnHover}
+                        width={item.imgWidth}
+                        height={item.imgHeight}
+                    />
+                </div>
+            ))}
         </div>
     );
 };

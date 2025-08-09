@@ -1,5 +1,7 @@
+import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
-import { useEffect, useRef } from 'react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useRef } from 'react';
 
 import './MainSkills.css';
 import { ExpertiseBlock } from '../ExpertiseBlock/ExpertiseBlock';
@@ -12,6 +14,8 @@ import { SeoIcon } from './SkillIcons/SeoIcon';
 import { SectionTitle } from '@/components/layout/SectionTitle/SectionTitle';
 import { isMobileDevice } from '@/utils';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const MainSkills = () => {
   const iconSize = isMobileDevice() ? 40 : 60; // Adjust icon size based on device type
 
@@ -20,15 +24,68 @@ const MainSkills = () => {
   const expertiseBlock3 = useRef<HTMLDivElement>(null);
   const expertiseBlock4 = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const tl = gsap.timeline({
-      defaults: { duration: 1.5, ease: 'power3.out' }
-    });
+  useGSAP(() => {
+    const observer = new MutationObserver(() => {
+      if (expertiseBlock1.current && expertiseBlock2.current && expertiseBlock3.current && expertiseBlock4.current) {
+        observer.disconnect();
+        ScrollTrigger.create({
+          trigger: expertiseBlock1.current,
+          start: 'top 90%',
+          end: 'bottom 10%',
 
-    tl.from(expertiseBlock1.current, { x: -200, opacity: 0 })
-      .from(expertiseBlock2.current, { x: 200, opacity: 0 }, '<') // '<' means animate simultaneously
-      .from(expertiseBlock3.current, { x: -200, opacity: 0 }, '<') // '<' means animate simultaneously
-      .from(expertiseBlock4.current, { x: 200, opacity: 0 }, '<'); // '<' means animate simultaneously
+          toggleActions: 'play reverse play reverse',
+          animation: gsap.from(expertiseBlock1.current, {
+            x: -100,
+            opacity: 0,
+            duration: 1,
+            ease: 'power3.out'
+          })
+        });
+
+        ScrollTrigger.create({
+          trigger: expertiseBlock2.current,
+          start: 'top 90%',
+          end: 'bottom 10%',
+
+          toggleActions: 'play reverse play reverse',
+          animation: gsap.from(expertiseBlock2.current, {
+            x: 100,
+            opacity: 0,
+            duration: 1,
+            ease: 'power3.out'
+          })
+        });
+        ScrollTrigger.create({
+          trigger: expertiseBlock3.current,
+          start: 'top 90%',
+          end: 'bottom 10%',
+
+          toggleActions: 'play reverse play reverse',
+          animation: gsap.from(expertiseBlock3.current, {
+            x: -100,
+            opacity: 0,
+            duration: 1,
+            ease: 'power3.out'
+          })
+        });
+
+        ScrollTrigger.create({
+          trigger: expertiseBlock4.current,
+          start: 'top 90%',
+          end: 'bottom 10%',
+
+          toggleActions: 'play reverse play reverse',
+          animation: gsap.from(expertiseBlock4.current, {
+            x: 100,
+            opacity: 0,
+            duration: 1,
+            ease: 'power3.out'
+          })
+        });
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
   }, []);
 
   return (
