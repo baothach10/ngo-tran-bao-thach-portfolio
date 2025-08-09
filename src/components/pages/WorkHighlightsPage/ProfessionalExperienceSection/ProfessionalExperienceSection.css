@@ -1,0 +1,270 @@
+/* Professional Experience Section */
+.professional-experience-section {
+  width: 100%;
+  padding: 2rem 0;
+}
+
+.professional-experience-section-title {
+  position: relative;
+}
+
+.professional-experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.professional-experience-card-wrapper {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.professional-experience-card-wrapper:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateX(8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.professional-experience-card {
+  display: flex;
+  align-items: flex-start;
+  padding: 3rem;
+  gap: 3rem;
+}
+
+.professional-experience-company-logo {
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.professional-experience-company-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.professional-experience-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.professional-experience-position-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 0;
+}
+
+.professional-experience-company-name {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  font-weight: 500;
+}
+
+.professional-experience-employment-details {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.professional-experience-detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-width: 100px;
+  transition: all 0.3s ease;
+}
+
+.professional-experience-detail-item:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.professional-experience-detail-label {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.professional-experience-detail-value {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+}
+
+.professional-experience-position-abstract {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.5;
+  margin: 0;
+  padding: 0.5rem 0;
+}
+
+.professional-experience-skills-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.professional-experience-skills-label {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.professional-experience-skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.professional-experience-skill-item {
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  cursor: default;
+}
+
+.professional-experience-skill-card {
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  cursor: default;
+  transition: all 0.3s ease;
+}
+
+.professional-experience-skill-text {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #fff;
+  white-space: nowrap;
+  padding: 0.4rem 0.8rem;
+  display: block;
+}
+
+.professional-experience-remaining-skills {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 800;
+  font-style: italic;
+}
+
+.professional-experience-read-more-button {
+  display: block;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  text-decoration: none;
+  padding: 1.5rem;
+  text-align: center;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border-radius: 0 0 12px 12px;
+  border-top: none;
+}
+
+.professional-experience-read-more-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .professional-experience-section-title {
+    font-size: 2rem;
+  }
+
+  .professional-experience-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .professional-experience-company-logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  .professional-experience-employment-details {
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .professional-experience-detail-item {
+    min-width: 80px;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .professional-experience-detail-label {
+    font-size: 0.7rem;
+  }
+
+  .professional-experience-detail-value {
+    font-size: 0.8rem;
+  }
+
+  .professional-experience-skills-grid {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .professional-experience-section-title {
+    font-size: 1.8rem;
+  }
+
+  .professional-experience-position-title {
+    font-size: 1.2rem;
+  }
+
+  .professional-experience-company-name {
+    font-size: 1rem;
+  }
+
+  .professional-experience-card {
+    padding: 1rem;
+  }
+
+  .professional-experience-skills-grid {
+    gap: 0.4rem;
+  }
+
+  .professional-experience-skill-item {
+    border-radius: 6px;
+  }
+
+  .professional-experience-skill-card {
+    padding: 0.3rem 0.6rem;
+  }
+
+  .professional-experience-skill-text {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+  }
+}

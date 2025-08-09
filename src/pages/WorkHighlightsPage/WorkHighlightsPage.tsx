@@ -1,35 +1,71 @@
-import { gsap } from 'gsap';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './WorkHighlightsPage.css';
-import { SectionTitle } from '@/components/layout/SectionTitle/SectionTitle';
+import KeyProjectsSection from '@/components/pages/WorkHighlightsPage/KeyProjectsSection';
+import ProfessionalExperienceSection from '@/components/pages/WorkHighlightsPage/ProfessionalExperienceSection';
+
+interface IProject {
+  name: string;
+  owner: string;
+  startDate: string;
+  endDate: string;
+  type: string;
+  thumbnail?: string;
+  roles: string[];
+}
+
+interface IPosition {
+  position: string;
+  company: string;
+  companyLogo: string;
+  employmentType: string;
+  startDate: string;
+  endDate: string;
+  workType: string;
+  abstract: string;
+  skills: string[];
+}
+
+interface IDataStructure {
+  projects: { [key: string]: IProject };
+  experience: { [key: string]: IPosition };
+}
 
 const WorkHighlightsPage: React.FC = () => {
-    return (
-        <div className="work-highlights-page-container">
-            <section className="professional-experience-section">
-                <div className="professional-experience-title-container">
-                    <SectionTitle content="Professional Experience" />
-                    <h4 className="subtitle">
-                        A showcase of my professional journey, highlighting key roles and contributions.
-                    </h4>
-                </div>
-                <div className="professional-experience-content">Hello</div>
-            </section>
+  const [data, setData] = useState<IDataStructure | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-            <section className="projects-section">
-                <div className="projects-title-container">
-                    <SectionTitle content="Featured Work" />
-                    <h4 className="subtitle">
-                        A selection of projects that demonstrate my skills and impact in various domains.
-                    </h4>
-                </div>
-                <div className="projects-content">
-                    Hello
-                </div>
-            </section>
-        </div>
-    );
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const response = await fetch('/data/data.json');
+        const jsonData = (await response.json()) as IDataStructure;
+        setData(jsonData);
+      } catch (error) {
+        console.error('Error loading data:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    void loadData();
+  }, []);
+
+  if (isLoading) {
+    return <div className="work-highlights-page loading">Loading...</div>;
+  }
+
+  if (!data) {
+    return <div className="work-highlights-page error">Error loading data</div>;
+  }
+
+  return (
+    <div className="work-highlights-page-container">
+      <div className="work-highlights-page-wrapper">
+        <ProfessionalExperienceSection experience={data.experience} />
+        <KeyProjectsSection projects={data.projects} />
+      </div>
+    </div>
+  );
 };
 
 export default WorkHighlightsPage;
