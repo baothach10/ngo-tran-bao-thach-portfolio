@@ -106,3 +106,11 @@ export function isMobileDevice(): boolean {
   return isMobileUA || isModerniPad || isSurface;
 }
 
+export function isValidUrl(str: string): boolean {
+  try {
+    new URL(str);
+    return true;
+  } catch {
+    return false;
+  }
+}
