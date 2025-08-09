@@ -1,0 +1,66 @@
+/* Section Navigation Styles */
+.section-nav {
+  position: relative;
+  width: max-content;
+  height: max-content;
+  display: flex;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  z-index: 1000;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.section-nav-item {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 1);
+  color: rgba(255, 255, 255, 1);
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.section-nav-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 480px) {
+  .section-nav {
+    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    padding: 8px 12px;
+  }
+
+  .section-nav-item {
+    /* padding: 6px 12px; */
+    font-size: 12px;
+    flex: 1;
+    min-width: max-content;
+  }
+}
+
+/* Responsive adjustments */
+@media (min-width: 500px) and (max-width: 1024px) {
+  .section-nav {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 8px 12px;
+  }
+
+  .section-nav-item {
+    /* padding: 6px 12px; */
+    font-size: 12px;
+    flex: 1;
+    min-width: max-content;
+  }
+}
