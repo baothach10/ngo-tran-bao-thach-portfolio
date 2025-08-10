@@ -15,22 +15,16 @@ export const SectionTitle = ({ content }: TSectionTitle) => {
     const titleRef = useRef<HTMLDivElement>(null);
 
     useGSAP(() => {
-        const observer = new MutationObserver(() => {
-            if (titleRef.current) {
-                observer.disconnect();
-                ScrollTrigger.create({
-                    trigger: titleRef.current,
-                    start: 'top 95%',
-                    end: 'bottom 15%',
-                    toggleActions: 'play reverse play reverse',
-                    animation: gsap.from(titleRef.current, {
-                        y: 50,
-                        opacity: 0
-                    })
-                });
-            }
+        ScrollTrigger.create({
+            trigger: titleRef.current,
+            start: 'top 95%',
+            end: 'bottom 15%',
+            toggleActions: 'play reverse play reverse',
+            animation: gsap.from(titleRef.current, {
+                y: 100,
+                opacity: 0
+            })
         });
-        observer.observe(document.body, { childList: true, subtree: true });
     }, []);
 
     return (

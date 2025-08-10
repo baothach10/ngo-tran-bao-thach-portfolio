@@ -1,3 +1,4 @@
+import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import './ModalWrapper.css';
 import React, { useEffect, useRef, useState } from 'react';
@@ -87,7 +88,7 @@ const ModalWrapper: React.FC<IModalWrapperProps> = ({ children, isOpen, onClose 
     return undefined;
   }, [sections, isOpen]);
 
-  useEffect(() => {
+  useGSAP(() => {
     if (isOpen && containerRef.current && backdropRef.current) {
       // Prevent body scroll when modal is open
       const originalOverflow = document.body.style.overflow;
@@ -99,45 +100,8 @@ const ModalWrapper: React.FC<IModalWrapperProps> = ({ children, isOpen, onClose 
       document.body.style.overflow = 'hidden';
       document.body.style.paddingRight = `${scrollbarWidth}px`;
 
-      const tl = gsap.timeline();
-
-      if (isMobileDevice()) {
-        // Mobile animation: simple fade in with blur
-        gsap.set(containerRef.current, { opacity: 0 });
-        gsap.set(backdropRef.current, { backdropFilter: 'blur(0px)' });
-
-        tl.to(containerRef.current, {
-          opacity: 1,
-          duration: 0.3,
-          ease: 'power3.in'
-        }).to(
-          backdropRef.current,
-          {
-            backdropFilter: 'blur(10px)',
-            duration: 0.3,
-            ease: 'power3.in'
-          },
-          0
-        );
-      } else {
-        // Desktop animation: slide up with blur
-        gsap.set(containerRef.current, { y: '100%' });
-        gsap.set(backdropRef.current, { backdropFilter: 'blur(0px)' });
-
-        tl.to(containerRef.current, {
-          y: '0%',
-          duration: 0.5,
-          ease: 'power3.out'
-        }).to(
-          backdropRef.current,
-          {
-            backdropFilter: 'blur(10px)',
-            duration: 0.3,
-            ease: 'power3.out'
-          },
-          0
-        );
-      }
+      gsap.to(backdropRef.current, { backdropFilter: 'blur(10px)', ease: 'power3.inOut', duration: 0.5 });
+      gsap.from(containerRef.current, { y: '100%', ease: 'power3.inOut', duration: 0.5 });
 
       // Cleanup function to restore scroll when component unmounts or modal closes
       return () => {
@@ -146,7 +110,7 @@ const ModalWrapper: React.FC<IModalWrapperProps> = ({ children, isOpen, onClose 
       };
     }
     return undefined;
-  }, [isOpen]);
+  }, [isOpen])
 
   const handleCloseModal = () => {
     if (containerRef.current && backdropRef.current) {
@@ -154,41 +118,8 @@ const ModalWrapper: React.FC<IModalWrapperProps> = ({ children, isOpen, onClose 
       document.body.style.overflow = '';
       document.body.style.paddingRight = '';
 
-      const tl = gsap.timeline();
-
-      if (isMobileDevice()) {
-        // Mobile animation: fade out with blur removal
-        tl.to(backdropRef.current, {
-          backdropFilter: 'blur(0px)',
-          duration: 0.3,
-          ease: 'power3.out'
-        }).to(
-          containerRef.current,
-          {
-            opacity: 0,
-            duration: 0.3,
-            ease: 'power3.in',
-            onComplete: onClose
-          },
-          0
-        );
-      } else {
-        // Desktop animation: slide down with blur removal
-        tl.to(backdropRef.current, {
-          backdropFilter: 'blur(0px)',
-          duration: 0.3,
-          ease: 'power3.out'
-        }).to(
-          containerRef.current,
-          {
-            y: '100%',
-            duration: 0.5,
-            ease: 'power3.in',
-            onComplete: onClose
-          },
-          0
-        );
-      }
+      gsap.to(backdropRef.current, { backdropFilter: 'blur(0px)', ease: 'power3.inOut', duration: 0.5 });
+      gsap.to(containerRef.current, { y: '100%', ease: 'power3.inOut', duration: 0.5, onComplete: onClose });
     }
   };
 

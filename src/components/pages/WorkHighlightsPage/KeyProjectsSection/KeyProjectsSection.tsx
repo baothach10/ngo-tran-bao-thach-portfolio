@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import './KeyProjectsSection.css';
 import GlareHoverCard from '@/components/GlareHoverCard/GlareHoverCard';
 import { SectionTitle } from '@/components/layout/SectionTitle/SectionTitle';
+import { isMobileDevice } from '@/utils';
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -42,7 +43,7 @@ const KeyProjectsSection: React.FC<IKeyProjectsSectionProps> = ({ projects }) =>
           end: 'bottom 15%',
           toggleActions: 'play reverse play reverse',
           animation: gsap.from(card, {
-            x: isOffset ? 50 : -50,
+            x: isOffset ? 100 : -100,
             opacity: 0,
             duration: 0.4,
             ease: 'power3.out'
@@ -60,7 +61,8 @@ const KeyProjectsSection: React.FC<IKeyProjectsSectionProps> = ({ projects }) =>
       </div>
       <div className="key-projects-grid">
         {Object.entries(projects).map(([projectId, project], index) => (
-          <div key={projectId} className={`key-project-card ${index % 2 === 1 ? 'offset' : ''}`}>
+          <div key={projectId} className={`key-project-card ${!isMobileDevice() ? (index % 2 === 1 ? 'offset' : '') : ''}`}>
+            {/* Thumbnail and project info */}
             <div className="key-project-thumbnail">
               <img
                 src={project.thumbnail || '/assets/images/testing.png'}
@@ -71,8 +73,17 @@ const KeyProjectsSection: React.FC<IKeyProjectsSectionProps> = ({ projects }) =>
             <div className="key-project-info">
               <h3 className="key-project-name">{project.name}</h3>
               <div className="key-project-meta">
-                <span className="key-project-owner">{project.owner}</span>
-                <span className="key-project-type">{project.type}</span>
+
+                <span className="key-project-owner">
+                  <GlareHoverCard>
+                    {project.owner}
+                  </GlareHoverCard>
+                </span>
+                <span className="key-project-type">
+                  <GlareHoverCard>
+                    {project.type}
+                  </GlareHoverCard>
+                </span>
               </div>
               <div className="key-project-roles">
                 {project.roles.slice(0, 3).map((role, index) => (

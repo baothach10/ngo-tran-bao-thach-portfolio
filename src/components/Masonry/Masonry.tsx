@@ -10,6 +10,7 @@ import React, {
 
 import './Masonry.css';
 import MasonryImage from "./MasonryImage";
+import { isMobileDevice } from "@/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -126,6 +127,7 @@ const Masonry: React.FC<TMasonryProps> = ({
             const { width: imgWidth, height: imgHeight } = imageData[index] || { width: 0, height: 0 };
             const aspectRatio = imgWidth / imgHeight || 1;
             const height = columnWidth / aspectRatio;
+            console.log('height', height, 'imgWidth', imgWidth, 'imgHeight', imgHeight);
             const col = colHeights.indexOf(Math.min(...colHeights));
 
             colHeights[col] += height;
@@ -134,6 +136,8 @@ const Masonry: React.FC<TMasonryProps> = ({
         });
 
         const maxHeight = Math.max(...colHeights);
+
+        console.log(maxHeight, colHeights, gridItems);
 
         return { gridItems, maxHeight };
     }, [columns, items, width, imageData]);
@@ -229,9 +233,10 @@ const Masonry: React.FC<TMasonryProps> = ({
         <div
             ref={containerRef}
             className="list"
-            style={{
-                minHeight: `${maxHeight}px`
-            }}
+            style={
+                isMobileDevice() ? {
+                    maxHeight: `${maxHeight}px`
+                } : { minHeight: `${maxHeight}px` }}
         >
             {gridItems.map((item) => (
                 <div

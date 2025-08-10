@@ -9,23 +9,49 @@ import { isMobileDevice } from '@/utils';
 
 export default function Header() {
     const location = useLocation();
-    const { isShownByScroll } = useHeaderScroll()
-    const [isMobileMenuBarOpened, setIsMobileMenuBarOpened] = useState(false)
+    const { isShownByScroll } = useHeaderScroll();
+    const [isMobileMenuBarOpened, setIsMobileMenuBarOpened] = useState(false);
+    const [hasBeenOpened, setHasBeenOpened] = useState(false);
 
     const headerRef = useRef<HTMLDivElement>(null);
+    const delayCallRef = useRef<gsap.core.Tween | null>(null);
 
-    const hiddenOnPaths = ["/about-me", "/contact-me"];
+    const hiddenOnPaths = ['/about-me', '/work-highlights', '/achievements', '/contact-me'];
 
     useEffect(() => {
-        if (!isMobileDevice() || !headerRef.current) return
-        if (isMobileMenuBarOpened) {
-            headerRef.current.style.height = '100%'
-        } else {
-            gsap.delayedCall(2, () => {
-                headerRef.current!.style.height = '0%'
-            })
+        if (!isMobileDevice() || !headerRef.current) return;
+
+        // Clear any existing delayed call
+        if (delayCallRef.current) {
+            delayCallRef.current.kill();
+            delayCallRef.current = null;
         }
-    }, [isMobileMenuBarOpened]);
+
+        if (isMobileMenuBarOpened) {
+            setHasBeenOpened(true);
+            headerRef.current.style.height = '100%';
+        } else if (hasBeenOpened) {
+            // Only apply delay if the menu was actually opened before
+            delayCallRef.current = gsap.delayedCall(2, () => {
+                if (headerRef.current) {
+                    headerRef.current.style.height = '0%';
+                }
+                delayCallRef.current = null;
+            });
+        } else {
+            // If never opened, close immediately
+            headerRef.current.style.height = '0%';
+        }
+    }, [isMobileMenuBarOpened, hasBeenOpened]);
+
+    // Cleanup delayed call on unmount
+    useEffect(() => {
+        return () => {
+            if (delayCallRef.current) {
+                delayCallRef.current.kill();
+            }
+        };
+    }, []);
 
     useEffect(() => {
         const shouldHideInitially = hiddenOnPaths.includes(location.pathname);
@@ -34,9 +60,9 @@ export default function Header() {
         if (!header) return;
 
         if (shouldHideInitially) {
-            gsap.set(header, { y: "-100%", opacity: 0 });
+            gsap.set(header, { y: '-100%', opacity: 0 });
         } else {
-            gsap.set(header, { y: "0%", opacity: 1 });
+            gsap.set(header, { y: '0%', opacity: 1 });
         }
     }, [location.pathname]);
 
@@ -45,74 +71,88 @@ export default function Header() {
         if (shouldHideInitially)
             if (isShownByScroll) {
                 gsap.to(headerRef.current, {
-                    y: "0%",
+                    y: '0%',
                     opacity: 1,
                     duration: 0.5,
-                    ease: "power3.out",
+                    ease: 'power3.out'
                 });
             } else {
                 gsap.to(headerRef.current, {
-                    y: "-100%",
+                    y: '-100%',
                     opacity: 0,
                     duration: 0.5,
-                    ease: "power3.out",
+                    ease: 'power3.out'
                 });
             }
     }, [isShownByScroll]);
 
-
     return (
         <header className="site-header" ref={headerRef}>
             {isMobileDevice() ? (
-                <div className='mobile-site-header'>
-                    <input className="menu-icon" type="checkbox" id="menu-icon" name="menu-icon" checked={isMobileMenuBarOpened} onChange={(e) => setIsMobileMenuBarOpened(e.target.checked)} />
-                    <label htmlFor="menu-icon" ></label>
+                <div className="mobile-site-header">
+                    <input
+                        className="menu-icon"
+                        type="checkbox"
+                        id="menu-icon"
+                        name="menu-icon"
+                        checked={isMobileMenuBarOpened}
+                        onChange={e => setIsMobileMenuBarOpened(e.target.checked)}
+                    />
+                    <label htmlFor="menu-icon"></label>
                     <div className="nav-mobile-logo logo">
-                        <Link to="/" onClick={() => setIsMobileMenuBarOpened(false)}><WebLogo fillColor='white' strokeColor='white' shadowColor='black' /></Link>
-                    </div >
+                        <Link to="/" onClick={() => setIsMobileMenuBarOpened(false)}>
+                            <WebLogo fillColor="white" strokeColor="white" shadowColor="black" />
+                        </Link>
+                    </div>
                     <nav className="nav-mobile">
                         <ul className="nav-mobile-links">
-                            <li className={location.pathname === '/about-me' ? 'active' : ''} >
-                                <Link to="/about-me" onClick={() => setIsMobileMenuBarOpened(false)}>About</Link>
+                            <li className={location.pathname === '/about-me' ? 'active' : ''}>
+                                <Link to="/about-me" onClick={() => setIsMobileMenuBarOpened(false)}>
+                                    About
+                                </Link>
                             </li>
-                            <li className={location.pathname === '/work-highlights' ? 'active' : ''} >
-                                <Link to="/work-highlights" onClick={() => setIsMobileMenuBarOpened(false)}>Projects</Link>
+                            <li className={location.pathname === '/work-highlights' ? 'active' : ''}>
+                                <Link to="/work-highlights" onClick={() => setIsMobileMenuBarOpened(false)}>
+                                    Work Highlights
+                                </Link>
                             </li>
                             <li className={location.pathname === '/achievements' ? 'active' : ''}>
-                                <Link to="/achievements" onClick={() => setIsMobileMenuBarOpened(false)} >Certificates & Awards</Link>
+                                <Link to="/achievements" onClick={() => setIsMobileMenuBarOpened(false)}>
+                                    Achievements
+                                </Link>
                             </li>
                             <li className={location.pathname === '/contact-me' ? 'active' : ''}>
-                                <Link to="/contact-me" onClick={() => setIsMobileMenuBarOpened(false)}>Contact</Link>
+                                <Link to="/contact-me" onClick={() => setIsMobileMenuBarOpened(false)}>
+                                    Contact
+                                </Link>
                             </li>
                         </ul>
                     </nav>
                 </div>
-
-            ) :
-                (
-                    <nav className="nav">
-                        <div className="logo">
-                            <Link to="/"><WebLogo haveHoverEffect fillColor='white' strokeColor='white' shadowColor='black' /></Link>
-                        </div >
-                        <ul className="nav-links">
-                            <li className={location.pathname === '/about-me' ? 'active' : ''}>
-                                <Link to="/about-me">About</Link>
-                            </li>
-                            <li className={location.pathname === '/work-highlights' ? 'active' : ''}>
-                                <Link to="/work-highlights">Work Highlights</Link>
-                            </li>
-                            <li className={location.pathname === '/achievements' ? 'active' : ''}>
-                                <Link to="/achievements">Achievements</Link>
-                            </li>
-                            <li className={location.pathname === '/contact-me' ? 'active' : ''}>
-                                <Link to="/contact-me">Contact</Link>
-                            </li>
-                        </ul>
-                    </nav >
-
-                )
-
-            }
-        </header >
+            ) : (
+                <nav className="nav">
+                    <div className="logo">
+                        <Link to="/">
+                            <WebLogo haveHoverEffect fillColor="white" strokeColor="white" shadowColor="black" />
+                        </Link>
+                    </div>
+                    <ul className="nav-links">
+                        <li className={location.pathname === '/about-me' ? 'active' : ''}>
+                            <Link to="/about-me">About</Link>
+                        </li>
+                        <li className={location.pathname === '/work-highlights' ? 'active' : ''}>
+                            <Link to="/work-highlights">Work Highlights</Link>
+                        </li>
+                        <li className={location.pathname === '/achievements' ? 'active' : ''}>
+                            <Link to="/achievements">Achievements</Link>
+                        </li>
+                        <li className={location.pathname === '/contact-me' ? 'active' : ''}>
+                            <Link to="/contact-me">Contact</Link>
+                        </li>
+                    </ul>
+                </nav>
+            )}
+        </header>
     );
 }
+

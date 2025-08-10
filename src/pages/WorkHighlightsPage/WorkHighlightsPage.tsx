@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
 import './WorkHighlightsPage.css';
+import { AnimatedNameGraphic } from '@/components/pages/AboutMePage/AnimatedNameGraphic/AnimatedNameGraphic';
 import KeyProjectsSection from '@/components/pages/WorkHighlightsPage/KeyProjectsSection';
 import ProfessionalExperienceSection from '@/components/pages/WorkHighlightsPage/ProfessionalExperienceSection';
+import { isMobileDevice } from '@/utils';
 
 interface IProject {
   name: string;
@@ -35,6 +37,8 @@ const WorkHighlightsPage: React.FC = () => {
   const [data, setData] = useState<IDataStructure | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  const animatedNameHeight = isMobileDevice() ? document.documentElement.clientWidth < 768 ? "4rem" : "7rem" : '10rem'
+
   useEffect(() => {
     const loadData = async () => {
       try {
@@ -60,6 +64,9 @@ const WorkHighlightsPage: React.FC = () => {
 
   return (
     <div className="work-highlights-page-container">
+      <div className="name-graphic-container">
+        <AnimatedNameGraphic className="half-graphic" shadowColor="white" strokeColor="white" height={animatedNameHeight} />
+      </div>
       <div className="work-highlights-page-wrapper">
         <ProfessionalExperienceSection experience={data.experience} />
         <KeyProjectsSection projects={data.projects} />

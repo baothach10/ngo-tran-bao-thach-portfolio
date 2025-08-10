@@ -14,10 +14,19 @@
   margin-bottom: 1rem;
 }
 
+@media (min-width: 500px) and (max-width: 1024px) {
+  .section-title-content {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+}
+
 @media (max-width: 480px) {
   .section-title-content {
+    text-align: center;
     font-size: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
 }
 
