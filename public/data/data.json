@@ -234,7 +234,7 @@
     "nexon-company": {
       "position": "JavaScript Developer",
       "company": "Nexon Company",
-      "companyLogo": "/testing/nexon.svg",
+      "companyLogo": "/assets/images/nexon.svg",
       "employmentType": "Full-time",
       "startDate": "Sep 2024",
       "endDate": "Present",
@@ -273,7 +273,7 @@
     "salto-vietnam": {
       "position": "Frontend Engineer",
       "company": "Salto Vietnam",
-      "companyLogo": "/testing/salto.svg",
+      "companyLogo": "/assets/images/salto.svg",
       "employmentType": "Full-time",
       "startDate": "Sep 2023",
       "endDate": "Sep 2024",
@@ -321,7 +321,7 @@
     "de-heus-vietnam": {
       "position": "Artificial Intelligence Trainee",
       "company": "De Heus Vietnam Ltd.",
-      "companyLogo": "/testing/deheus.svg",
+      "companyLogo": "/assets/images/deheus.svg",
       "employmentType": "Full-time",
       "startDate": "Mar 2024",
       "endDate": "Sep 2024",
@@ -367,7 +367,7 @@
     "nextjs-15-react-the-complete-guide": {
       "title": "Next.js 15 & React - The Complete Guide",
       "issuer": "Udemy",
-      "issuerImage": "/testing/udemy.svg",
+      "issuerImage": "/assets/images/udemy.svg",
       "issueDate": "Jul 2025",
       "description": "Completed a comprehensive course on full-stack web development using React and Next.js 15. Gained hands-on experience with modern routing strategies, server-side rendering, static site generation, and advanced data handling techniques. Emphasized SEO optimization, scalable web architecture, and core to advanced features of Next.js 15.",
       "skillsLearned": [
@@ -389,7 +389,7 @@
     "webpack-5-ninja-build-micro-frontend-and-web-apps": {
       "title": "Webpack 5 Ninja - Build Micro frontend and web apps",
       "issuer": "Udemy",
-      "issuerImage": "/testing/udemy.svg",
+      "issuerImage": "/assets/images/udemy.svg",
       "issueDate": "Jul 2025",
       "description": "Completed an in-depth course on Webpack 5, focusing on building modular and scalable micro frontends. Developed skills in bundling optimization, dynamic module federation, and seamless integration of modern front-end frameworks like React.",
       "skillsLearned": ["Webpack", "Microfrontend", "Front-End Development", "React.js"]
@@ -397,7 +397,7 @@
     "microfrontends-with-react-a-complete-developers-guide": {
       "title": "Microfrontends with React: A Complete Developer's Guide",
       "issuer": "Udemy",
-      "issuerImage": "/testing/udemy.svg",
+      "issuerImage": "/assets/images/udemy.svg",
       "issueDate": "Jun 2025",
       "description": "Completed a specialized course focused on building and deploying scalable microfrontend architectures using React. Gained hands-on experience with Webpack module federation, CI/CD pipelines, and deploying apps via Amazon S3 and CloudFront.",
       "skillsLearned": [
@@ -413,7 +413,7 @@
     "buildwithai-hackathon-2024-participant-certificate": {
       "title": "BuildwithAI Hackathon 2024: Participant Certificate",
       "issuer": "Canvas Credentials (Badgr)",
-      "issuerImage": "/testing/canvas.svg",
+      "issuerImage": "/assets/images/canvas.svg",
       "issueDate": "Feb 2025",
       "description": "Participated in the BuildwithAI Hackathon 2024, collaborating in a team environment to design and develop innovative AI-driven applications. Applied knowledge in full-stack development, Retrieval-Augmented Generation (RAG), and Generative AI to build scalable solutions.",
       "skillsLearned": [
@@ -426,7 +426,7 @@
     "aws-academy-machine-learning-foundations": {
       "title": "AWS Academy Machine Learning Foundations",
       "issuer": "Amazon Web Services (AWS)",
-      "issuerImage": "/testing/aws.svg",
+      "issuerImage": "/assets/images/aws.svg",
       "issueDate": "Jan 2025",
       "description": "Completed foundational training in machine learning using AWS Cloud infrastructure. Gained practical experience in applying AWS services to real-world scenarios including time series forecasting, computer vision, and cloud-based ML deployment using core AWS tools.",
       "skillsLearned": [
@@ -441,7 +441,7 @@
     "novartis-datathon-2024-participant-certificate": {
       "title": "Novartis Datathon 2024: Participant Certificate",
       "issuer": "Eurecat - Technology Centre",
-      "issuerImage": "/testing/eurecat.svg",
+      "issuerImage": "/assets/images/eurecat.svg",
       "issueDate": "Nov 2024",
       "description": "Participated in the Novartis Datathon 2024, contributing to data-driven innovation in healthcare using Generative AI and Retrieval-Augmented Generation (RAG). Collaborated in a cross-functional team to apply research-based machine learning techniques and full-stack development skills in a real-world challenge environment.",
       "skillsLearned": [
@@ -455,7 +455,7 @@
     "aws-academy-graduate-aws-academy-cloud-foundations": {
       "title": "AWS Academy Graduate - AWS Academy Cloud Foundations",
       "issuer": "Amazon Web Services (AWS)",
-      "issuerImage": "/testing/aws.svg",
+      "issuerImage": "/assets/images/aws.svg",
       "issueDate": "Jun 2024",
       "description": "Completed the AWS Academy Cloud Foundations course, gaining a strong understanding of AWS global infrastructure, core cloud services, architectural principles, pricing models, and support plans. Built foundational knowledge essential for deploying and managing applications in the AWS environment.",
       "skillsLearned": [
@@ -469,7 +469,7 @@
     "deep-learning-specialization": {
       "title": "Deep Learning Specialization",
       "issuer": "DeepLearning.AI",
-      "issuerImage": "/testing/deepLearningAI.svg",
+      "issuerImage": "/assets/images/deepLearningAI.svg",
       "issueDate": "May 2023",
       "description": "Completed the Deep Learning Specialization, gaining in-depth knowledge of neural network architectures including CNNs, RNNs, and Transformers. Acquired hands-on experience using TensorFlow to build, train, and optimize deep learning models for real-world applications.",
       "skillsLearned": [
@@ -483,7 +483,7 @@
     "data-structures-and-algorithms-deep-dive-using-java": {
       "title": "Data Structures and Algorithms: Deep Dive Using Java",
       "issuer": "Udemy",
-      "issuerImage": "/testing/udemy.svg",
+      "issuerImage": "/assets/images/udemy.svg",
       "issueDate": "Feb 2023",
       "description": "Completed an in-depth course on data structures and algorithms using Java. Developed strong problem-solving skills by implementing key algorithms and data structures, enhancing computational thinking and software engineering foundations.",
       "skillsLearned": ["Java", "Data Structures", "Algorithms"]
@@ -491,7 +491,7 @@
     "statistics-for-data-science-and-business-analysis": {
       "title": "Statistics for Data Science and Business Analysis",
       "issuer": "Udemy",
-      "issuerImage": "/testing/udemy.svg",
+      "issuerImage": "/assets/images/udemy.svg",
       "issueDate": "Feb 2023",
       "description": "Completed a foundational course in statistics tailored for data science and business analysis. Gained practical skills in interpreting data, applying statistical methods, and drawing insights to support data-driven decision-making in business contexts.",
       "skillsLearned": ["Statistics", "Data Analysis", "Business Intelligence"]
@@ -499,7 +499,7 @@
     "beginning-cpp-programming-from-beginner-to-beyond": {
       "title": "Beginning C++ Programming - From Beginner to Beyond",
       "issuer": "Udemy",
-      "issuerImage": "/testing/udemy.svg",
+      "issuerImage": "/assets/images/udemy.svg",
       "issueDate": "Dec 2022",
       "description": "Completed a comprehensive C++ programming course covering core concepts including object-oriented programming, data structures, and algorithms. Built a strong foundation for developing efficient and scalable applications using C++.",
       "skillsLearned": [
@@ -512,7 +512,7 @@
     "google-data-analytics-certificate": {
       "title": "Google Data Analytics Certificate",
       "issuer": "Coursera",
-      "issuerImage": "/testing/coursera.svg",
+      "issuerImage": "/assets/images/coursera.svg",
       "issueDate": "Oct 2022",
       "description": "Completed the Google Data Analytics Professional Certificate, developing strong skills in data analysis, data cleaning, and visualization using tools such as SQL, R, and Tableau. Gained practical experience in preparing, analyzing, and interpreting data to support data-driven decision-making.",
       "skillsLearned": [
@@ -528,7 +528,7 @@
     "innovations-for-global-cities": {
       "title": "Innovations For Global Cities",
       "issuer": "RMIT University",
-      "issuerImage": "/testing/rmit.svg",
+      "issuerImage": "/assets/images/rmit.svg",
       "issueDate": "Nov 2021",
       "description": "Participated in a multidisciplinary program exploring innovative solutions for urban challenges in global cities. Developed skills in teamwork, problem solving, and public presentation through collaborative research and project-based learning.",
       "skillsLearned": ["Teamwork", "Problem Solving", "Presentations"]
@@ -536,7 +536,7 @@
     "ielts-academic-certificate-70-overall": {
       "title": "IELTS Academic Certificate - 7.0 Overall",
       "issuer": "British Council",
-      "issuerImage": "/testing/britishCouncil.svg",
+      "issuerImage": "/assets/images/britishCouncil.svg",
       "issueDate": "Sep 2020",
       "description": "Demonstrates English language proficiency at an academic level, with strong performance across listening, reading, writing, and speaking skills, as assessed by the British Council.",
       "skillsLearned": ["8.0 Listening", "7.0 Reading", "6.5 Writing", "7.0 Speaking"]
@@ -546,7 +546,7 @@
     "2nd-runner-up-in-neo-league-2025": {
       "title": "2nd Runner-Up in Neo League 2025",
       "issuer": "RMIT Neo Culture Technology Club",
-      "issuerImage": "/testing/neoculturetech.svg",
+      "issuerImage": "/assets/images/neoculturetech.svg",
       "issueDate": "May 2025",
       "description": "Achieved Second Runner-Up in Neo League 2025, a competitive AI-focused challenge hosted by the RMIT Neo Culture Technology Club at RMIT University. The competition centered on solving real-world business cases using prompt engineering and generative AI tools.\nCollaborated in a multidisciplinary team to design innovative, AI-driven business solutions, leveraging deep understanding of language models, structured thinking, and prompt optimization. Recognized for strategic thinking, creativity, and practical application of emerging AI technologies in a business context.",
       "achievements": [
@@ -560,7 +560,7 @@
     "scholars-list-for-academic-excellence-top-5-percent": {
       "title": "Scholar's List for Academic Excellence (Top 5%)",
       "issuer": "RMIT University",
-      "issuerImage": "/testing/rmit.svg",
+      "issuerImage": "/assets/images/rmit.svg",
       "issueDate": "Apr 2025",
       "description": "I am honored to have been recognized on the Scholar's List for Academic Excellence at RMIT University, an achievement awarded to the top 5% of students across both undergraduate and postgraduate programs based on cumulative GPA. This recognition reflects my consistent academic dedication throughout the Bachelor of Information Technology program, supported by a strong work ethic, collaborative learning, and the encouragement of peers, mentors, and family. It marks a significant milestone in my journey toward becoming a well-rounded and impact-driven technology professional.",
       "achievements": [
@@ -582,7 +582,7 @@
     "de-heus-award-certificate": {
       "title": "De Heus Award Certificate",
       "issuer": "De Heus Vietnam Ltd.",
-      "issuerImage": "/testing/deheus.svg",
+      "issuerImage": "/assets/images/deheus.svg",
       "issueDate": "Jan 2025",
       "description": "This award was jointly issued by RMIT University Vietnam and De Heus Vietnam in recognition of outstanding performance in the Capstone Project titled \"An AI Adoption Roadmap Within De Heus.\" As part of a five-member team, I conducted in-depth research into operational challenges faced by De Heus Vietnam, Myanmar, and the Netherlands (Royal De Heus), identifying inefficiencies that could be addressed through AI and machine learning. Our final proposal presented a strategic AI Adoption Roadmap to optimize broiler performance in poultry farming operations at De Heus Myanmar, combining data-driven insights with real-world impact.",
       "achievements": [
@@ -596,7 +596,7 @@
     "certificate-of-commendation": {
       "title": "Certificate of Commendation",
       "issuer": "Dean, School of Computing Technologies RMIT STEM College (Australia)",
-      "issuerImage": "/testing/rmit.svg",
+      "issuerImage": "/assets/images/rmit.svg",
       "issueDate": "May 2024",
       "description": "This award was granted in recognition of my academic excellence during my exchange semester at RMIT University Melbourne in 2023. As part of the Bachelor of Information Technology program, I achieved a GPA of 3.8/4.0, reflecting strong performance in advanced coursework focused on AI, data analytics, and blockchain technologies within a globally competitive academic environment.",
       "achievements": [
@@ -609,7 +609,7 @@
     "rmit-technology-scholarship": {
       "title": "RMIT Technology Scholarship",
       "issuer": "RMIT University",
-      "issuerImage": "/testing/rmit.svg",
+      "issuerImage": "/assets/images/rmit.svg",
       "issueDate": "Oct 2021",
       "description": "I was awarded the Technology Scholarship at RMIT University Vietnam for exceptional academic achievement in high school, where I graduated with a GPA equivalent to approximately 3.84/4.0. This merit-based scholarship, covering 50% of my Bachelor of Information Technology tuition, recognized my strong potential in the tech field. Receiving this award granted me the opportunity to study at one of Vietnam's leading international universities and laid the foundation for my continued growth in software development, AI, and data-driven technologies.",
       "achievements": [
