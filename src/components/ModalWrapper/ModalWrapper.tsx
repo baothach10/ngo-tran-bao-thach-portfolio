@@ -3,11 +3,9 @@ import { gsap } from 'gsap';
 import './ModalWrapper.css';
 import React, { useEffect, useRef, useState } from 'react';
 
-
 import CloseButton from '../CloseButton/CloseButton';
 
 import { isMobileDevice } from '@/utils';
-
 
 interface ISection {
   id: string;
@@ -62,6 +60,7 @@ const ModalWrapper: React.FC<IModalWrapperProps> = ({ children, isOpen, onClose 
       const observerOptions = {
         root: wrapperRef.current,
         rootMargin: '-20% 0px -70% 0px',
+
         threshold: 0
       };
 
@@ -100,7 +99,11 @@ const ModalWrapper: React.FC<IModalWrapperProps> = ({ children, isOpen, onClose 
       document.body.style.overflow = 'hidden';
       document.body.style.paddingRight = `${scrollbarWidth}px`;
 
-      gsap.to(backdropRef.current, { backdropFilter: 'blur(10px)', ease: 'power3.inOut', duration: 0.5 });
+      gsap.to(backdropRef.current, {
+        backdropFilter: 'blur(10px)',
+        ease: 'power3.inOut',
+        duration: 0.5
+      });
       gsap.from(containerRef.current, { y: '100%', ease: 'power3.inOut', duration: 0.5 });
 
       // Cleanup function to restore scroll when component unmounts or modal closes
@@ -110,7 +113,7 @@ const ModalWrapper: React.FC<IModalWrapperProps> = ({ children, isOpen, onClose 
       };
     }
     return undefined;
-  }, [isOpen])
+  }, [isOpen]);
 
   const handleCloseModal = () => {
     if (containerRef.current && backdropRef.current) {
@@ -118,8 +121,17 @@ const ModalWrapper: React.FC<IModalWrapperProps> = ({ children, isOpen, onClose 
       document.body.style.overflow = '';
       document.body.style.paddingRight = '';
 
-      gsap.to(backdropRef.current, { backdropFilter: 'blur(0px)', ease: 'power3.inOut', duration: 0.5 });
-      gsap.to(containerRef.current, { y: '100%', ease: 'power3.inOut', duration: 0.5, onComplete: onClose });
+      gsap.to(backdropRef.current, {
+        backdropFilter: 'blur(0px)',
+        ease: 'power3.inOut',
+        duration: 0.5
+      });
+      gsap.to(containerRef.current, {
+        y: '100%',
+        ease: 'power3.inOut',
+        duration: 0.5,
+        onComplete: onClose
+      });
     }
   };
 
@@ -138,8 +150,10 @@ const ModalWrapper: React.FC<IModalWrapperProps> = ({ children, isOpen, onClose 
         onClick={e => e.stopPropagation()}
         onTouchEnd={e => e.stopPropagation()}
       >
-        <div ref={wrapperRef} className="modal-wrapper">
-          {childrenWithProps}
+        <div className="modal-wrapper">
+          <div ref={wrapperRef} className="modal-content">
+            {childrenWithProps}
+          </div>
         </div>
         <div className="modal-close-button">
           <CloseButton onClose={handleCloseModal} />
