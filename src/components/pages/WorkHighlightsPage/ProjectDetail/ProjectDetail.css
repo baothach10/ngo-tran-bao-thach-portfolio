@@ -1,21 +1,21 @@
 .project-detail {
-  max-width: 100%;
-  padding: 2rem;
-  position: relative;
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  width: 100%;
+  height: 100%;
+  padding: 5rem 10rem;
   color: #2c2c2c;
   background: #ffffff;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  justify-content: center;
   align-items: center;
-  /* & * {
-    transition: all 0.3s ease;
-  } */
 }
 
 .project-detail-header {
+  position: relative;
   margin-bottom: 2rem;
   text-align: center;
   border-bottom: 1px solid #d0d0d0;
@@ -23,6 +23,7 @@
 }
 
 .project-title {
+  position: relative;
   font-size: 2.5rem;
   font-weight: 700;
   color: #1a1a1a;
@@ -30,24 +31,26 @@
   line-height: 1.2;
 }
 
-.project-image {
+.project-image-container {
   position: relative;
   width: 100%;
-  margin: 1rem 0;
-  height: max-content;
+  margin-bottom: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  & > img {
-    border-radius: 20px;
-    position: relative;
-    min-width: 500px;
-    max-width: 80%;
-    height: fit-content;
-  }
+}
+
+.project-image {
+  border-radius: 20px;
+  position: relative;
+  min-width: 500px;
+  aspect-ratio: 16 / 10;
+  width: 80%;
+  object-fit: cover;
 }
 
 .project-meta {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,6 +59,7 @@
 }
 
 .project-type {
+  position: relative;
   background: #2c2c2c;
   color: white;
   padding: 0.5rem 1rem;
@@ -67,18 +71,21 @@
 }
 
 .project-owner {
+  position: relative;
   color: #6c6c6c;
   font-style: italic;
   font-size: 1rem;
 }
 
 .project-detail-content {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
 .project-timeline {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
@@ -88,13 +95,13 @@
   border-left: 4px solid #2c2c2c;
 }
 
-.timeline-item {
+.project-timeline-item {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.timeline-item label {
+.project-timeline-item label {
   font-size: 0.875rem;
   font-weight: 600;
   color: #6c6c6c;
@@ -102,7 +109,7 @@
   letter-spacing: 0.5px;
 }
 
-.timeline-item span {
+.project-timeline-item span {
   font-size: 1.125rem;
   font-weight: 600;
   color: #1a1a1a;
@@ -114,6 +121,7 @@
 .project-tech-stack h3,
 .project-live-link h3,
 .project-responsibilities h3 {
+  position: relative;
   font-size: 1.5rem;
   font-weight: 600;
   color: #1a1a1a;
@@ -150,17 +158,19 @@
 
 /* Project Highlights Styles */
 .project-highlights {
+  position: relative;
   margin-bottom: 2rem;
 }
 
-.highlights-grid {
+.project-highlights-grid {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
   margin-top: 1.5rem;
 }
 
-.highlight-item {
+.project-highlight-item {
   position: relative;
   border-radius: 12px;
   overflow: hidden;
@@ -168,7 +178,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.highlight-item:hover {
+.project-highlight-item:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
@@ -187,7 +197,7 @@
   transition: transform 0.3s ease;
 }
 
-.highlight-item:hover .highlight-image {
+.project-highlight-item:hover .highlight-image {
   transform: scale(1.05);
 }
 
@@ -205,7 +215,7 @@
   transition: opacity 0.3s ease;
 }
 
-.highlight-item:hover .highlight-overlay {
+.project-highlight-item:hover .highlight-overlay {
   opacity: 1;
 }
 
@@ -229,13 +239,15 @@
   line-height: 1.4;
 }
 
-.roles-grid {
+.project-roles-grid {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 0.75rem;
 }
 
-.role-tag {
+.project-role-tag {
+  position: relative;
   background: #f5f5f5;
   color: #2c2c2c;
   padding: 0.75rem 1rem;
@@ -251,7 +263,7 @@
   align-items: center;
 }
 
-.role-tag::before {
+.project-role-tag::before {
   content: '';
   position: absolute;
   top: 0;
@@ -262,25 +274,27 @@
   transition: left 0.5s ease;
 }
 
-.role-tag:hover {
+.project-role-tag:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   border-color: #c0c0c0;
   background: #f0f0f0;
 }
 
-.role-tag:hover::before {
+.project-role-tag:hover::before {
   left: 100%;
 }
 
 /* Tech Stack Styles */
-.tech-grid {
+.project-tech-grid {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 0.75rem;
 }
 
-.tech-tag {
+.project-tech-tag {
+  position: relative;
   background: #f8f8f8;
   color: #2c2c2c;
   padding: 0.75rem 1rem;
@@ -296,7 +310,7 @@
   align-items: center;
 }
 
-.tech-tag::before {
+.project-tech-tag::before {
   content: '';
   position: absolute;
   top: 0;
@@ -307,14 +321,14 @@
   transition: left 0.5s ease;
 }
 
-.tech-tag:hover {
+.project-tech-tag:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
   border-color: #a0a0a0;
   background: #eeeeee;
 }
 
-.tech-tag:hover::before {
+.project-tech-tag:hover::before {
   left: 100%;
 }
 
@@ -357,13 +371,35 @@
 }
 
 /* Responsibilities Styles */
-.responsibilities-list {
+.project-responsibilities-list {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.responsibility-item {
+.project-responsibility-item-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition:
+    color 0.1s ease-in-out,
+    font-weight 0.1s ease-in-out,
+    border-left 0.1s ease-in-out,
+    transform 0.1s ease-in-out;
+}
+
+.project-responsibility-item-container:hover {
+  transform: translateX(10px);
+  .project-responsibility-item {
+    background: #f0f0f0;
+    font-weight: bold;
+    border-left: 4px solid red;
+  }
+}
+
+.project-responsibility-item {
+  position: relative;
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
@@ -374,13 +410,13 @@
   transition: hover 0.3s ease;
 }
 
-.responsibility-item:hover {
+.project-responsibility-item:hover {
   background: #f0f0f0;
   font-weight: bold;
   transform: translateX(5px);
 }
 
-.responsibility-bullet {
+.project-responsibility-bullet {
   color: #2c2c2c;
   font-weight: bold;
   font-size: 1.25rem;
@@ -388,7 +424,7 @@
   margin-top: 0.125rem;
 }
 
-.responsibility-item p {
+.project-responsibility-item p {
   margin: 0;
   font-size: 1rem;
   font-weight: 300;
@@ -396,7 +432,7 @@
   color: #333;
 }
 
-.responsibility-item:hover p {
+.project-responsibility-item:hover p {
   color: #2c2c2c;
   font-weight: bold;
 }
@@ -431,15 +467,15 @@
     gap: 0.5rem;
   }
 
-  .roles-grid {
+  .project-roles-grid {
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   }
 
-  .tech-grid {
+  .project-tech-grid {
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   }
 
-  .highlights-grid {
+  .project-highlights-grid {
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
   }
@@ -475,11 +511,11 @@
     gap: 1rem;
   }
 
-  .tech-grid {
+  .project-tech-grid {
     grid-template-columns: 1fr;
   }
 
-  .highlights-grid {
+  .project-highlights-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
   }

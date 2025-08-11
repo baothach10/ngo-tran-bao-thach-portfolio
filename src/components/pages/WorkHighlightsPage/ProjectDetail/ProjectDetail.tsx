@@ -1,10 +1,16 @@
+import { useGSAP } from '@gsap/react';
 import { projects } from '@public/data/data.json'; // Assuming you have a projects data file
-import React, { useState, useEffect, useMemo } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 
 import './ProjectDetail.css';
 
 import SectionNav, { ISection } from '@/components/SectionNav/SectionNav';
 import { isMobileDevice, isValidUrl } from '@/utils';
+
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
 
 interface IProjectDetailProps {
   projectId: string;
@@ -41,6 +47,7 @@ const getProjectData = (id: string): IProjectData | null => {
 const ProjectDetail: React.FC<IProjectDetailProps> = ({ projectId, onNavigate }) => {
   const project = getProjectData(projectId);
   const [activeSection, setActiveSection] = useState<string>('name');
+  const projectDetailRef = useRef<HTMLDivElement>(null);
 
   const sections: ISection[] = useMemo(
     () => [
@@ -55,6 +62,184 @@ const ProjectDetail: React.FC<IProjectDetailProps> = ({ projectId, onNavigate })
     ],
     []
   );
+
+  // GSAP animations for project detail sections
+  useGSAP(() => {
+    if (!projectDetailRef.current) return;
+
+    const scrollTriggers: ScrollTrigger[] = [];
+
+    // Helper function to create scroll trigger for single elements
+    const createSingleElementAnimation = (element: Element) => {
+      const trigger = ScrollTrigger.create({
+        trigger: element,
+        start: 'top 100%',
+        end: 'bottom 5%',
+        toggleActions: 'play reverse play reverse',
+        id: `${element.className}-project-trigger`,
+        scroller: projectDetailRef.current,
+        animation: gsap.from(element, {
+          y: 100,
+          opacity: 0,
+          duration: 0.8,
+          ease: 'power2.out'
+        })
+      });
+
+      scrollTriggers.push(trigger);
+    };
+
+    // Helper function to create staggered animations for elements with children
+    const createStaggeredAnimation = (parentElement: Element, childSelector: string = '*') => {
+      let children: NodeListOf<Element>;
+
+      if (childSelector === '*') {
+        // Get direct children only
+        children = parentElement.querySelectorAll(':scope > *');
+      } else {
+        children = parentElement.querySelectorAll(childSelector);
+      }
+
+      if (children.length === 0) return;
+
+      const trigger = ScrollTrigger.create({
+        trigger: parentElement,
+        start: 'top 100%',
+        end: 'bottom 5%',
+        toggleActions: 'play reverse play reverse',
+        id: `${parentElement.className}-project-stagger`,
+        scroller: projectDetailRef.current,
+        animation: gsap.from(children, {
+          x: -100,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.2,
+          ease: 'power2.out'
+        })
+      });
+
+      scrollTriggers.push(trigger);
+    };
+
+    // Animate project header components with staggered effect
+    const imageElement = projectDetailRef.current.querySelector('.project-image');
+    if (imageElement) {
+      createSingleElementAnimation(imageElement);
+    }
+
+    const titleElement = projectDetailRef.current.querySelector('.project-title');
+    if (titleElement) {
+      createSingleElementAnimation(titleElement);
+    }
+
+    const metaElement = projectDetailRef.current.querySelector('.project-meta');
+    if (metaElement) {
+      createStaggeredAnimation(metaElement);
+    }
+
+    // Animate timeline items with staggered effect
+    const timelineElement = projectDetailRef.current.querySelector('.project-timeline');
+    if (timelineElement) {
+      createStaggeredAnimation(timelineElement, '.project-timeline-item');
+    }
+
+    // Animate description section
+    const descriptionElement = projectDetailRef.current.querySelector('.project-description');
+    if (descriptionElement) {
+      createSingleElementAnimation(descriptionElement);
+    }
+
+    // Animate highlights section
+    const highlightsElement = projectDetailRef.current.querySelector('.project-highlights');
+    if (highlightsElement) {
+      // Animate the title first
+      const title = highlightsElement.querySelector('h3');
+      if (title) {
+        createSingleElementAnimation(title);
+      }
+
+      // Then animate highlight items with stagger
+      const highlightsGrid = highlightsElement.querySelector('.project-highlights-grid');
+      if (highlightsGrid) {
+        createStaggeredAnimation(highlightsGrid, '.project-highlight-item');
+      }
+    }
+
+    // Animate roles section
+    const rolesElement = projectDetailRef.current.querySelector('.project-roles');
+    if (rolesElement) {
+      // Animate the title first
+      const title = rolesElement.querySelector('h3');
+      if (title) {
+        createSingleElementAnimation(title);
+      }
+
+      // Then animate role tags with stagger
+      const rolesGrid = rolesElement.querySelector('.project-roles-grid');
+      if (rolesGrid) {
+        createStaggeredAnimation(rolesGrid, '.project-role-tag');
+      }
+    }
+
+    // Animate tech stack section
+    const techStackElement = projectDetailRef.current.querySelector('.project-tech-stack');
+    if (techStackElement) {
+      // Animate the title first
+      const title = techStackElement.querySelector('h3');
+      if (title) {
+        createSingleElementAnimation(title);
+      }
+
+      // Then animate tech tags with stagger
+      const techGrid = techStackElement.querySelector('.project-tech-grid');
+      if (techGrid) {
+        createStaggeredAnimation(techGrid, '.project-tech-tag');
+      }
+    }
+
+    // Animate live link section
+    const liveLinkElement = projectDetailRef.current.querySelector('.project-live-link');
+    if (liveLinkElement) {
+      createSingleElementAnimation(liveLinkElement);
+    }
+
+    // Animate responsibilities section
+    const responsibilitiesElement = projectDetailRef.current.querySelector(
+      '.project-responsibilities'
+    );
+    if (responsibilitiesElement) {
+      // Animate the title first
+      const title = responsibilitiesElement.querySelector('h3');
+      if (title) {
+        createSingleElementAnimation(title);
+      }
+
+      // Then animate responsibility items with stagger
+      const responsibilitiesList = responsibilitiesElement.querySelector(
+        '.project-responsibilities-list'
+      );
+      if (responsibilitiesList) {
+        createStaggeredAnimation(responsibilitiesList, '.project-responsibility-item');
+      }
+    }
+
+    // Animate section navigation
+    const sectionNavElement = projectDetailRef.current.querySelector('.project-section-nav');
+    if (sectionNavElement) {
+      gsap.from(sectionNavElement, {
+        y: 100,
+        opacity: 0,
+        duration: 0.6,
+        ease: 'power2.out',
+        delay: 0.5
+      });
+    }
+
+    // Cleanup function
+    return () => {
+      scrollTriggers.forEach(trigger => trigger.kill());
+    };
+  }, []);
 
   useEffect(() => {
     if (isMobileDevice()) return;
@@ -104,9 +289,9 @@ const ProjectDetail: React.FC<IProjectDetailProps> = ({ projectId, onNavigate })
 
   return (
     <>
-      <div className="project-detail">
+      <div className="project-detail" ref={projectDetailRef}>
         <div id="name" className="project-detail-header">
-          <div className="project-image">
+          <div className="project-image-container">
             <img
               loading="lazy"
               src={`${project.thumbnail}`}
@@ -122,11 +307,11 @@ const ProjectDetail: React.FC<IProjectDetailProps> = ({ projectId, onNavigate })
         </div>
         <div className="project-detail-content">
           <div id="startDate" className="project-timeline">
-            <div className="timeline-item">
+            <div className="project-timeline-item">
               <label>Start Date</label>
               <span>{project.startDate}</span>
             </div>
-            <div className="timeline-item">
+            <div className="project-timeline-item">
               <label>End Date</label>
               <span>{project.endDate}</span>
             </div>
@@ -140,9 +325,9 @@ const ProjectDetail: React.FC<IProjectDetailProps> = ({ projectId, onNavigate })
           {project.highlights && project.highlights.length > 0 && (
             <div id="highlights" className="project-highlights">
               <h3>Project Highlights</h3>
-              <div className="highlights-grid">
+              <div className="project-highlights-grid">
                 {project.highlights.map((highlight, index) => (
-                  <div key={index} className="highlight-item">
+                  <div key={index} className="project-highlight-item">
                     <div className="highlight-image-container">
                       <img
                         loading="lazy"
@@ -165,9 +350,9 @@ const ProjectDetail: React.FC<IProjectDetailProps> = ({ projectId, onNavigate })
 
           <div id="roles" className="project-roles">
             <h3>My Roles</h3>
-            <div className="roles-grid">
+            <div className="project-roles-grid">
               {project.roles.map((role, index) => (
-                <div key={index} className="role-tag">
+                <div key={index} className="project-role-tag">
                   {role}
                 </div>
               ))}
@@ -176,9 +361,9 @@ const ProjectDetail: React.FC<IProjectDetailProps> = ({ projectId, onNavigate })
 
           <div id="techStack" className="project-tech-stack">
             <h3>Tech Stack</h3>
-            <div className="tech-grid">
+            <div className="project-tech-grid">
               {project.techStack.map((tech, index) => (
-                <div key={index} className="tech-tag">
+                <div key={index} className="project-tech-tag">
                   {tech}
                 </div>
               ))}
@@ -205,11 +390,13 @@ const ProjectDetail: React.FC<IProjectDetailProps> = ({ projectId, onNavigate })
 
           <div id="responsibilities" className="project-responsibilities">
             <h3>Responsibilities</h3>
-            <div className="responsibilities-list">
+            <div className="project-responsibilities-list">
               {project.responsibilities.map((responsibility, index) => (
-                <div key={index} className="responsibility-item">
-                  <span className="responsibility-bullet">•</span>
-                  <p>{responsibility}</p>
+                <div key={index} className="project-responsibility-item-container">
+                  <div className="project-responsibility-item">
+                    <span className="project-responsibility-bullet">•</span>
+                    <p>{responsibility}</p>
+                  </div>
                 </div>
               ))}
             </div>
