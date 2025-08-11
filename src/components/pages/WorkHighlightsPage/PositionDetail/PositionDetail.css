@@ -1,6 +1,10 @@
 .position-detail {
-  max-width: 100%;
-  padding: 2rem;
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  width: 100%;
+  height: 100%;
+  padding: 5rem 10rem;
   position: relative;
   color: #2c2c2c;
   background: #ffffff;
@@ -8,11 +12,12 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  justify-content: center;
   align-items: center;
 }
 
 .position-detail-header {
+  position: relative;
+  width: 100%;
   margin-bottom: 2rem;
   text-align: center;
   border-bottom: 1px solid #d0d0d0;
@@ -22,14 +27,13 @@
 .position-company-logo {
   position: relative;
   width: 100%;
-  height: max-content;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 1.5rem;
 }
 
-.company-logo {
+.position-company-logo-image {
   width: 120px;
   height: 120px;
   object-fit: contain;
@@ -47,7 +51,7 @@
   line-height: 1.2;
 }
 
-.company-name {
+.position-company-name {
   font-size: 1.5rem;
   font-weight: 600;
   color: #6c6c6c;
@@ -56,6 +60,8 @@
 }
 
 .position-meta {
+  position: relative;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -63,7 +69,8 @@
   flex-wrap: wrap;
 }
 
-.employment-type {
+.position-employment-type {
+  position: relative;
   background: #2c2c2c;
   color: white;
   padding: 0.5rem 1rem;
@@ -74,7 +81,8 @@
   letter-spacing: 0.5px;
 }
 
-.work-type {
+.position-work-type {
+  position: relative;
   background: #f5f5f5;
   color: #2c2c2c;
   padding: 0.5rem 1rem;
@@ -84,19 +92,24 @@
   border: 1px solid #e0e0e0;
 }
 
-.location {
+.position-location {
+  position: relative;
   color: #6c6c6c;
   font-style: italic;
   font-size: 1rem;
 }
 
 .position-detail-content {
+  position: relative;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
 .position-timeline {
+  position: relative;
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1rem;
@@ -106,13 +119,13 @@
   border-left: 4px solid #2c2c2c;
 }
 
-.timeline-item {
+.position-timeline-item {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.timeline-item label {
+.position-timeline-item label {
   font-size: 0.875rem;
   font-weight: 600;
   color: #6c6c6c;
@@ -120,7 +133,7 @@
   letter-spacing: 0.5px;
 }
 
-.timeline-item span {
+.position-timeline-item span {
   font-size: 1.125rem;
   font-weight: 600;
   color: #1a1a1a;
@@ -129,6 +142,8 @@
 .position-abstract h3,
 .position-responsibilities h3,
 .position-skills h3 {
+  position: relative;
+  width: 100%;
   font-size: 1.5rem;
   font-weight: 600;
   color: #1a1a1a;
@@ -152,6 +167,9 @@
 }
 
 .position-abstract p {
+  position: relative;
+  width: 100%;
+  height: 100%;
   font-size: 1rem;
   line-height: 1.7;
   font-weight: 300;
@@ -160,14 +178,27 @@
   margin: 0;
 }
 
-/* Responsibilities Styles */
-.responsibilities-list {
+/* Position Responsibilities Styles */
+.position-responsibilities-list {
+  position: relative;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.responsibility-item {
+.position-responsibility-item-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition:
+    color 0.1s ease-in-out,
+    font-weight 0.1s ease-in-out,
+    border-left 0.1s ease-in-out,
+    transform 0.1s ease-in-out;
+}
+
+.position-responsibility-item {
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
@@ -175,16 +206,18 @@
   background: #f8f8f8;
   border-radius: 8px;
   border-left: 4px solid #2c2c2c;
-  /* transition: all 0.3s ease; */
 }
 
-.responsibility-item:hover {
-  background: #f0f0f0;
-  font-weight: bold;
-  transform: translateX(5px);
+.position-responsibility-item-container:hover {
+  transform: translateX(10px);
+  .position-responsibility-item {
+    background: #f0f0f0;
+    font-weight: bold;
+    border-left: 4px solid red;
+  }
 }
 
-.responsibility-bullet {
+.position-responsibility-bullet {
   color: #2c2c2c;
   font-weight: bold;
   font-size: 1.25rem;
@@ -192,7 +225,7 @@
   margin-top: 0.125rem;
 }
 
-.responsibility-item p {
+.position-responsibility-item p {
   margin: 0;
   font-size: 1rem;
   font-weight: 300;
@@ -200,19 +233,21 @@
   color: #333;
 }
 
-.responsibility-item:hover p {
+.position-responsibility-item:hover p {
   color: #2c2c2c;
   font-weight: bold;
 }
 
-/* Skills Styles */
-.skills-grid {
+/* Position Skills Styles */
+.position-skills-grid {
+  position: relative;
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 0.75rem;
 }
 
-.skill-tag {
+.position-skill-tag {
   background: #f8f8f8;
   color: #2c2c2c;
   padding: 0.75rem 1rem;
@@ -220,7 +255,6 @@
   font-weight: 500;
   text-align: center;
   border: 1px solid #d0d0d0;
-  /* transition: all 0.3s ease; */
   position: relative;
   overflow: hidden;
   display: flex;
@@ -228,7 +262,7 @@
   align-items: center;
 }
 
-.skill-tag::before {
+.position-skill-tag::before {
   content: '';
   position: absolute;
   top: 0;
@@ -236,17 +270,17 @@
   width: 100%;
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.08), transparent);
-  /* transition: left 0.5s ease; */
+  transition: left 0.5s ease;
 }
 
-.skill-tag:hover {
+.position-skill-tag:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
   border-color: #a0a0a0;
   background: #eeeeee;
 }
 
-.skill-tag:hover::before {
+.position-skill-tag:hover::before {
   left: 100%;
 }
 
@@ -264,7 +298,7 @@
 /* Position Section Navigation */
 .position-section-nav {
   position: fixed;
-  bottom: 1rem;
+  bottom: 3rem;
   width: 70%;
   height: max-content;
   display: flex;
@@ -299,7 +333,7 @@
     font-size: 2rem;
   }
 
-  .company-name {
+  .position-company-name {
     font-size: 1.25rem;
   }
 
@@ -312,11 +346,11 @@
     gap: 0.5rem;
   }
 
-  .skills-grid {
+  .position-skills-grid {
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   }
 
-  .company-logo {
+  .position-company-logo-image {
     width: 120px;
     height: 120px;
     padding: 0.6rem;
@@ -332,7 +366,7 @@
     font-size: 1.75rem;
   }
 
-  .company-name {
+  .position-company-name {
     font-size: 1.125rem;
   }
 
@@ -346,11 +380,11 @@
     gap: 1rem;
   }
 
-  .skills-grid {
+  .position-skills-grid {
     grid-template-columns: 1fr;
   }
 
-  .company-logo {
+  .position-company-logo-image {
     padding: 0.4rem;
     width: 100px;
     height: 100px;

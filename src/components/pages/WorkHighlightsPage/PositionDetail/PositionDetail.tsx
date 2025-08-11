@@ -1,4 +1,3 @@
-
 import { useGSAP } from '@gsap/react';
 import { experience } from '@public/data/data.json';
 import { gsap } from 'gsap';
@@ -64,56 +63,157 @@ const PositionDetail: React.FC<IPositionDetailProps> = ({ positionId, onNavigate
   }, [position]);
 
   // GSAP animations for position detail sections
-  useGSAP(
-    () => {
-      if (!positionDetailRef.current) return;
+  useGSAP(() => {
+    if (!positionDetailRef.current) return;
 
-      const animatedSections = [
-        '.position-detail-header',
-        '.position-timeline',
-        '.position-responsibilities',
-        '.position-skills',
-        '.position-section-nav'
-      ];
+    const scrollTriggers: ScrollTrigger[] = [];
 
-      animatedSections.forEach((selector, index) => {
-        const section = positionDetailRef.current?.querySelector(selector);
-        if (section) {
-          // Get all children within the section
-          const children = section.children;
-
-          console.log(section.children);
-
-          const subChildren = Array.from(children).filter(child => child instanceof HTMLElement);
-
-          gsap.from(subChildren, {
-            y: 100,
-            opacity: 0,
-            duration: 0.6,
-            stagger: 0.3 * index // Add stagger effect for smoother animation
-          });
-
-          //   if (children.length > 0) {
-          //   ScrollTrigger.create({
-          //     trigger: section,
-          //     start: 'top 75%',
-          //     end: 'bottom 15%',
-          //     toggleActions: 'play reverse play reverse',
-          //     markers: true,
-          //     animation: gsap.from(children, {
-          //       y: 50,
-          //       markers: true,
-          //       opacity: 0,
-          //       duration: 0.6,
-          //       stagger: 0.3 // Add stagger effect for smoother animation
-          //     })
-          //   });
-          //   }
-        }
+    // Helper function to create scroll trigger for single elements
+    const createSingleElementAnimation = (element: Element) => {
+      const trigger = ScrollTrigger.create({
+        trigger: element,
+        start: 'top 100%',
+        end: 'bottom 5%',
+        toggleActions: 'play reverse play reverse',
+        id: `${element.className}-stagger`,
+        // pinnedContainer: positionDetailRef.current,
+        scroller: positionDetailRef.current,
+        animation: gsap.from(element, {
+          y: 100,
+          opacity: 0,
+          duration: 0.8,
+          ease: 'power2.out'
+        })
       });
-    },
-    { scope: positionDetailRef, dependencies: [position] }
-  );
+
+      scrollTriggers.push(trigger);
+    };
+
+    // Helper function to create staggered animations for elements with children
+    const createStaggeredAnimation = (parentElement: Element, childSelector: string = '*') => {
+      let children: NodeListOf<Element>;
+
+      if (childSelector === '*') {
+        // Get direct children only
+        children = parentElement.querySelectorAll(':scope > *');
+      } else {
+        children = parentElement.querySelectorAll(childSelector);
+      }
+
+      if (children.length === 0) return;
+
+      const trigger = ScrollTrigger.create({
+        trigger: parentElement,
+        start: 'top 100%',
+        end: 'bottom 5%',
+        toggleActions: 'play reverse play reverse',
+        id: `${parentElement.className}-stagger`,
+        // pinnedContainer: positionDetailRef.current,
+        scroller: positionDetailRef.current,
+        animation: gsap.from(children, {
+          x: -100,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.2,
+          ease: 'power2.out'
+        })
+      });
+
+      scrollTriggers.push(trigger);
+    };
+
+    // Animate position header components with staggered effect
+    const logoElement = positionDetailRef.current.querySelector('.position-company-logo');
+    if (logoElement) {
+      createSingleElementAnimation(logoElement);
+    }
+    const titleElement = positionDetailRef.current.querySelector('.position-title');
+    if (titleElement) {
+      createSingleElementAnimation(titleElement);
+    }
+    const companyNameElement = positionDetailRef.current.querySelector('.position-company-name');
+    if (companyNameElement) {
+      createSingleElementAnimation(companyNameElement);
+    }
+    const metaElement = positionDetailRef.current.querySelector('.position-meta');
+    if (metaElement) {
+      createStaggeredAnimation(metaElement);
+    }
+
+    // Animate timeline items with staggered effect
+    const timelineElement = positionDetailRef.current.querySelector('.position-timeline');
+    if (timelineElement) {
+      createStaggeredAnimation(timelineElement, '.position-timeline-item');
+    }
+
+    // Animate abstract section
+    const abstractElement = positionDetailRef.current.querySelector('.position-abstract');
+    if (abstractElement) {
+      createSingleElementAnimation(abstractElement);
+    }
+
+    // Animate responsibilities section
+    const responsibilitiesElement = positionDetailRef.current.querySelector(
+      '.position-responsibilities'
+    );
+    if (responsibilitiesElement) {
+      // Animate the title first
+      const title = responsibilitiesElement.querySelector('h3');
+      if (title) {
+        createSingleElementAnimation(title);
+      }
+
+      //   // Then animate responsibility items with stagger
+      const responsibilitiesList = responsibilitiesElement.querySelector(
+        '.position-responsibilities-list'
+      );
+      if (responsibilitiesList) {
+        const responsibilityItems = responsibilitiesList.querySelectorAll(
+          '.position-responsibility-item-container'
+        );
+        responsibilityItems.forEach(item => {
+          createStaggeredAnimation(item);
+        });
+      }
+    }
+
+    // Animate skills section
+    const skillsElement = positionDetailRef.current.querySelector('.position-skills');
+    if (skillsElement) {
+      // Animate the title first
+      const title = skillsElement.querySelector('h3');
+      if (title) {
+        createSingleElementAnimation(title);
+      }
+
+      // Then animate skill tags with stagger
+      const skillsGrid = skillsElement.querySelector('.position-skills-grid');
+      if (skillsGrid) {
+        const skillTags = skillsGrid.querySelectorAll('.position-skill-tag');
+        skillTags.forEach(tag => {
+          createSingleElementAnimation(tag);
+        });
+      }
+    }
+
+    // Animate section navigation
+    const sectionNavElement = positionDetailRef.current.querySelector('.position-section-nav');
+    if (sectionNavElement) {
+      // createSingleElementAnimation(sectionNavElement);
+      gsap.from(sectionNavElement, {
+        y: 100,
+        opacity: 0,
+        duration: 0.6,
+        ease: 'power2.out',
+        delay: 0.5
+      });
+    }
+
+    // Cleanup function
+    return () => {
+      scrollTriggers.forEach(trigger => trigger.kill());
+    };
+  }, []);
 
   useEffect(() => {
     if (isMobileDevice()) return;
@@ -170,29 +270,28 @@ const PositionDetail: React.FC<IPositionDetailProps> = ({ positionId, onNavigate
               loading="lazy"
               src={position.companyLogo}
               alt={`${position.company} Logo`}
-              className="company-logo"
+              className="position-company-logo-image"
             />
           </div>
           <h1 className="position-title">{position.position}</h1>
-          <h2 className="company-name">{position.company}</h2>
+          <h2 className="position-company-name">{position.company}</h2>
           <div className="position-meta">
-            <span className="employment-type">{position.employmentType}</span>
-            <span className="work-type">{position.workType}</span>
-            <span className="location">{position.location}</span>
+            <span className="position-employment-type">{position.employmentType}</span>
+            <span className="position-work-type">{position.workType}</span>
+            <span className="position-location">{position.location}</span>
           </div>
         </div>
-
         <div className="position-detail-content">
           <div id="timeline" className="position-timeline">
-            <div className="timeline-item">
+            <div className="position-timeline-item">
               <label>Start Date</label>
               <span>{position.startDate}</span>
             </div>
-            <div className="timeline-item">
+            <div className="position-timeline-item">
               <label>End Date</label>
               <span>{position.endDate}</span>
             </div>
-            <div className="timeline-item">
+            <div className="position-timeline-item">
               <label>Duration</label>
               <span>{position.employmentType}</span>
             </div>
@@ -206,11 +305,13 @@ const PositionDetail: React.FC<IPositionDetailProps> = ({ positionId, onNavigate
           {position.responsibilities && position.responsibilities.length > 0 && (
             <div id="responsibilities" className="position-responsibilities">
               <h3>Key Responsibilities</h3>
-              <div className="responsibilities-list">
+              <div className="position-responsibilities-list">
                 {position.responsibilities.map((responsibility, index) => (
-                  <div key={index} className="responsibility-item">
-                    <span className="responsibility-bullet">•</span>
-                    <p>{responsibility}</p>
+                  <div key={index} className="position-responsibility-item-container">
+                    <div className="position-responsibility-item">
+                      <span className="position-responsibility-bullet">•</span>
+                      <p>{responsibility}</p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -220,17 +321,18 @@ const PositionDetail: React.FC<IPositionDetailProps> = ({ positionId, onNavigate
           {position.skills && position.skills.length > 0 && (
             <div id="skills" className="position-skills">
               <h3>Skills & Technologies</h3>
-              <div className="skills-grid">
-                {position.skills.map((skill, index) => (
-                  <div key={index} className="skill-tag">
-                    {skill}
-                  </div>
-                ))}
+              <div className="position-skills-grid">
+                {position.skills.map((skill, index) => {
+                  return (
+                    <div key={index} className="position-skill-tag">
+                      {skill}
+                    </div>
+                  );
+                })}
               </div>
             </div>
           )}
         </div>
-
         {/* Section Navigation */}
         <div className="position-section-nav">
           <SectionNav
