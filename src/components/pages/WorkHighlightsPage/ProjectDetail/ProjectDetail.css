@@ -7,7 +7,7 @@
   padding: 5rem 10rem;
   color: #2c2c2c;
   background: #ffffff;
-  border-radius: 20px;
+  border-radius: 12px 12px 0 0;
   display: flex;
   flex-direction: column;
   gap: 2rem;
