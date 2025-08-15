@@ -73,6 +73,7 @@
     "npm": "^10.9.3",
     "ogl": "^1.0.11",
     "path": "^0.12.7",
+    "phaser": "^3.90.0",
     "react": "^19.0.0",
     "react-chrono": "^2.9.1",
     "react-content-loader": "^7.1.1",
