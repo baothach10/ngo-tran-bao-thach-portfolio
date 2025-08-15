@@ -1,10 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { Suspense, lazy, useState, useEffect } from 'react';
 
 import './WorkHighlightsPage.css';
+
 import { AnimatedNameGraphic } from '@/components/pages/AboutMePage/AnimatedNameGraphic/AnimatedNameGraphic';
-import KeyProjectsSection from '@/components/pages/WorkHighlightsPage/KeyProjectsSection';
-import ProfessionalExperienceSection from '@/components/pages/WorkHighlightsPage/ProfessionalExperienceSection';
+import KeyProjectsSkeleton from '@/components/pages/WorkHighlightsPage/KeyProjectsSection/KeyProjectsSkeleton';
+import ProfessionalExperienceSkeleton from '@/components/pages/WorkHighlightsPage/ProfessionalExperienceSection/ProfessionalExperienceSkeleton';
 import { isMobileDevice } from '@/utils';
+
+const ProfessionalExperienceSection = lazy(
+  () => import('@/components/pages/WorkHighlightsPage/ProfessionalExperienceSection')
+);
+const KeyProjectsSection = lazy(
+  () => import('@/components/pages/WorkHighlightsPage/KeyProjectsSection')
+);
 
 interface IProject {
   name: string;
@@ -37,7 +45,11 @@ const WorkHighlightsPage: React.FC = () => {
   const [data, setData] = useState<IDataStructure | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const animatedNameHeight = isMobileDevice() ? document.documentElement.clientWidth < 768 ? "4rem" : "7rem" : '10rem'
+  const animatedNameHeight = isMobileDevice()
+    ? document.documentElement.clientWidth < 768
+      ? '4rem'
+      : '7rem'
+    : '10rem';
 
   useEffect(() => {
     const loadData = async () => {
@@ -55,7 +67,22 @@ const WorkHighlightsPage: React.FC = () => {
   }, []);
 
   if (isLoading) {
-    return <div className="work-highlights-page loading">Loading...</div>;
+    return (
+      <div className="work-highlights-page-container">
+        <div className="name-graphic-container">
+          <AnimatedNameGraphic
+            className="half-graphic"
+            shadowColor="white"
+            strokeColor="white"
+            height={animatedNameHeight}
+          />
+        </div>
+        <div className="work-highlights-page-wrapper">
+          <ProfessionalExperienceSkeleton cardCount={2} />
+          <KeyProjectsSkeleton cardCount={2} />
+        </div>
+      </div>
+    );
   }
 
   if (!data) {
@@ -65,11 +92,20 @@ const WorkHighlightsPage: React.FC = () => {
   return (
     <div className="work-highlights-page-container">
       <div className="name-graphic-container">
-        <AnimatedNameGraphic className="half-graphic" shadowColor="white" strokeColor="white" height={animatedNameHeight} />
+        <AnimatedNameGraphic
+          className="half-graphic"
+          shadowColor="white"
+          strokeColor="white"
+          height={animatedNameHeight}
+        />
       </div>
       <div className="work-highlights-page-wrapper">
-        <ProfessionalExperienceSection experience={data.experience} />
-        <KeyProjectsSection projects={data.projects} />
+        <Suspense fallback={<ProfessionalExperienceSkeleton cardCount={3} />}>
+          <ProfessionalExperienceSection experience={data.experience} />
+        </Suspense>
+        <Suspense fallback={<KeyProjectsSkeleton cardCount={4} />}>
+          <KeyProjectsSection projects={data.projects} />
+        </Suspense>
       </div>
     </div>
   );

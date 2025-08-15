@@ -25,7 +25,7 @@ const KeyProjectsSkeleton: React.FC<IKeyProjectsSkeletonProps> = ({
     sectionTitleWidth: isMobile ? (isTablet ? 400 : 200) : 500,
     sectionTitleHeight: isMobile ? (isTablet ? 30 : 35) : 48,
     gridGap: isMobile ? (isTablet ? 28 : 24) : 48,
-    cardWidth: isMobile ? (isTablet ? 600 : 320) : 720,
+    cardWidth: isMobile ? (isTablet ? 600 : 320) : document.documentElement.clientWidth < 1600 ? 520 : 720,
     cardHeight: isMobile ? (isTablet ? 480 : 350) : 600,
     thumbSize: isMobile ? (isTablet ? 300 : 200) : 400,
     thumbRadius: isMobile ? (isTablet ? 10 : 8) : 12,

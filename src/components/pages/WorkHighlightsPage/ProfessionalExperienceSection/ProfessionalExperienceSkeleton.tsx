@@ -26,7 +26,7 @@ const ProfessionalExperienceSkeleton: React.FC<IProfessionalExperienceSkeletonPr
   const sizes = {
     sectionTitleWith: isMobile ? (isTablet ? 400 : 200) : 500,
     sectionTitleHeight: isMobile ? (isTablet ? 30 : 35) : 48,
-    cardWidth: isMobile ? (isTablet ? 600 : 320) : 1600,
+    cardWidth: isMobile ? (isTablet ? 600 : 320) : document.documentElement.clientWidth < 1600 ? 1000 : 1600,
     cardHeight: isMobile ? (isTablet ? 280 : 200) : 360,
     logoSize: isMobile ? (isTablet ? 80 : 60) : 100,
     logoRadius: 8,
