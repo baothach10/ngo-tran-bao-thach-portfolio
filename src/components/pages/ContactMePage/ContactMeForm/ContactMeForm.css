@@ -151,20 +151,26 @@
 }
 
 .success {
-  background-color: green;
+  background-color: rgba(50, 150, 50, 1);
 }
 
 .error {
-  background: red;
+  background: rgba(150, 50, 50, 1);
 }
 
-#notify-toast {
+#error-toast,
+#success-toast {
   color: #fff;
   position: fixed;
   border-radius: 6px;
   margin-top: 3rem;
   padding: 20px;
   margin-right: 1rem;
+  max-width: 400px;
+
+  & span {
+    white-space: wrap;
+  }
 }
 
 .submit-btn {
@@ -173,7 +179,10 @@
   padding: 15px 50px;
   border: 2px solid white;
   border-radius: 10px;
-  transition: all 0.3s ease-in-out;
+  transition:
+    scale 0.3s ease-in-out,
+    background-color 0.3s ease-in-out,
+    color 0.3s ease-in-out;
 }
 
 .submit-btn:hover {
@@ -202,9 +211,14 @@
     margin-bottom: 1rem;
   }
 
-  #notify-toast {
-    margin-top: 8rem;
-    font-size: 0.5rem;
+  #error-toast,
+  #success-toast {
+    font-size: 1rem;
+    max-width: 300px;
+
+    & span {
+      white-space: wrap;
+    }
   }
 }
 
@@ -216,8 +230,14 @@
 }
 
 @media (min-width: 500px) and (max-width: 1024px) {
-  #notify-toast {
-    margin-top: 7rem;
+  #error-toast,
+  #success-toast {
+    font-size: 1rem;
+    max-width: 500px;
+
+    & span {
+      white-space: wrap;
+    }
   }
 }
 
