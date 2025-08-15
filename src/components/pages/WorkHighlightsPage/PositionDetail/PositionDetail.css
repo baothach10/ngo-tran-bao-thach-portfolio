@@ -37,9 +37,9 @@
   width: 120px;
   height: 120px;
   object-fit: contain;
-  border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-  background: #a0a0a0;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  background: #f8f8f8;
   padding: 1rem;
 }
 
@@ -385,7 +385,7 @@
   }
 
   .position-company-logo-image {
-    padding: 0.4rem;
+    padding: 0.5rem;
     width: 100px;
     height: 100px;
   }
@@ -407,6 +407,6 @@
 
 @media (min-width: 500px) and (max-width: 1024px) {
   .position-section-nav {
-    bottom: 2rem;
+    bottom: 4rem;
   }
 }

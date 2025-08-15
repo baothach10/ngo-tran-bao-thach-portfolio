@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import './ProfessionalExperienceSection.css';
 import GlareHoverCard from '@/components/GlareHoverCard/GlareHoverCard';
 import { SectionTitle } from '@/components/layout/SectionTitle/SectionTitle';
+import { isMobileDevice } from '@/utils';
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -66,8 +67,9 @@ const ProfessionalExperienceSection: React.FC<IProfessionalExperienceSectionProp
   };
 
   const renderSkills = (skills: string[]) => {
-    const displaySkills = skills.slice(0, 5);
-    const remainingCount = skills.length - 5;
+    const numberOfSkills = isMobileDevice() ? 3 : 5;
+    const displaySkills = skills.slice(0, numberOfSkills);
+    const remainingCount = skills.length - numberOfSkills;
 
     return (
       <div className="professional-experience-skills-container">
