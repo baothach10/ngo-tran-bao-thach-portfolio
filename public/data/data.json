@@ -365,6 +365,7 @@
   },
   "certifications": {
     "nextjs-15-react-the-complete-guide": {
+      "category": "web-development",
       "title": "Next.js 15 & React - The Complete Guide",
       "issuer": "Udemy",
       "issuerImage": "/assets/images/udemy.svg",
@@ -387,6 +388,7 @@
       ]
     },
     "webpack-5-ninja-build-micro-frontend-and-web-apps": {
+      "category": "web-development",
       "title": "Webpack 5 Ninja - Build Micro frontend and web apps",
       "issuer": "Udemy",
       "issuerImage": "/assets/images/udemy.svg",
@@ -395,6 +397,7 @@
       "skillsLearned": ["Webpack", "Microfrontend", "Front-End Development", "React.js"]
     },
     "microfrontends-with-react-a-complete-developers-guide": {
+      "category": "web-development",
       "title": "Microfrontends with React: A Complete Developer's Guide",
       "issuer": "Udemy",
       "issuerImage": "/assets/images/udemy.svg",
@@ -410,7 +413,23 @@
         "Front-End Development"
       ]
     },
+    "aws-academy-graduate-aws-academy-cloud-foundations": {
+      "category": "web-development",
+      "title": "AWS Academy Graduate - AWS Academy Cloud Foundations",
+      "issuer": "Amazon Web Services (AWS)",
+      "issuerImage": "/assets/images/aws.svg",
+      "issueDate": "Jun 2024",
+      "description": "Completed the AWS Academy Cloud Foundations course, gaining a strong understanding of AWS global infrastructure, core cloud services, architectural principles, pricing models, and support plans. Built foundational knowledge essential for deploying and managing applications in the AWS environment.",
+      "skillsLearned": [
+        "AWS Architecture",
+        "AWS Cloud",
+        "AWS Core Services",
+        "AWS Pricing",
+        "AWS Support"
+      ]
+    },
     "buildwithai-hackathon-2024-participant-certificate": {
+      "category": "artificial-intelligence-and-machine-learning",
       "title": "BuildwithAI Hackathon 2024: Participant Certificate",
       "issuer": "Canvas Credentials (Badgr)",
       "issuerImage": "/assets/images/canvas.svg",
@@ -424,6 +443,7 @@
       ]
     },
     "aws-academy-machine-learning-foundations": {
+      "category": "artificial-intelligence-and-machine-learning",
       "title": "AWS Academy Machine Learning Foundations",
       "issuer": "Amazon Web Services (AWS)",
       "issuerImage": "/assets/images/aws.svg",
@@ -439,6 +459,7 @@
       ]
     },
     "novartis-datathon-2024-participant-certificate": {
+      "category": "artificial-intelligence-and-machine-learning",
       "title": "Novartis Datathon 2024: Participant Certificate",
       "issuer": "Eurecat - Technology Centre",
       "issuerImage": "/assets/images/eurecat.svg",
@@ -452,21 +473,8 @@
         "Fullstack development"
       ]
     },
-    "aws-academy-graduate-aws-academy-cloud-foundations": {
-      "title": "AWS Academy Graduate - AWS Academy Cloud Foundations",
-      "issuer": "Amazon Web Services (AWS)",
-      "issuerImage": "/assets/images/aws.svg",
-      "issueDate": "Jun 2024",
-      "description": "Completed the AWS Academy Cloud Foundations course, gaining a strong understanding of AWS global infrastructure, core cloud services, architectural principles, pricing models, and support plans. Built foundational knowledge essential for deploying and managing applications in the AWS environment.",
-      "skillsLearned": [
-        "AWS Architecture",
-        "AWS Cloud",
-        "AWS Core Services",
-        "AWS Pricing",
-        "AWS Support"
-      ]
-    },
     "deep-learning-specialization": {
+      "category": "artificial-intelligence-and-machine-learning",
       "title": "Deep Learning Specialization",
       "issuer": "DeepLearning.AI",
       "issuerImage": "/assets/images/deepLearningAI.svg",
@@ -481,6 +489,7 @@
       ]
     },
     "data-structures-and-algorithms-deep-dive-using-java": {
+      "category": "general-programming",
       "title": "Data Structures and Algorithms: Deep Dive Using Java",
       "issuer": "Udemy",
       "issuerImage": "/assets/images/udemy.svg",
@@ -488,15 +497,8 @@
       "description": "Completed an in-depth course on data structures and algorithms using Java. Developed strong problem-solving skills by implementing key algorithms and data structures, enhancing computational thinking and software engineering foundations.",
       "skillsLearned": ["Java", "Data Structures", "Algorithms"]
     },
-    "statistics-for-data-science-and-business-analysis": {
-      "title": "Statistics for Data Science and Business Analysis",
-      "issuer": "Udemy",
-      "issuerImage": "/assets/images/udemy.svg",
-      "issueDate": "Feb 2023",
-      "description": "Completed a foundational course in statistics tailored for data science and business analysis. Gained practical skills in interpreting data, applying statistical methods, and drawing insights to support data-driven decision-making in business contexts.",
-      "skillsLearned": ["Statistics", "Data Analysis", "Business Intelligence"]
-    },
     "beginning-cpp-programming-from-beginner-to-beyond": {
+      "category": "general-programming",
       "title": "Beginning C++ Programming - From Beginner to Beyond",
       "issuer": "Udemy",
       "issuerImage": "/assets/images/udemy.svg",
@@ -509,7 +511,18 @@
         "Algorithms"
       ]
     },
+    "statistics-for-data-science-and-business-analysis": {
+      "category": "data-analytics",
+      "title": "Statistics for Data Science and Business Analysis",
+      "issuer": "Udemy",
+      "issuerImage": "/assets/images/udemy.svg",
+      "issueDate": "Feb 2023",
+      "description": "Completed a foundational course in statistics tailored for data science and business analysis. Gained practical skills in interpreting data, applying statistical methods, and drawing insights to support data-driven decision-making in business contexts.",
+      "skillsLearned": ["Statistics", "Data Analysis", "Business Intelligence"]
+    },
+
     "google-data-analytics-certificate": {
+      "category": "data-analytics",
       "title": "Google Data Analytics Certificate",
       "issuer": "Coursera",
       "issuerImage": "/assets/images/coursera.svg",
@@ -526,6 +539,7 @@
       ]
     },
     "innovations-for-global-cities": {
+      "category": "languages-and-soft-skills",
       "title": "Innovations For Global Cities",
       "issuer": "RMIT University",
       "issuerImage": "/assets/images/rmit.svg",
@@ -534,12 +548,37 @@
       "skillsLearned": ["Teamwork", "Problem Solving", "Presentations"]
     },
     "ielts-academic-certificate-70-overall": {
+      "category": "languages-and-soft-skills",
       "title": "IELTS Academic Certificate - 7.0 Overall",
       "issuer": "British Council",
       "issuerImage": "/assets/images/britishCouncil.svg",
       "issueDate": "Sep 2020",
       "description": "Demonstrates English language proficiency at an academic level, with strong performance across listening, reading, writing, and speaking skills, as assessed by the British Council.",
       "skillsLearned": ["8.0 Listening", "7.0 Reading", "6.5 Writing", "7.0 Speaking"]
+    }
+  },
+  "certificationCategories": {
+    "web-development": {
+      "title": "Web Development",
+      "description": "Courses and certifications related to web development technologies and practices."
+    },
+    "artificial-intelligence-and-machine-learning": {
+      "title": "Artificial Intelligence and Machine Learning",
+      "description": "Courses and certifications focused on AI and machine learning concepts, tools, and applications."
+    },
+    "general-programming": {
+      "title": "General Programming",
+      "description": "Courses and certifications related to general programming concepts, languages, and practices."
+    },
+
+    "data-analytics": {
+      "title": "Data Analytics",
+      "description": "Courses and certifications focused on data analysis, visualization, and related tools."
+    },
+
+    "languages-and-soft-skills": {
+      "title": "Languages and Soft Skills",
+      "description": "Courses and certifications aimed at enhancing language proficiency and soft skills."
     }
   },
   "awards": {
@@ -580,7 +619,7 @@
       ]
     },
     "de-heus-award-certificate": {
-      "title": "De Heus Award Certificate",
+      "title": "De Heus Industry Award",
       "issuer": "De Heus Vietnam Ltd.",
       "issuerImage": "/assets/images/deheus.svg",
       "issueDate": "Jan 2025",
