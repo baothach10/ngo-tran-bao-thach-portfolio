@@ -8,7 +8,7 @@
   }
 }
 
-.home-name {
+.home-name-introduction {
   font-size: 3rem;
   font-weight: bold;
   text-transform: uppercase;
@@ -201,26 +201,26 @@
 }
 
 @media (min-width: 500px) and (max-width: 1024px) {
-  .home-page-content {
-    height: 50%;
-  }
-  .home-name {
-    padding-right: 8%;
-    font-size: 4rem;
+  .home-name-introduction {
+    font-size: 3rem;
     /* white-space: nowrap; */
+  }
+}
+
+@media (max-width: 480px) {
+  .home-name-introduction {
+    padding-right: 8%;
+    font-size: 1.6rem;
   }
   .name-letter {
     min-width: 0.7em;
   }
 }
 
-@media (max-width: 480px) {
-  .home-name {
-    padding-right: 8%;
-    font-size: 1.6rem;
-  }
-  .name-letter {
-    min-width: 0.7em;
+@media (min-width: 1025px) and (max-width: 1600px) {
+  .home-name-introduction {
+    font-size: 2.5rem;
+    white-space: nowrap;
   }
 }
 

@@ -1,127 +1,438 @@
-/* Typewriter effect 1 */
+/* Typewriter effect with delete animation */
 @keyframes typing {
-  0.0000%,
-  27.3488% {
+  /* FRONTEND ENGINEER - Type */
+  0%,
+  1% {
     content: '';
   }
-  1.1395%,
-  26.2093% {
-    content: 'd';
+  2% {
+    content: 'F';
   }
-  2.2791%,
-  25.0698% {
-    content: 'de';
+  3% {
+    content: 'FR';
   }
-  3.4186%,
-  23.9302% {
-    content: 'dev';
+  4% {
+    content: 'FRO';
   }
-  4.5581%,
-  22.7907% {
-    content: 'deve';
+  5% {
+    content: 'FRON';
   }
-  5.6977%,
-  21.6512% {
-    content: 'devel';
+  6% {
+    content: 'FRONT';
   }
-  6.8372%,
-  20.5116% {
-    content: 'develo';
+  7% {
+    content: 'FRONTE';
   }
-  7.9767%,
-  19.3721% {
-    content: 'develop';
+  8% {
+    content: 'FRONTEN';
   }
-  9.1163%,
-  18.2326% {
-    content: 'develope';
+  9% {
+    content: 'FRONTEND';
   }
-  10.2558%,
-  17.0930% {
-    content: 'developer';
+  10% {
+    content: 'FRONTEND ';
+  }
+  11% {
+    content: 'FRONTEND E';
+  }
+  12% {
+    content: 'FRONTEND EN';
+  }
+  13% {
+    content: 'FRONTEND ENG';
+  }
+  14% {
+    content: 'FRONTEND ENGI';
+  }
+  15% {
+    content: 'FRONTEND ENGIN';
+  }
+  16% {
+    content: 'FRONTEND ENGINE';
+  }
+  17% {
+    content: 'FRONTEND ENGINEE';
+  }
+  18%,
+  19% {
+    content: 'FRONTEND ENGINEER';
   }
 
-  30.7674%,
-  51.2791% {
+  /* FRONTEND ENGINEER - Delete */
+  20% {
+    content: 'FRONTEND ENGINEE';
+  }
+  20.2% {
+    content: 'FRONTEND ENGINE';
+  }
+  20.4% {
+    content: 'FRONTEND ENGIN';
+  }
+  20.6% {
+    content: 'FRONTEND ENGI';
+  }
+  20.8% {
+    content: 'FRONTEND ENG';
+  }
+  21% {
+    content: 'FRONTEND EN';
+  }
+  21.2% {
+    content: 'FRONTEND E';
+  }
+  21.4% {
+    content: 'FRONTEND ';
+  }
+  21.6% {
+    content: 'FRONTEND';
+  }
+  21.8% {
+    content: 'FRONTEN';
+  }
+  22% {
+    content: 'FRONTE';
+  }
+  22.2% {
+    content: 'FRONT';
+  }
+  22.4% {
+    content: 'FRON';
+  }
+  22.6% {
+    content: 'FRO';
+  }
+  22.8% {
+    content: 'FR';
+  }
+  23% {
+    content: 'F';
+  }
+  23.2% {
     content: '';
-  }
-  31.9070%,
-  50.1395% {
-    content: 'w';
-  }
-  33.0465%,
-  49.0000% {
-    content: 'wr';
-  }
-  34.1860%,
-  47.8605% {
-    content: 'wri';
-  }
-  35.3256%,
-  46.7209% {
-    content: 'writ';
-  }
-  36.4651%,
-  45.5814% {
-    content: 'write';
-  }
-  37.6047%,
-  44.4419% {
-    content: 'writer';
   }
 
-  54.6977%,
-  75.2093% {
-    content: '';
+  /* GAME DEVELOPER - Type */
+  24% {
+    content: 'G';
   }
-  55.8372%,
-  74.0698% {
-    content: 'r';
+  25% {
+    content: 'GA';
   }
-  56.9767%,
-  72.9302% {
-    content: 're';
+  26% {
+    content: 'GAM';
   }
-  58.1163%,
-  71.7907% {
-    content: 'rea';
+  27% {
+    content: 'GAME';
   }
-  59.2558%,
-  70.6512% {
-    content: 'read';
+  28% {
+    content: 'GAME ';
   }
-  60.3953%,
-  69.5116% {
-    content: 'reade';
+  29% {
+    content: 'GAME D';
   }
-  61.5349%,
-  68.3721% {
-    content: 'reader';
+  30% {
+    content: 'GAME DE';
+  }
+  31% {
+    content: 'GAME DEV';
+  }
+  32% {
+    content: 'GAME DEVE';
+  }
+  33% {
+    content: 'GAME DEVEL';
+  }
+  34% {
+    content: 'GAME DEVELO';
+  }
+  35% {
+    content: 'GAME DEVELOP';
+  }
+  36% {
+    content: 'GAME DEVELOPE';
+  }
+  37%,
+  38% {
+    content: 'GAME DEVELOPER';
   }
 
-  78.6279%,
-  96.8605% {
+  /* GAME DEVELOPER - Delete */
+  39% {
+    content: 'GAME DEVELOPE';
+  }
+  39.2% {
+    content: 'GAME DEVELOP';
+  }
+  39.4% {
+    content: 'GAME DEVELO';
+  }
+  39.6% {
+    content: 'GAME DEVEL';
+  }
+  39.8% {
+    content: 'GAME DEVE';
+  }
+  40% {
+    content: 'GAME DEV';
+  }
+  40.2% {
+    content: 'GAME DE';
+  }
+  40.4% {
+    content: 'GAME D';
+  }
+  40.6% {
+    content: 'GAME ';
+  }
+  40.8% {
+    content: 'GAME';
+  }
+  41% {
+    content: 'GAM';
+  }
+  41.2% {
+    content: 'GA';
+  }
+  41.4% {
+    content: 'G';
+  }
+  41.6% {
     content: '';
   }
-  79.7674%,
-  95.7209% {
-    content: 'h';
+
+  /* ML RESEARCHER - Type */
+  42% {
+    content: 'M';
   }
-  80.9070%,
-  94.5814% {
-    content: 'hu';
+  43% {
+    content: 'ML';
   }
-  82.0465%,
-  93.4419% {
-    content: 'hum';
+  44% {
+    content: 'ML ';
   }
-  83.1860%,
-  92.3023% {
-    content: 'huma';
+  45% {
+    content: 'ML R';
   }
-  84.3256%,
-  91.1628% {
-    content: 'human';
+  46% {
+    content: 'ML RE';
+  }
+  47% {
+    content: 'ML RES';
+  }
+  48% {
+    content: 'ML RESE';
+  }
+  49% {
+    content: 'ML RESEA';
+  }
+  50% {
+    content: 'ML RESEAR';
+  }
+  51% {
+    content: 'ML RESEARC';
+  }
+  52% {
+    content: 'ML RESEARCH';
+  }
+  53% {
+    content: 'ML RESEARCHE';
+  }
+  54%,
+  55% {
+    content: 'ML RESEARCHER';
+  }
+
+  /* ML RESEARCHER - Delete */
+  56% {
+    content: 'ML RESEARCHE';
+  }
+  56.2% {
+    content: 'ML RESEARCH';
+  }
+  56.4% {
+    content: 'ML RESEARC';
+  }
+  56.6% {
+    content: 'ML RESEAR';
+  }
+  56.8% {
+    content: 'ML RESEA';
+  }
+  57% {
+    content: 'ML RESE';
+  }
+  57.2% {
+    content: 'ML RES';
+  }
+  57.4% {
+    content: 'ML RE';
+  }
+  57.6% {
+    content: 'ML R';
+  }
+  57.8% {
+    content: 'ML ';
+  }
+  58% {
+    content: 'ML';
+  }
+  58.2% {
+    content: 'M';
+  }
+  58.4% {
+    content: '';
+  }
+
+  /* AI ENTHUSIAST - Type */
+  59% {
+    content: 'A';
+  }
+  60% {
+    content: 'AI';
+  }
+  61% {
+    content: 'AI ';
+  }
+  62% {
+    content: 'AI E';
+  }
+  63% {
+    content: 'AI EN';
+  }
+  64% {
+    content: 'AI ENT';
+  }
+  65% {
+    content: 'AI ENTH';
+  }
+  66% {
+    content: 'AI ENTHU';
+  }
+  67% {
+    content: 'AI ENTHUS';
+  }
+  68% {
+    content: 'AI ENTHUSI';
+  }
+  69% {
+    content: 'AI ENTHUSIA';
+  }
+  70% {
+    content: 'AI ENTHUSIAS';
+  }
+  71%,
+  72% {
+    content: 'AI ENTHUSIAST';
+  }
+
+  /* AI ENTHUSIAST - Delete */
+  73% {
+    content: 'AI ENTHUSIAS';
+  }
+  73.2% {
+    content: 'AI ENTHUSIA';
+  }
+  73.4% {
+    content: 'AI ENTHUSI';
+  }
+  73.6% {
+    content: 'AI ENTHUS';
+  }
+  73.8% {
+    content: 'AI ENTHU';
+  }
+  74% {
+    content: 'AI ENTH';
+  }
+  74.2% {
+    content: 'AI ENT';
+  }
+  74.4% {
+    content: 'AI EN';
+  }
+  74.6% {
+    content: 'AI E';
+  }
+  74.8% {
+    content: 'AI ';
+  }
+  75% {
+    content: 'AI';
+  }
+  75.2% {
+    content: 'A';
+  }
+  75.4% {
+    content: '';
+  }
+
+  /* TECH-SAVVY - Type */
+  76% {
+    content: 'T';
+  }
+  77% {
+    content: 'TE';
+  }
+  78% {
+    content: 'TEC';
+  }
+  79% {
+    content: 'TECH';
+  }
+  80% {
+    content: 'TECH-';
+  }
+  81% {
+    content: 'TECH-S';
+  }
+  82% {
+    content: 'TECH-SA';
+  }
+  83% {
+    content: 'TECH-SAV';
+  }
+  84% {
+    content: 'TECH-SAVV';
+  }
+  85%,
+  90% {
+    content: 'TECH-SAVVY';
+  }
+
+  /* TECH-SAVVY - Delete */
+  91% {
+    content: 'TECH-SAVV';
+  }
+  91.5% {
+    content: 'TECH-SAV';
+  }
+  92% {
+    content: 'TECH-SA';
+  }
+  92.5% {
+    content: 'TECH-S';
+  }
+  93% {
+    content: 'TECH-';
+  }
+  93.5% {
+    content: 'TECH';
+  }
+  94% {
+    content: 'TEC';
+  }
+  94.5% {
+    content: 'TE';
+  }
+  95% {
+    content: 'T';
+  }
+  95.5% {
+    content: '';
+  }
+  96%,
+  100% {
+    content: '';
   }
 }
 
@@ -135,13 +446,29 @@
   }
 }
 
+.role-introduction-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.role-text {
+  position: relative;
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
 .typewriter {
   --caret: currentcolor;
 }
 
 .typewriter::before {
   content: '';
-  animation: typing 13.5s infinite;
+  animation: typing 25s infinite;
 }
 
 .typewriter::after {
@@ -166,21 +493,42 @@
   @keyframes sequencePopup {
     0%,
     100% {
-      content: 'developer';
+      content: 'FRONTEND ENGINEER';
     }
-    25% {
-      content: 'writer';
+    20% {
+      content: 'GAME DEVELOPER';
     }
-    50% {
-      content: 'reader';
+    40% {
+      content: 'ML RESEARCHER';
     }
-    75% {
-      content: 'human';
+    60% {
+      content: 'AI ENTHUSIAST';
+    }
+    80% {
+      content: 'TECH-SAVVY';
     }
   }
 
   .typewriter::before {
-    content: 'developer';
-    animation: sequencePopup 12s linear infinite;
+    content: 'FRONTEND ENGINEER';
+    animation: sequencePopup 25s linear infinite;
+  }
+}
+
+@media (max-width: 480px) {
+  .role-text {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 500px) and (max-width: 1024px) {
+  .role-text {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1600px) {
+  .role-text {
+    font-size: 1.5rem;
   }
 }
