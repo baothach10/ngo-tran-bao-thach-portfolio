@@ -4,6 +4,7 @@ import { useLocation, Outlet } from 'react-router-dom';
 import PageWrapper from '../animation/PageWrapper';
 import CursorWrapper from '../CursorWrapper/CursorWrapper';
 
+import CVDownloadTab from './CVDownloadTab/CVDownloadTab';
 import Footer from './footer/Footer';
 import Header from './header/Header';
 import ScrollToTopButton from './ScrollToTopButton/ScrollToTopButton';
@@ -67,6 +68,7 @@ const Layout: React.FC = () => {
         {location.pathname != '/' && <Footer />}
       </div>
       <ScrollToTopButton />
+      <CVDownloadTab />
     </div>
   );
 };

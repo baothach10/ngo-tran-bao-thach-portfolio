@@ -32,14 +32,20 @@ import { isMobileDevice } from '@/utils';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const TechnologyCarousel = () => {
+type TTechnologyCarousel = {
+  numberOfItems?: number;
+};
+
+const TechnologyCarousel = ({ numberOfItems }: TTechnologyCarousel) => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const iconSize = isMobileDevice() ? 40 : 60; // Adjust icon size based on device type
-  const slidesPerView = isMobileDevice()
-    ? document.documentElement.clientWidth < 768
-      ? 4
-      : 6
-    : 10;
+  const slidesPerView = numberOfItems
+    ? numberOfItems
+    : isMobileDevice()
+      ? document.documentElement.clientWidth < 768
+        ? 4
+        : 6
+      : 10;
 
   useGSAP(() => {
     ScrollTrigger.create({
