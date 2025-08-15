@@ -161,7 +161,10 @@ const ProjectDetail: React.FC<IProjectDetailProps> = ({ projectId, onNavigate })
       // Then animate highlight items with stagger
       const highlightsGrid = highlightsElement.querySelector('.project-highlights-grid');
       if (highlightsGrid) {
-        createStaggeredAnimation(highlightsGrid, '.project-highlight-item');
+        const highlightItems = highlightsGrid.querySelectorAll('.project-highlight-item-container');
+        highlightItems.forEach(item => {
+          createStaggeredAnimation(item);
+        });
       }
     }
 
@@ -177,7 +180,7 @@ const ProjectDetail: React.FC<IProjectDetailProps> = ({ projectId, onNavigate })
       // Then animate role tags with stagger
       const rolesGrid = rolesElement.querySelector('.project-roles-grid');
       if (rolesGrid) {
-        createStaggeredAnimation(rolesGrid, '.project-role-tag');
+        createStaggeredAnimation(rolesGrid, '.project-role-tag-item');
       }
     }
 
@@ -193,7 +196,10 @@ const ProjectDetail: React.FC<IProjectDetailProps> = ({ projectId, onNavigate })
       // Then animate tech tags with stagger
       const techGrid = techStackElement.querySelector('.project-tech-grid');
       if (techGrid) {
-        createStaggeredAnimation(techGrid, '.project-tech-tag');
+        const techItems = techGrid.querySelectorAll('.project-tech-tag-item');
+        techItems.forEach(item => {
+          createStaggeredAnimation(item);
+        });
       }
     }
 
@@ -219,7 +225,12 @@ const ProjectDetail: React.FC<IProjectDetailProps> = ({ projectId, onNavigate })
         '.project-responsibilities-list'
       );
       if (responsibilitiesList) {
-        createStaggeredAnimation(responsibilitiesList, '.project-responsibility-item');
+        const responsibilityItems = responsibilitiesList.querySelectorAll(
+          '.project-responsibility-item-container'
+        );
+        responsibilityItems.forEach(item => {
+          createStaggeredAnimation(item);
+        });
       }
     }
 
@@ -327,18 +338,20 @@ const ProjectDetail: React.FC<IProjectDetailProps> = ({ projectId, onNavigate })
               <h3>Project Highlights</h3>
               <div className="project-highlights-grid">
                 {project.highlights.map((highlight, index) => (
-                  <div key={index} className="project-highlight-item">
-                    <div className="highlight-image-container">
-                      <img
-                        loading="lazy"
-                        src={highlight.image}
-                        alt={highlight.title}
-                        className="highlight-image"
-                      />
-                      <div className="highlight-overlay">
-                        <div className="highlight-content">
-                          <h4 className="highlight-title">{highlight.title}</h4>
-                          <p className="highlight-subtitle">{highlight.subtitle}</p>
+                  <div className="project-highlight-item-container" key={index}>
+                    <div className="project-highlight-item">
+                      <div className="highlight-image-container">
+                        <img
+                          loading="lazy"
+                          src={highlight.image}
+                          alt={highlight.title}
+                          className="highlight-image"
+                        />
+                        <div className="highlight-overlay">
+                          <div className="highlight-content">
+                            <h4 className="highlight-title">{highlight.title}</h4>
+                            <p className="highlight-subtitle">{highlight.subtitle}</p>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -352,8 +365,8 @@ const ProjectDetail: React.FC<IProjectDetailProps> = ({ projectId, onNavigate })
             <h3>My Roles</h3>
             <div className="project-roles-grid">
               {project.roles.map((role, index) => (
-                <div key={index} className="project-role-tag">
-                  {role}
+                <div key={index} className="project-role-tag-item">
+                  <div className="project-role-tag">{role}</div>
                 </div>
               ))}
             </div>
@@ -363,8 +376,8 @@ const ProjectDetail: React.FC<IProjectDetailProps> = ({ projectId, onNavigate })
             <h3>Tech Stack</h3>
             <div className="project-tech-grid">
               {project.techStack.map((tech, index) => (
-                <div key={index} className="project-tech-tag">
-                  {tech}
+                <div key={index} className="project-tech-tag-item">
+                  <div className="project-tech-tag">{tech}</div>
                 </div>
               ))}
             </div>
