@@ -4,7 +4,7 @@
       "name": "Ngo Tran Bao Thach's Portfolio",
       "owner": "Personal",
       "startDate": "Jul 2025",
-      "thumbnail": "/assets/images/testing.png",
+      "thumbnail": "/assets/images/ntbtportfolio6.webp",
       "endDate": "Present",
       "type": "Personal Project",
       "description": "Designed and developed a fully responsive, interactive personal portfolio website that showcases my projects, professional experience, certifications, awards, and personal background. Built with ReactJS and enhanced by ThreeJS and OGL, the site features a dynamic 3D environment with smooth WebGL animations and cinematic web motions, delivering an engaging and modern user experience across all devices. Implemented SEO-optimized content using AI-assisted tools to improve discoverability and search engine ranking. Integrated EmailJS and React-Hook-Form for seamless contact form handling and efficient email management. All 3D models used were manually optimized and rigged to ensure performance and visual consistency. This portfolio is a reflection of my passion for combining design, interactivity, and performance into a unified web experience.",
@@ -30,24 +30,29 @@
       ],
       "highlights": [
         {
-          "image": "/assets/images/testing.png",
-          "title": "Portfolio Project 1",
-          "subtitle": "Interactive 3D Environment"
+          "image": "/assets/images/ntbtportfolio1.webp",
+          "title": "Mobile Responsive Design",
+          "subtitle": "Suitable For All Mobile Devices"
         },
         {
-          "image": "/assets/images/testing.png",
-          "title": "Portfolio Project 2",
-          "subtitle": "Responsive Design System"
+          "image": "/assets/images/ntbtportfolio2.webp",
+          "title": "Tablet Friendly Layout",
+          "subtitle": "Optimized for Tablets"
         },
         {
-          "image": "/assets/images/testing.png",
-          "title": "Portfolio Project 3",
-          "subtitle": "WebGL Animations"
+          "image": "/assets/images/ntbtportfolio3.webp",
+          "title": "Integrated 3D Animations & Cutting-edge Design",
+          "subtitle": "Immersive User Experience"
         },
         {
-          "image": "/assets/images/testing.png",
-          "title": "Portfolio Project 4",
-          "subtitle": "SEO Optimization"
+          "image": "/assets/images/ntbtportfolio4.webp",
+          "title": "SEO Optimized Content",
+          "subtitle": "Enhanced Discoverability"
+        },
+        {
+          "image": "/assets/images/ntbtportfolio5.webp",
+          "title": "Smooth UI/UX Transitions & Interactions",
+          "subtitle": "Cinematic Web Motions and Interactivity"
         }
       ],
       "liveLink": "To Be Updated",
@@ -65,30 +70,35 @@
     "my-dream-garage": {
       "name": "My Dream Garage",
       "owner": "Personal",
-      "thumbnail": "/assets/images/testing.png",
+      "thumbnail": "/assets/images/garage1.webp",
       "startDate": "Mar 2025",
       "endDate": "Jun 2025",
       "type": "Personal Project",
       "highlights": [
         {
-          "image": "/assets/images/testing.png",
-          "title": "Portfolio Project 1",
+          "image": "/assets/images/garage1.webp",
+          "title": "Smooth UI/UX Transitions & Interactions",
           "subtitle": "Interactive 3D Environment"
         },
         {
-          "image": "/assets/images/testing.png",
-          "title": "Portfolio Project 2",
-          "subtitle": "Responsive Design System"
+          "image": "/assets/images/garage2.webp",
+          "title": "Integrated 3D Animations & Cutting-edge Design",
+          "subtitle": "Immersive User Experience"
         },
         {
-          "image": "/assets/images/testing.png",
-          "title": "Portfolio Project 3",
-          "subtitle": "WebGL Animations"
+          "image": "/assets/images/garage3.webp",
+          "title": "Combined Web Technologies & 3D Graphics",
+          "subtitle": "Real-time Rendering"
         },
         {
-          "image": "/assets/images/testing.png",
-          "title": "Portfolio Project 4",
-          "subtitle": "SEO Optimization"
+          "image": "/assets/images/garage4.webp",
+          "title": "Realistic 3D Models & Animations",
+          "subtitle": "Cinematic Web Motions"
+        },
+        {
+          "image": "/assets/images/garage5.webp",
+          "title": "Unique 3D Showroom Experience",
+          "subtitle": "Optimized for Desktop Browsers"
         }
       ],
       "description": "Designed and developed an interactive 3D supercar showroom with immersive visuals and cinematic animations. Built using ReactJS and ThreeJS, the application features real-time rendering of 3D models, smooth animations with GSAP, and a fully responsive UI. I handled UI/UX design, integrated ThreeJS seamlessly within the React component architecture, and optimized 3D assets in Blender to ensure performance without sacrificing visual quality. The result is a visually rich, engaging web experience tailored for modern browsers.",
@@ -106,30 +116,35 @@
     "nexon-projects": {
       "name": "Game Development Projects",
       "owner": "Nexon Company",
-      "thumbnail": "/assets/images/testing.png",
+      "thumbnail": "/assets/images/nexonthumbnail.webp",
       "startDate": "Sep 2024",
       "endDate": "Present",
       "type": "Company Project",
       "highlights": [
         {
-          "image": "/assets/images/testing.png",
-          "title": "Portfolio Project 1",
-          "subtitle": "Interactive 3D Environment"
+          "image": "/assets/images/nexon1.webp",
+          "title": "Crazy Arcade",
+          "subtitle": "Develop HTML5-based game titles"
         },
         {
-          "image": "/assets/images/testing.png",
-          "title": "Portfolio Project 2",
-          "subtitle": "Responsive Design System"
+          "image": "/assets/images/nexon2.webp",
+          "title": "FC Online",
+          "subtitle": "Develop HTML5-based playable ads"
         },
         {
-          "image": "/assets/images/testing.png",
-          "title": "Portfolio Project 3",
-          "subtitle": "WebGL Animations"
+          "image": "/assets/images/nexon3.webp",
+          "title": "Mabinogi M",
+          "subtitle": "Develop HTML5-based playable ads"
         },
         {
-          "image": "/assets/images/testing.png",
-          "title": "Portfolio Project 4",
-          "subtitle": "SEO Optimization"
+          "image": "/assets/images/nexon4.webp",
+          "title": "Blue Archive",
+          "subtitle": "Develop HTML5-based playable ads"
+        },
+        {
+          "image": "/assets/images/nexon5.webp",
+          "title": "Kart Rider",
+          "subtitle": "Develop HTML5-based playable ads and game titles"
         }
       ],
       "description": "Contributed to the development of multiple HTML5-based game titles across various genres and platforms, deployed to global servers. Focused on delivering high-performance gameplay, optimized 2D/3D mechanics, and visually polished interfaces for both desktop and mobile browsers. Built gameplay experiences using Phaser and ThreeJS, applying Object-Oriented Programming principles for scalable and reusable game architecture across multiple projects.\nIntegrated custom GLSL shaders and GSAP-driven animations to elevate visual fidelity and player immersion. Supported source code structure initialization, collaborated on UI component development using ReactJS, and optimized 3D assets via Blender. Titles contributed to include: Kart Rider, FC Online, Mabinogi M, The First Descendant, Crazy Arcade (Boom Online), and Blue Archive.\nAdditionally, performed manual QA, developed internal testing tools, and streamlined the asset pipeline to improve development efficiency and delivery quality.",
@@ -149,30 +164,35 @@
     "deheus-myanmar-ai-adoption-roadmap": {
       "name": "AI Adoption Roadmap for De Heus Myanmar",
       "owner": "RMIT University",
-      "thumbnail": "/assets/images/testing.png",
+      "thumbnail": "/assets/images/deheusthumbnail.webp",
       "startDate": "Mar 2024",
       "endDate": "Sep 2024",
       "type": "Research Project",
       "highlights": [
         {
-          "image": "/assets/images/testing.png",
-          "title": "Portfolio Project 1",
-          "subtitle": "Interactive 3D Environment"
+          "image": "/assets/images/deheus1.webp",
+          "title": "Data Visualization & Predictive Modeling",
+          "subtitle": "Real-time Farm Monitoring"
         },
         {
-          "image": "/assets/images/testing.png",
-          "title": "Portfolio Project 2",
-          "subtitle": "Responsive Design System"
+          "image": "/assets/images/deheus2.webp",
+          "title": "Nature Attribute Analysis",
+          "subtitle": "Environmental Factors Impacting Broiler Performance"
         },
         {
-          "image": "/assets/images/testing.png",
-          "title": "Portfolio Project 3",
-          "subtitle": "WebGL Animations"
+          "image": "/assets/images/deheus3.webp",
+          "title": "AI Adoption Roadmap",
+          "subtitle": "Strategic Recommendations for AI Implementation"
         },
         {
-          "image": "/assets/images/testing.png",
-          "title": "Portfolio Project 4",
-          "subtitle": "SEO Optimization"
+          "image": "/assets/images/deheus4.webp",
+          "title": "Data Guidelines & Best Practices",
+          "subtitle": "Ensuring Data Integrity and Quality"
+        },
+        {
+          "image": "/assets/images/deheus5.webp",
+          "title": "Machine Learning Model Development and Evaluation",
+          "subtitle": "Optimizing Broiler Performance Forecasting"
         }
       ],
       "description": "Led a comprehensive research project to develop an AI adoption roadmap for De Heus Myanmar's broiler farming operations. The project focused on identifying operational inefficiencies and proposing data-driven solutions for real-time farm monitoring and broiler weight optimization. Conducted in-depth analysis of environmental factors affecting broiler performance, developed predictive models for weight forecasting, and delivered actionable insights to support strategic AI implementation in agricultural operations.",
@@ -214,9 +234,36 @@
       "name": "Salto Japan Media Site",
       "owner": "Salto Vietnam",
       "startDate": "Feb 2024",
-      "thumbnail": "/assets/images/testing.png",
+      "thumbnail": "/assets/images/saltosite6.webp",
       "endDate": "Jun 2024",
       "type": "Company Project",
+      "highlights": [
+        {
+          "image": "/assets/images/saltosite1.webp",
+          "title": "Responsive Design System",
+          "subtitle": "Dynamic Media Platform"
+        },
+        {
+          "image": "/assets/images/saltosite2.webp",
+          "title": "Mobile Responsive Design",
+          "subtitle": "Suitable For All Mobile Devices"
+        },
+        {
+          "image": "/assets/images/saltosite3.webp",
+          "title": "Smooth UI/UX Transitions & Interactions",
+          "subtitle": "Optimized For All Devices"
+        },
+        {
+          "image": "/assets/images/saltosite4.webp",
+          "title": "Work with Strapi CMS",
+          "subtitle": "Dynamic Content Management"
+        },
+        {
+          "image": "/assets/images/saltosite5.webp",
+          "title": "SEO Optimized Content & Google Analytics Integration",
+          "subtitle": "Enhanced Discoverability and User Insights"
+        }
+      ],
       "description": "Contributed to the development of a dynamic media platform for Salto Japan, leveraging NextJS for the frontend and Strapi CMS for content management. My role focused on creating reusable, responsive UI components, integrating backend content via Strapi APIs, and embedding Google Analytics for traffic tracking and user behavior insights. Additionally, I designed and implemented end-to-end test cases using Cypress to ensure the stability and functionality of key user flows across the site.",
       "roles": ["Front-End Developer", "End-to-End Tester"],
       "techStack": ["ReactJS", "NextJS", "Strapi", "Google Analytics", "TailwindCSS", "Cypress"],
