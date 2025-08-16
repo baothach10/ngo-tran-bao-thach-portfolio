@@ -125,7 +125,12 @@ export function useThree({
     // Scene Setup
     const webglScene = new Scene();
     if (hasSeparateCSSRenderer) setCSSScene(new Scene());
-    const camera = new PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 90);
+    const camera = new PerspectiveCamera(
+      45,
+      mountRef.current.clientWidth / mountRef.current.clientHeight,
+      0.1,
+      90
+    );
     camera.position.set(0, 0, 0);
 
     const webglRenderer = new WebGLRenderer({
@@ -136,16 +141,15 @@ export function useThree({
     webglRenderer.setPixelRatio(window.devicePixelRatio);
     webglRenderer.shadowMap.enabled = true;
     webglRenderer.shadowMap.type = PCFSoftShadowMap;
-    webglRenderer.setSize(window.innerWidth, window.innerHeight);
     const webglDiv = document.createElement('div');
     webglDiv.id = 'webgl';
     webglDiv.appendChild(webglRenderer.domElement);
     mountRef.current.appendChild(webglDiv);
-
+    webglRenderer.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight);
     if (hasSeparateCSSRenderer) {
       // CSS2D Renderer (for HTML elements)
       const cssRenderer = new CSS2DRenderer();
-      cssRenderer.setSize(window.innerWidth, window.innerHeight);
+      cssRenderer.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight);
       cssRenderer.domElement.style.position = 'absolute';
       cssRenderer.domElement.style.top = '0';
       cssRenderer.domElement.classList.add('css2d-renderer');
