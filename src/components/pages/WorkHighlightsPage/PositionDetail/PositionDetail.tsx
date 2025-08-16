@@ -76,7 +76,7 @@ const PositionDetail: React.FC<IPositionDetailProps> = ({ positionId, onNavigate
         end: 'bottom 5%',
         toggleActions: 'play reverse play reverse',
         id: `${element.className}-stagger`,
-        // pinnedContainer: positionDetailRef.current,
+
         scroller: positionDetailRef.current,
         animation: gsap.from(element, {
           y: 100,
@@ -108,7 +108,7 @@ const PositionDetail: React.FC<IPositionDetailProps> = ({ positionId, onNavigate
         end: 'bottom 5%',
         toggleActions: 'play reverse play reverse',
         id: `${parentElement.className}-stagger`,
-        // pinnedContainer: positionDetailRef.current,
+
         scroller: positionDetailRef.current,
         animation: gsap.from(children, {
           x: -100,

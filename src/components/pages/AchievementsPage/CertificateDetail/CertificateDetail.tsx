@@ -1,9 +1,15 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import { useGSAP } from '@gsap/react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 
 import './CertificateDetail.css';
 
 import SectionNav, { ISection } from '@/components/SectionNav/SectionNav';
 import { isMobileDevice } from '@/utils';
+
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
 
 interface ICertificateDetailProps {
   certificateId: string;
@@ -36,6 +42,7 @@ const CertificateDetail: React.FC<ICertificateDetailProps> = ({ certificateId, o
   const [certificate, setCertificate] = useState<ICertificateData | null>(null);
   const [activeSection, setActiveSection] = useState<string>('certificate');
   const [isLoading, setIsLoading] = useState(true);
+  const certificateDetailRef = useRef<HTMLDivElement>(null);
 
   // Load certificate data
   useEffect(() => {
@@ -60,6 +67,132 @@ const CertificateDetail: React.FC<ICertificateDetailProps> = ({ certificateId, o
     }
 
     return baseSections;
+  }, [certificate]);
+
+  // GSAP animations for certificate detail sections
+  useGSAP(() => {
+    if (!certificateDetailRef.current || !certificate) return;
+
+    const scrollTriggers: ScrollTrigger[] = [];
+
+    // Helper function to create scroll trigger for single elements
+    const createSingleElementAnimation = (element: Element) => {
+      const trigger = ScrollTrigger.create({
+        trigger: element,
+        start: 'top 100%',
+        end: 'bottom 5%',
+        toggleActions: 'play reverse play reverse',
+        id: `${element.className}-certificate-trigger`,
+        scroller: certificateDetailRef.current,
+        animation: gsap.from(element, {
+          y: 100,
+          opacity: 0,
+          duration: 0.8,
+          ease: 'power2.out'
+        })
+      });
+
+      scrollTriggers.push(trigger);
+    };
+
+    // Helper function to create staggered animations for elements with children
+    const createStaggeredAnimation = (parentElement: Element, childSelector: string = '*') => {
+      let children: NodeListOf<Element>;
+
+      if (childSelector === '*') {
+        // Get direct children only
+        children = parentElement.querySelectorAll(':scope > *');
+      } else {
+        children = parentElement.querySelectorAll(childSelector);
+      }
+
+      if (children.length === 0) return;
+
+      const trigger = ScrollTrigger.create({
+        trigger: parentElement,
+        start: 'top 100%',
+        end: 'bottom 5%',
+        toggleActions: 'play reverse play reverse',
+        id: `${parentElement.className}-certificate-stagger`,
+        scroller: certificateDetailRef.current,
+        animation: gsap.from(children, {
+          x: -100,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.2,
+          ease: 'power2.out'
+        })
+      });
+
+      scrollTriggers.push(trigger);
+    };
+
+    // Animate certificate header components
+    const logoElement = certificateDetailRef.current.querySelector('.certificate-issuer-logo');
+    if (logoElement) {
+      createSingleElementAnimation(logoElement);
+    }
+
+    const titleElement = certificateDetailRef.current.querySelector('.certificate-title');
+    if (titleElement) {
+      createSingleElementAnimation(titleElement);
+    }
+
+    const issuerElement = certificateDetailRef.current.querySelector('.issuer-name');
+    if (issuerElement) {
+      createSingleElementAnimation(issuerElement);
+    }
+
+    const metaElement = certificateDetailRef.current.querySelector('.certificate-meta');
+    if (metaElement) {
+      createStaggeredAnimation(metaElement);
+    }
+
+    // Animate description section
+    const descriptionElement = certificateDetailRef.current.querySelector(
+      '.certificate-description'
+    );
+    if (descriptionElement) {
+      createSingleElementAnimation(descriptionElement);
+    }
+
+    // Animate skills section
+    const skillsElement = certificateDetailRef.current.querySelector('.certificate-skills');
+    if (skillsElement) {
+      // Animate the title first
+      const title = skillsElement.querySelector('h3');
+      if (title) {
+        createSingleElementAnimation(title);
+      }
+
+      // Then animate skill tags with stagger
+      const skillsGrid = skillsElement.querySelector('.skills-grid');
+      if (skillsGrid) {
+        const skillItems = skillsGrid.querySelectorAll('.skill-tag-item');
+        skillItems.forEach(item => {
+          createStaggeredAnimation(item);
+        });
+      }
+    }
+
+    // Animate section navigation
+    const sectionNavElement = certificateDetailRef.current.querySelector(
+      '.certificate-section-nav'
+    );
+    if (sectionNavElement) {
+      gsap.from(sectionNavElement, {
+        y: 100,
+        opacity: 0,
+        duration: 0.6,
+        ease: 'power2.out',
+        delay: 0.5
+      });
+    }
+
+    // Cleanup function
+    return () => {
+      scrollTriggers.forEach(trigger => trigger.kill());
+    };
   }, [certificate]);
 
   useEffect(() => {
@@ -119,7 +252,7 @@ const CertificateDetail: React.FC<ICertificateDetailProps> = ({ certificateId, o
 
   return (
     <>
-      <div className="certificate-detail">
+      <div className="certificate-detail" ref={certificateDetailRef}>
         <div id="certificate" className="certificate-detail-header">
           <div className="certificate-issuer-logo">
             <img
@@ -147,8 +280,8 @@ const CertificateDetail: React.FC<ICertificateDetailProps> = ({ certificateId, o
               <h3>Skills Learned</h3>
               <div className="skills-grid">
                 {certificate.skillsLearned.map((skill, index) => (
-                  <div key={index} className="skill-tag">
-                    {skill}
+                  <div className="skill-tag-item" key={index}>
+                    <div className="skill-tag">{skill}</div>
                   </div>
                 ))}
               </div>

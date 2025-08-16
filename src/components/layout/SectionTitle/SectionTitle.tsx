@@ -8,29 +8,30 @@ import './SectionTitle.css';
 gsap.registerPlugin(ScrollTrigger);
 
 type TSectionTitle = {
-    content: string;
+  content: string;
 };
 
 export const SectionTitle = ({ content }: TSectionTitle) => {
-    const titleRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLDivElement>(null);
 
-    useGSAP(() => {
-        ScrollTrigger.create({
-            trigger: titleRef.current,
-            start: 'top 95%',
-            end: 'bottom 15%',
-            toggleActions: 'play reverse play reverse',
-            animation: gsap.from(titleRef.current, {
-                y: 100,
-                opacity: 0
-            })
-        });
-    }, []);
+  useGSAP(() => {
+    ScrollTrigger.create({
+      trigger: titleRef.current,
+      id: `section-title-${content}`,
+      start: 'top 95%',
+      end: 'bottom 15%',
+      toggleActions: 'play reverse play reverse',
+      animation: gsap.from(titleRef.current, {
+        y: 100,
+        opacity: 0
+      })
+    });
+  }, []);
 
-    return (
-        <div className="section-title-container" ref={titleRef}>
-            <h2 className="section-title-content">{content}</h2>
-        </div>
-    );
+  return (
+    <div className="section-title-container" ref={titleRef}>
+      <h2 className="section-title-content">{content}</h2>
+    </div>
+  );
 };
 

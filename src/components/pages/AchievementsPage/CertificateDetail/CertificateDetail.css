@@ -1,21 +1,23 @@
 .certificate-detail {
-  max-width: 100%;
-  padding: 2rem;
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  width: 100%;
+  height: 100%;
+  padding: 5rem 10rem;
   position: relative;
   color: #2c2c2c;
   background: #ffffff;
-  border-radius: 20px;
+  border-radius: 12px 12px 0 0;
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  & * {
-    transition: all 0.3s ease;
-  }
 }
 
 .certificate-detail-header {
+  position: relative;
   margin-bottom: 2rem;
   text-align: center;
   border-bottom: 1px solid #d0d0d0;
@@ -37,12 +39,13 @@
   height: 120px;
   object-fit: contain;
   border-radius: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   background: #f8f8f8;
   padding: 1rem;
 }
 
 .certificate-title {
+  position: relative;
   font-size: 2.5rem;
   font-weight: 700;
   color: #1a1a1a;
@@ -59,6 +62,7 @@
 }
 
 .certificate-meta {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,6 +71,7 @@
 }
 
 .issue-date {
+  position: relative;
   background: #2c2c2c;
   color: white;
   padding: 0.5rem 1rem;
@@ -78,6 +83,7 @@
 }
 
 .certificate-detail-content {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -85,6 +91,7 @@
 
 .certificate-description h3,
 .certificate-skills h3 {
+  position: relative;
   font-size: 1.5rem;
   font-weight: 600;
   color: #1a1a1a;
@@ -116,13 +123,24 @@
 }
 
 /* Skills Styles */
+.certificate-skills {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
 .skills-grid {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 0.75rem;
 }
 
+.skill-tag-item {
+  position: relative;
+}
+
 .skill-tag {
+  position: relative;
   background: #f8f8f8;
   color: #2c2c2c;
   padding: 0.75rem 1rem;
@@ -130,12 +148,15 @@
   font-weight: 500;
   text-align: center;
   border: 1px solid #d0d0d0;
-  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.skill-tag {
+  position: relative;
 }
 
 .skill-tag::before {
@@ -209,6 +230,11 @@
 
   .issuer-name {
     font-size: 1.25rem;
+  }
+
+  .certificate-meta {
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
   .skills-grid {
