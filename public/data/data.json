@@ -12,6 +12,7 @@
         "UI/UX Designer",
         "SEO Optimizer",
         "Front-End Developer",
+        "Game Developer",
         "3D Model Optimizer",
         "Responsive Web Designer",
         "3D Model Rigger"
@@ -24,8 +25,11 @@
         "OGL",
         "CSS3",
         "HTML5 Canvas",
+        "Phaser",
         "EmailJS",
         "React-Hook-Form",
+        "GSAP",
+        "Vite",
         "Blender"
       ],
       "highlights": [
