@@ -68,8 +68,12 @@
   transition: color 0.3s ease;
 }
 
+.cv-download-tab:hover {
+  background-color: white;
+}
+
 .cv-download-tab:hover .cv-download-icon {
-  color: green; /* Green color on hover */
+  color: black; /* Green color on hover */
 }
 
 .cv-download-spinner {
@@ -116,7 +120,7 @@
 }
 
 .cv-download-tab:hover .cv-tab-label {
-  color: #4ade80;
+  color: black;
 }
 
 .cv-download-tab:hover .cv-tab-sublabel {
