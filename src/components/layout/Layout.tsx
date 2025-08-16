@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react';
 import { useCallback, useEffect, useRef } from 'react';
 import { useLocation, Outlet } from 'react-router-dom';
 
@@ -59,6 +60,7 @@ const Layout: React.FC = () => {
 
   return (
     <div className="layout-container">
+      <Analytics />
       {!isMobileDevice() && <CursorWrapper cubeSpeed={0.1} />}
       <div className="layout-wrapper">
         <Header />
