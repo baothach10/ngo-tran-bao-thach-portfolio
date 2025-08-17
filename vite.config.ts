@@ -9,8 +9,6 @@ export default defineConfig({
   build: {
     outDir: './dist',
     minify: 'esbuild',
-    sourcemap: true,
-    target: 'esnext',
     cssCodeSplit: true,
     rollupOptions: {
       treeshake: false
