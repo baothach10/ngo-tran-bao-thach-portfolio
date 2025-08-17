@@ -1,0 +1,3 @@
+User-agent: * Allow: / Disallow: /build/ Disallow: /src/ Disallow: /node_modules/ Disallow: /.log Disallow: /.json Disallow: /*.md
+
+Sitemap: https://ngo-tran-bao-thach.vercel.app/sitemap.xml

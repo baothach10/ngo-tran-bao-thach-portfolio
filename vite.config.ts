@@ -8,6 +8,10 @@ export default defineConfig({
   plugins: [react()],
   build: {
     outDir: './dist',
+    minify: 'esbuild',
+    sourcemap: true,
+    target: 'esnext',
+    cssCodeSplit: true,
     rollupOptions: {
       treeshake: false
     }
