@@ -1,10 +1,17 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import './NotFoundPage.css'
 
 export default function NotFoundPage() {
     return (
-        <div className="not-found-page">
+        <section className="not-found-page">
+            <Helmet>
+                <title>404 Not Found | Ngo Tran Bao Thach</title>
+                <meta name="description" content="The page you are looking for does not exist." />
+                <meta property="og:title" content="404 Not Found | Ngo Tran Bao Thach" />
+                <meta property="og:description" content="The page you are looking for does not exist." />
+            </Helmet>
             <div className="cloak__wrapper">
                 <div className="cloak__container">
                     <div className="cloak">
@@ -21,11 +28,11 @@ export default function NotFoundPage() {
                 <p>
                     We're fairly sure that page used to be here, but seems to have gone missing. We do apologize on its behalf.
                 </p>
-                <Link to="/" className="button_link">
+                <Link to="/" className="button_link" aria-label="Go to Home Page">
                     Home
                 </Link>
 
             </div>
-        </div>
+        </section>
     );
 }

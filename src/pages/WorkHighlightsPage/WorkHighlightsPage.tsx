@@ -1,4 +1,6 @@
-import React, { Suspense, lazy, useState, useEffect } from 'react';
+import data from '@public/data/data.json';
+import React, { Suspense, lazy } from 'react';
+import { Helmet } from 'react-helmet';
 
 import './WorkHighlightsPage.css';
 
@@ -36,14 +38,8 @@ interface IPosition {
   skills: string[];
 }
 
-interface IDataStructure {
-  projects: { [key: string]: IProject };
-  experience: { [key: string]: IPosition };
-}
 
 const WorkHighlightsPage: React.FC = () => {
-  const [data, setData] = useState<IDataStructure | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
 
   const animatedNameHeight = isMobileDevice()
     ? document.documentElement.clientWidth < 768
@@ -51,46 +47,29 @@ const WorkHighlightsPage: React.FC = () => {
       : '7rem'
     : '10rem';
 
-  useEffect(() => {
-    const loadData = async () => {
-      try {
-        const response = await fetch('/data/data.json');
-        const jsonData = (await response.json()) as IDataStructure;
-        setData(jsonData);
-      } catch (error) {
-        console.error('Error loading data:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    void loadData();
-  }, []);
-
-  if (isLoading) {
-    return (
-      <div className="work-highlights-page-container">
-        <div className="name-graphic-container">
-          <AnimatedNameGraphic
-            className="half-graphic"
-            shadowColor="white"
-            strokeColor="white"
-            height={animatedNameHeight}
-          />
-        </div>
-        <div className="work-highlights-page-wrapper">
-          <ProfessionalExperienceSkeleton cardCount={2} />
-          <KeyProjectsSkeleton cardCount={2} />
-        </div>
-      </div>
-    );
-  }
-
   if (!data) {
     return <div className="work-highlights-page error">Error loading data</div>;
   }
 
   return (
     <div className="work-highlights-page-container">
+      <Helmet>
+        <title>Work Highlights | Ngo Tran Bao Thach</title>
+        <meta
+          name="description"
+          content="Explore the professional experience and key projects of Ngo Tran Bao Thach, showcasing expertise in web development, game development and AI Development & Research."
+        />
+        <meta property="og:title" content="Work Highlights | Ngo Tran Bao Thach" />
+        <meta
+          property="og:description"
+          content="Discover the professional journey of Ngo Tran Bao Thach, including key projects and work experience in web development, game development and AI Development & Research."
+        />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content="https://ngo-tran-bao-thach.vercel.app/work-highlights"
+        />
+      </Helmet>
       <div className="name-graphic-container">
         <AnimatedNameGraphic
           className="half-graphic"

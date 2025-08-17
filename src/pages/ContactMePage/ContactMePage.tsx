@@ -1,14 +1,12 @@
 import { gsap } from 'gsap';
 import React, { useEffect, useRef } from 'react';
+import { Helmet } from 'react-helmet';
 
 import LightRayBackground from '@/components/backgrounds/LightRayBackground/LightRayBackground';
-import LazyOnScroll from '@/components/layout/LazyOnScroll';
 import './ContactMePage.css';
 import ConnectLogo from '@/components/pages/ContactMePage/ConnectLogo/ConnectLogo';
 import ContactMeForm from '@/components/pages/ContactMePage/ContactMeForm/ContactMeForm';
 import { isMobileDevice } from '@/utils';
-
-// const LazyTesting = React.lazy(() => import('@/components/Testing/Testing'));
 
 const ContactMePage: React.FC = () => {
   const titleRef = useRef<HTMLDivElement>(null)
@@ -26,6 +24,16 @@ const ContactMePage: React.FC = () => {
   }, [])
   return (
     <section className="contact-me-page-container">
+      <Helmet>
+        <title>Contact Me | Ngo Tran Bao Thach</title>
+        <meta name="description" content="Get in touch with me through the contact form." />
+        <link rel="canonical" href="/contact-me" />
+        <meta property="og:title" content="Contact Me" />
+        <meta property="og:description" content="Get in touch with me through the contact form." />
+        <meta property="og:url" content="https://ngo-tran-bao-thach.vercel.app/contact-me" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="/assets/images" />
+      </Helmet>
       <div className="contact-me-page-background-container" ref={backgroundRef}>
         <LightRayBackground
           fadeDistance={isMobileDevice() ? 2 : 0.5}

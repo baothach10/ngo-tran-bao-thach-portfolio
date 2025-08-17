@@ -59,7 +59,7 @@
           "subtitle": "Cinematic Web Motions and Interactivity"
         }
       ],
-      "liveLink": "https://ngo-tran-bao-thach.vercel.app/",
+      "liveLink": "https://ngo-tran-bao-thach.vercel.app",
       "responsibilities": [
         "Designed and implemented a fully responsive, mobile-first UI/UX layout using ReactJS and CSS3.",
         "Developed a 3D interactive scene with ThreeJS and OGL for real-time animations and immersive navigation.",

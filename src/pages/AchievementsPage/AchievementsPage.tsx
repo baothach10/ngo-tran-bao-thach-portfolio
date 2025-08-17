@@ -1,4 +1,5 @@
 import React, { Suspense } from 'react';
+import { Helmet } from 'react-helmet';
 import './AchievementsPage.css';
 
 import { AnimatedNameGraphic } from '@/components/pages/AboutMePage/AnimatedNameGraphic/AnimatedNameGraphic';
@@ -18,6 +19,23 @@ const AchievementsPage: React.FC = () => {
     : '10rem';
   return (
     <div className="achievements-page-container">
+      <Helmet>
+        <title>Achievements | Ngo Tran Bao Thach</title>
+        <meta
+          name="description"
+          content="Explore the awards and certifications earned by Ngo Tran Bao Thach, showcasing achievements in education, technology, and career growth."
+        />
+        <meta property="og:title" content="Achievements | Ngo Tran Bao Thach" />
+        <meta
+          property="og:description"
+          content="Discover certifications and awards earned by Ngo Tran Bao Thach, including IELTS, Google Analytics, and frontend development."
+        />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content="https://ngo-tran-bao-thach.vercel.app/achievements"
+        />
+      </Helmet>
       <div className="achievements-page-wrapper">
         <div className="name-graphic-container">
           <AnimatedNameGraphic

@@ -108,7 +108,7 @@ const AwardsSection: React.FC = () => {
                   {award.achievements && renderAchievements(award.achievements)}
                 </div>
               </div>
-              <Link to={`/achievements/awards/${awardId}`} className="awards-read-more-button">
+              <Link aria-label='Read More' to={`/achievements/awards/${awardId}`} className="awards-read-more-button">
                 Read More
               </Link>
             </div>

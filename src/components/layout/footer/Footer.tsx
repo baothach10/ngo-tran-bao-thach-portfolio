@@ -30,19 +30,19 @@ export default function Footer() {
                     <div className="footer-column">
                         <h3>Connect</h3>
                         <ul>
-                            <li><Link to="mailto:baothach10@gmail.com" target='_blank'>Gmail</Link></li>
-                            <li><Link to="https://github.com/baothach10" target='_blank'>GitHub</Link></li>
-                            <li><Link to="https://www.upwork.com/freelancers/~01f0eb39f3a608ad31?viewMode=1" target='_blank'>Upwork</Link></li>
-                            <li><Link to="https://www.linkedin.com/in/ngotranbaothach/" target='_blank'>LinkedIn</Link></li>
+                            <li><Link aria-label='Gmail' to="mailto:baothach10@gmail.com" target='_blank'>Gmail</Link></li>
+                            <li><Link aria-label='Upwork' to="https://github.com/baothach10" target='_blank'>GitHub</Link></li>
+                            <li><Link aria-label='Upwork' to="https://www.upwork.com/freelancers/~01f0eb39f3a608ad31?viewMode=1" target='_blank'>Upwork</Link></li>
+                            <li><Link aria-label='Linkedin' to="https://www.linkedin.com/in/ngotranbaothach/" target='_blank'>LinkedIn</Link></li>
                         </ul>
                     </div>
                     <div className="footer-column">
                         <h3>More information</h3>
                         <ul>
-                            <li><Link to="/work-highlights">Work Highlights</Link></li>
-                            <li><Link to="/achievements">Achievements</Link></li>
-                            <li><Link to="/contact-me">Contact Me</Link></li>
-                            <li><Link to="/about-me">About Me</Link></li>
+                            <li><Link aria-label='Work Highlights' to="/work-highlights">Work Highlights</Link></li>
+                            <li><Link aria-label='Achievements' to="/achievements">Achievements</Link></li>
+                            <li><Link aria-label='Contact Me' to="/contact-me">Contact Me</Link></li>
+                            <li><Link aria-label='About Me' to="/about-me">About Me</Link></li>
                         </ul>
                     </div>
                 </div>

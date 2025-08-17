@@ -3,6 +3,7 @@ import { experience } from '@public/data/data.json';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import React, { useState, useEffect, useMemo, useRef } from 'react';
+import { Helmet } from 'react-helmet';
 
 import './PositionDetail.css';
 
@@ -262,87 +263,103 @@ const PositionDetail: React.FC<IPositionDetailProps> = ({ positionId, onNavigate
   }
 
   return (
-    <>
-      <div className="position-detail" ref={positionDetailRef}>
-        <div id="position" className="position-detail-header">
-          <div className="position-company-logo">
-            <img
-              loading="lazy"
-              src={position.companyLogo}
-              alt={`${position.company} Logo`}
-              className="position-company-logo-image"
-            />
-          </div>
-          <h1 className="position-title">{position.position}</h1>
-          <h2 className="position-company-name">{position.company}</h2>
-          <div className="position-meta">
-            <span className="position-employment-type">{position.employmentType}</span>
-            <span className="position-work-type">{position.workType}</span>
-            <span className="position-location">{position.location}</span>
-          </div>
-        </div>
-        <div className="position-detail-content">
-          <div id="timeline" className="position-timeline">
-            <div className="position-timeline-item">
-              <label>Start Date</label>
-              <span>{position.startDate}</span>
-            </div>
-            <div className="position-timeline-item">
-              <label>End Date</label>
-              <span>{position.endDate}</span>
-            </div>
-            <div className="position-timeline-item">
-              <label>Duration</label>
-              <span>{position.employmentType}</span>
-            </div>
-          </div>
-
-          <div id="abstract" className="position-abstract">
-            <h3>Role Overview</h3>
-            <p>{position.abstract}</p>
-          </div>
-
-          {position.responsibilities && position.responsibilities.length > 0 && (
-            <div id="responsibilities" className="position-responsibilities">
-              <h3>Key Responsibilities</h3>
-              <div className="position-responsibilities-list">
-                {position.responsibilities.map((responsibility, index) => (
-                  <div key={index} className="position-responsibility-item-container">
-                    <div className="position-responsibility-item">
-                      <span className="position-responsibility-bullet">•</span>
-                      <p>{responsibility}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {position.skills && position.skills.length > 0 && (
-            <div id="skills" className="position-skills">
-              <h3>Skills & Technologies</h3>
-              <div className="position-skills-grid">
-                {position.skills.map((skill, index) => {
-                  return (
-                    <div key={index} className="position-skill-tag">
-                      {skill}
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-        </div>
-        {/* Section Navigation */}
-        <div className="position-section-nav">
-          <SectionNav
-            sections={sections}
-            activeSection={activeSection}
-            onSectionClick={setActiveSection}
+    <section className="position-detail" ref={positionDetailRef}>
+      <Helmet>
+        <title>{`${position.position} at ${position.company} | Ngo Tran Bao Thach`}</title>
+        <meta
+          name="description"
+          content={`Explore the details of the position ${position.position} at ${position.company}, including responsibilities, skills, and timeline.`}
+        />
+        <meta property="og:title" content={`${position.position} at ${position.company}`} />
+        <meta
+          property="og:description"
+          content={position.abstract || 'No description available.'}
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={position.companyLogo} />
+        <meta
+          property="og:url"
+          content={`https://ngo-tran-bao-thach.vercel.app/work-highlights/${positionId}`}
+        />
+      </Helmet>
+      <div id="position" className="position-detail-header">
+        <div className="position-company-logo">
+          <img
+            loading="lazy"
+            src={position.companyLogo}
+            alt={`${position.company} Logo`}
+            className="position-company-logo-image"
           />
         </div>
+        <h1 className="position-title">{position.position}</h1>
+        <h2 className="position-company-name">{position.company}</h2>
+        <div className="position-meta">
+          <span className="position-employment-type">{position.employmentType}</span>
+          <span className="position-work-type">{position.workType}</span>
+          <span className="position-location">{position.location}</span>
+        </div>
       </div>
-    </>
+      <div className="position-detail-content">
+        <div id="timeline" className="position-timeline">
+          <div className="position-timeline-item">
+            <label>Start Date</label>
+            <span>{position.startDate}</span>
+          </div>
+          <div className="position-timeline-item">
+            <label>End Date</label>
+            <span>{position.endDate}</span>
+          </div>
+          <div className="position-timeline-item">
+            <label>Duration</label>
+            <span>{position.employmentType}</span>
+          </div>
+        </div>
+
+        <div id="abstract" className="position-abstract">
+          <h3>Role Overview</h3>
+          <p>{position.abstract}</p>
+        </div>
+
+        {position.responsibilities && position.responsibilities.length > 0 && (
+          <div id="responsibilities" className="position-responsibilities">
+            <h3>Key Responsibilities</h3>
+            <div className="position-responsibilities-list">
+              {position.responsibilities.map((responsibility, index) => (
+                <div key={index} className="position-responsibility-item-container">
+                  <div className="position-responsibility-item">
+                    <span className="position-responsibility-bullet">•</span>
+                    <p>{responsibility}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {position.skills && position.skills.length > 0 && (
+          <div id="skills" className="position-skills">
+            <h3>Skills & Technologies</h3>
+            <div className="position-skills-grid">
+              {position.skills.map((skill, index) => {
+                return (
+                  <div key={index} className="position-skill-tag">
+                    {skill}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </div>
+      {/* Section Navigation */}
+      <div className="position-section-nav">
+        <SectionNav
+          sections={sections}
+          activeSection={activeSection}
+          onSectionClick={setActiveSection}
+        />
+      </div>
+    </section>
   );
 };
 

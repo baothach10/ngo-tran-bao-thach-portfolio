@@ -49,7 +49,6 @@ const ContactMeForm = () => {
 
   // Function that displays a success toast on bottom right of the page when form submission is successful
   const toastifySuccess = () => {
-    console.log('toastifySuccess called'); // Debug log
     toast.success(
       toastProps => (
         <CustomComponent

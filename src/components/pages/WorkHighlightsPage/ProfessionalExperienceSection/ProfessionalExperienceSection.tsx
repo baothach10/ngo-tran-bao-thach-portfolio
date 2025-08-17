@@ -130,6 +130,7 @@ const ProfessionalExperienceSection: React.FC<IProfessionalExperienceSectionProp
               </div>
             </div>
             <Link
+              aria-label={`Read more about position ${position.position} at ${position.company}`}
               to={`/work-highlights/positions/${positionId}`}
               className="professional-experience-read-more-button"
             >

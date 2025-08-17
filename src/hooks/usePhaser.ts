@@ -218,7 +218,6 @@ export function usePhaser(config: TPhaserSceneConfig) {
   // Destroy game function
   const destroyGame = () => {
     if (gameRef.current) {
-      console.log(`Destroying Phaser game: ${configRef.current.sceneKey}`);
       gameRef.current.destroy(true);
       gameRef.current = null;
       setState(null);

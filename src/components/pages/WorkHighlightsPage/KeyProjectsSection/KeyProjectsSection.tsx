@@ -98,6 +98,7 @@ const KeyProjectsSection: React.FC<IKeyProjectsSectionProps> = ({ projects }) =>
                 )}
               </div>
               <Link
+                aria-label={`View details of project ${project.name}`}
                 to={`/work-highlights/projects/${projectId}`}
                 className="key-project-view-button"
               >

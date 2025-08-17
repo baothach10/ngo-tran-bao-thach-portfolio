@@ -3,6 +3,7 @@ import { projects } from '@public/data/data.json'; // Assuming you have a projec
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import React, { useState, useEffect, useMemo, useRef } from 'react';
+import { Helmet } from 'react-helmet';
 
 import './ProjectDetail.css';
 
@@ -299,132 +300,148 @@ const ProjectDetail: React.FC<IProjectDetailProps> = ({ projectId, onNavigate })
   }
 
   return (
-    <>
-      <div className="project-detail" ref={projectDetailRef}>
-        <div id="name" className="project-detail-header">
-          <div className="project-image-container">
-            <img
-              loading="lazy"
-              src={`${project.thumbnail}`}
-              alt={`${project.name} Thumbnail`}
-              className="project-image"
-            />
+    <section className="project-detail" ref={projectDetailRef}>
+      <Helmet>
+        <title>{`${project.name} | Ngo Tran Bao Thach`}</title>
+        <meta
+          name="description"
+          content={`Explore the details of the project ${project.name}, including its timeline, description, highlights, roles, tech stack, live link, and responsibilities.`}
+        />
+        <meta property="og:title" content={`${project.name} | Ngo Tran Bao Thach`} />
+        <meta
+          property="og:description"
+          content={project.description || 'No description available.'}
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={project.thumbnail || ''} />
+        <meta
+          property="og:url"
+          content={`https://ngo-tran-bao-thach.vercel.app/work-highlights/${projectId}`}
+        />
+      </Helmet>
+      <div id="name" className="project-detail-header">
+        <div className="project-image-container">
+          <img
+            loading="lazy"
+            src={`${project.thumbnail}`}
+            alt={`${project.name} Thumbnail`}
+            className="project-image"
+          />
+        </div>
+        <h1 className="project-title">{project.name}</h1>
+        <div className="project-meta">
+          <span className="project-type">{project.type}</span>
+          <span className="project-owner">by {project.owner}</span>
+        </div>
+      </div>
+      <div className="project-detail-content">
+        <div id="startDate" className="project-timeline">
+          <div className="project-timeline-item">
+            <label>Start Date</label>
+            <span>{project.startDate}</span>
           </div>
-          <h1 className="project-title">{project.name}</h1>
-          <div className="project-meta">
-            <span className="project-type">{project.type}</span>
-            <span className="project-owner">by {project.owner}</span>
+          <div className="project-timeline-item">
+            <label>End Date</label>
+            <span>{project.endDate}</span>
           </div>
         </div>
-        <div className="project-detail-content">
-          <div id="startDate" className="project-timeline">
-            <div className="project-timeline-item">
-              <label>Start Date</label>
-              <span>{project.startDate}</span>
-            </div>
-            <div className="project-timeline-item">
-              <label>End Date</label>
-              <span>{project.endDate}</span>
-            </div>
-          </div>
 
-          <div id="description" className="project-description">
-            <h3>Description</h3>
-            <p>{project.description}</p>
-          </div>
+        <div id="description" className="project-description">
+          <h3>Description</h3>
+          <p>{project.description}</p>
+        </div>
 
-          {project.highlights && project.highlights.length > 0 && (
-            <div id="highlights" className="project-highlights">
-              <h3>Project Highlights</h3>
-              <div className="project-highlights-grid">
-                {project.highlights.map((highlight, index) => (
-                  <div className="project-highlight-item-container" key={index}>
-                    <div className="project-highlight-item">
-                      <div className="highlight-image-container">
-                        <img
-                          loading="lazy"
-                          src={highlight.image}
-                          alt={highlight.title}
-                          className="highlight-image"
-                        />
-                        <div className="highlight-overlay">
-                          <div className="highlight-content">
-                            <h4 className="highlight-title">{highlight.title}</h4>
-                            <p className="highlight-subtitle">{highlight.subtitle}</p>
-                          </div>
+        {project.highlights && project.highlights.length > 0 && (
+          <div id="highlights" className="project-highlights">
+            <h3>Project Highlights</h3>
+            <div className="project-highlights-grid">
+              {project.highlights.map((highlight, index) => (
+                <div className="project-highlight-item-container" key={index}>
+                  <div className="project-highlight-item">
+                    <div className="highlight-image-container">
+                      <img
+                        loading="lazy"
+                        src={highlight.image}
+                        alt={highlight.title}
+                        className="highlight-image"
+                      />
+                      <div className="highlight-overlay">
+                        <div className="highlight-content">
+                          <h4 className="highlight-title">{highlight.title}</h4>
+                          <p className="highlight-subtitle">{highlight.subtitle}</p>
                         </div>
                       </div>
                     </div>
                   </div>
-                ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div id="roles" className="project-roles">
+          <h3>My Roles</h3>
+          <div className="project-roles-grid">
+            {project.roles.map((role, index) => (
+              <div key={index} className="project-role-tag-item">
+                <div className="project-role-tag">{role}</div>
               </div>
-            </div>
-          )}
-
-          <div id="roles" className="project-roles">
-            <h3>My Roles</h3>
-            <div className="project-roles-grid">
-              {project.roles.map((role, index) => (
-                <div key={index} className="project-role-tag-item">
-                  <div className="project-role-tag">{role}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div id="techStack" className="project-tech-stack">
-            <h3>Tech Stack</h3>
-            <div className="project-tech-grid">
-              {project.techStack.map((tech, index) => (
-                <div key={index} className="project-tech-tag-item">
-                  <div className="project-tech-tag">{tech}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div id="liveLink" className="project-live-link">
-            <h3>Live Link</h3>
-            <div className="live-link-container">
-              {!isValidUrl(project.liveLink) ? (
-                <span className="link-placeholder">{project.liveLink}</span>
-              ) : (
-                <a
-                  href={project.liveLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="live-link-button"
-                >
-                  View Live Project
-                </a>
-              )}
-            </div>
-          </div>
-
-          <div id="responsibilities" className="project-responsibilities">
-            <h3>Responsibilities</h3>
-            <div className="project-responsibilities-list">
-              {project.responsibilities.map((responsibility, index) => (
-                <div key={index} className="project-responsibility-item-container">
-                  <div className="project-responsibility-item">
-                    <span className="project-responsibility-bullet">•</span>
-                    <p>{responsibility}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            ))}
           </div>
         </div>
-        {/* Section Navigation */}
-        <div className="project-section-nav">
-          <SectionNav
-            sections={sections}
-            activeSection={activeSection}
-            onSectionClick={setActiveSection}
-          />
+
+        <div id="techStack" className="project-tech-stack">
+          <h3>Tech Stack</h3>
+          <div className="project-tech-grid">
+            {project.techStack.map((tech, index) => (
+              <div key={index} className="project-tech-tag-item">
+                <div className="project-tech-tag">{tech}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div id="liveLink" className="project-live-link">
+          <h3>Live Link</h3>
+          <div className="live-link-container">
+            {!isValidUrl(project.liveLink) ? (
+              <span className="link-placeholder">{project.liveLink}</span>
+            ) : (
+              <a
+                href={project.liveLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="live-link-button"
+              >
+                View Live Project
+              </a>
+            )}
+          </div>
+        </div>
+
+        <div id="responsibilities" className="project-responsibilities">
+          <h3>Responsibilities</h3>
+          <div className="project-responsibilities-list">
+            {project.responsibilities.map((responsibility, index) => (
+              <div key={index} className="project-responsibility-item-container">
+                <div className="project-responsibility-item">
+                  <span className="project-responsibility-bullet">•</span>
+                  <p>{responsibility}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-    </>
+      {/* Section Navigation */}
+      <div className="project-section-nav">
+        <SectionNav
+          sections={sections}
+          activeSection={activeSection}
+          onSectionClick={setActiveSection}
+        />
+      </div>
+    </section>
   );
 };
 

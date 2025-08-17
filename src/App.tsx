@@ -1,4 +1,6 @@
-import { Suspense, lazy, useEffect, useState } from 'react';
+
+import data from '@public/data/data.json';
+import { Suspense, lazy} from 'react';
 import { useLocation, useNavigate, Routes, Route, BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,13 +14,6 @@ import ProjectDetail from './components/pages/WorkHighlightsPage/ProjectDetail/P
 import HomePage from './pages/HomePage/HomePage';
 import LoadingPage from './pages/LoadingPage/LoadingPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
-
-interface IDataStructure {
-  projects: { [key: string]: Record<string, unknown> };
-  positions: { [key: string]: Record<string, unknown> };
-  certifications: { [key: string]: Record<string, unknown> };
-  awards: { [key: string]: Record<string, unknown> };
-}
 
 interface IAward {
   title: string;
@@ -37,23 +32,7 @@ const ContactMePage = lazy(() => import('./pages/ContactMePage/ContactMePage'));
 const AppContent: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [data, setData] = useState<IDataStructure | null>(null);
 
-  // Load data once
-  useEffect(() => {
-    const loadData = async () => {
-      try {
-        const response = await fetch('/data/data.json');
-        const jsonData = (await response.json()) as IDataStructure;
-        setData(jsonData);
-      } catch (error) {
-        console.error('Error loading data:', error);
-      }
-    };
-    void loadData();
-  }, []);
-
-  // Check for different modal routes
   const isProjectModal = location.pathname.includes('/work-highlights/projects/');
   const isPositionModal = location.pathname.includes('/work-highlights/positions/');
   const isCertificateModal = location.pathname.includes('/achievements/certificates/');

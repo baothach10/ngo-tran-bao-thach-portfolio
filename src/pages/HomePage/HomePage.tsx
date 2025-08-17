@@ -1,4 +1,5 @@
 import { Suspense } from 'react';
+import { Helmet } from 'react-helmet';
 
 import AuroraBackground from '@/components/backgrounds/AuroraBackground/AuroraBackground';
 import BentoGrid, { IBentoCardProps } from '@/components/BentoGrid/BentoGrid';
@@ -53,6 +54,14 @@ const HomePage = () => {
   ];
   return (
     <div className="home-page-container">
+      <Helmet>
+        <title>Home | Ngo Tran Bao Thach</title>
+        <meta name="description" content="Welcome to my portfolio. Explore my work and skills." />
+        <link rel="canonical" href="https://ngo-tran-bao-thach.vercel.app" />
+        <meta property="og:title" content="Home | Ngo Tran Bao Thach" />
+        <meta property="og:description" content="Welcome to my portfolio. Explore my work and skills." />
+        <meta property="og:url" content="https://ngo-tran-bao-thach.vercel.ap" />
+      </Helmet>
       <div className="squares-background-wrapper">
         <AuroraBackground
           blend={0.5}

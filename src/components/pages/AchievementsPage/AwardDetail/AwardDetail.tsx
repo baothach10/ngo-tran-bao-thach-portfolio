@@ -1,7 +1,9 @@
+
 import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import React, { useEffect, useState, useRef } from 'react';
+import { Helmet } from "react-helmet";
 
 import './AwardDetail.css';
 import SectionNav from '@/components/SectionNav/SectionNav';
@@ -196,7 +198,16 @@ const AwardDetail: React.FC<IAwardDetailProps> = ({ id, data }) => {
   }
 
   return (
-    <div className="award-detail" ref={awardDetailRef}>
+    <section className="award-detail" ref={awardDetailRef}>
+      <Helmet>
+        <title>{award.title} | Ngo Tran Bao Thach</title>
+        <meta name="description" content={`Details about the ${award.title} certificate issued by ${award.issuer}.`} />
+        <meta property="og:title" content={award.title} />
+        <meta property="og:description" content={award.description} />
+        <meta property="og:image" content={award.issuerImage} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`https://ngo-tran-bao-thach.vercel.app/achievements/awards/${id}`} />
+      </Helmet>
       <div className="award-detail-header">
         <div
           id="award-overview"
@@ -267,7 +278,7 @@ const AwardDetail: React.FC<IAwardDetailProps> = ({ id, data }) => {
           }}
         />
       </div>
-    </div>
+    </section>
   );
 };
 

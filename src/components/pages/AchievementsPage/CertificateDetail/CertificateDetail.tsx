@@ -1,7 +1,9 @@
 import { useGSAP } from '@gsap/react';
+import data from '@public/data/data.json';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import React, { useState, useEffect, useMemo, useRef } from 'react';
+import { Helmet } from 'react-helmet';
 
 import './CertificateDetail.css';
 
@@ -26,11 +28,9 @@ interface ICertificateData {
 }
 
 // Get certificate data from the data.json directly
-const getCertificateData = async (id: string): Promise<ICertificateData | null> => {
+const getCertificateData = (id: string): ICertificateData | null => {
   try {
-    const response = await fetch('/data/data.json');
-    const data = await response.json();
-    const certificate = data.certifications[id];
+    const certificate = (data.certifications as Record<string, ICertificateData>)[id];
     return certificate || null;
   } catch (error) {
     console.error('Error loading certificate data:', error);
@@ -46,9 +46,9 @@ const CertificateDetail: React.FC<ICertificateDetailProps> = ({ certificateId, o
 
   // Load certificate data
   useEffect(() => {
-    const loadCertificate = async () => {
+    const loadCertificate = () => {
       setIsLoading(true);
-      const data = await getCertificateData(certificateId);
+      const data = getCertificateData(certificateId);
       setCertificate(data);
       setIsLoading(false);
     };
@@ -251,54 +251,67 @@ const CertificateDetail: React.FC<ICertificateDetailProps> = ({ certificateId, o
   }
 
   return (
-    <>
-      <div className="certificate-detail" ref={certificateDetailRef}>
-        <div id="certificate" className="certificate-detail-header">
-          <div className="certificate-issuer-logo">
-            <img
-              loading="lazy"
-              src={certificate.issuerImage}
-              alt={`${certificate.issuer} Logo`}
-              className="issuer-logo"
-            />
-          </div>
-          <h1 className="certificate-title">{certificate.title}</h1>
-          <h2 className="issuer-name">{certificate.issuer}</h2>
-          <div className="certificate-meta">
-            <span className="issue-date">Issued: {certificate.issueDate}</span>
-          </div>
-        </div>
-
-        <div className="certificate-detail-content">
-          <div id="description" className="certificate-description">
-            <h3>Certificate Description</h3>
-            <p>{certificate.description}</p>
-          </div>
-
-          {certificate.skillsLearned && certificate.skillsLearned.length > 0 && (
-            <div id="skills" className="certificate-skills">
-              <h3>Skills Learned</h3>
-              <div className="skills-grid">
-                {certificate.skillsLearned.map((skill, index) => (
-                  <div className="skill-tag-item" key={index}>
-                    <div className="skill-tag">{skill}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* Section Navigation */}
-        <div className="certificate-section-nav">
-          <SectionNav
-            sections={sections}
-            activeSection={activeSection}
-            onSectionClick={setActiveSection}
+    <section className="certificate-detail" ref={certificateDetailRef}>
+      <Helmet>
+        <title>{certificate.title} | {certificate.issuer}</title>
+        <meta
+          name="description"
+          content={`Details about the ${certificate.title} certificate issued by ${certificate.issuer}.`}
+        />
+        <meta property="og:title" content={`${certificate.title} | ${certificate.issuer}`} />
+        <meta
+          property="og:description"
+          content={certificate.description}
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`https://ngo-tran-bao-thach.vercel.app/certificates/${certificateId}`} />
+        <meta property="og:image" content={certificate.issuerImage} />
+      </Helmet>
+      <div id="certificate" className="certificate-detail-header">
+        <div className="certificate-issuer-logo">
+          <img
+            loading="lazy"
+            src={certificate.issuerImage}
+            alt={`${certificate.issuer} Logo`}
+            className="issuer-logo"
           />
         </div>
+        <h1 className="certificate-title">{certificate.title}</h1>
+        <h2 className="issuer-name">{certificate.issuer}</h2>
+        <div className="certificate-meta">
+          <span className="issue-date">Issued: {certificate.issueDate}</span>
+        </div>
       </div>
-    </>
+
+      <div className="certificate-detail-content">
+        <div id="description" className="certificate-description">
+          <h3>Certificate Description</h3>
+          <p>{certificate.description}</p>
+        </div>
+
+        {certificate.skillsLearned && certificate.skillsLearned.length > 0 && (
+          <div id="skills" className="certificate-skills">
+            <h3>Skills Learned</h3>
+            <div className="skills-grid">
+              {certificate.skillsLearned.map((skill, index) => (
+                <div className="skill-tag-item" key={index}>
+                  <div className="skill-tag">{skill}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Section Navigation */}
+      <div className="certificate-section-nav">
+        <SectionNav
+          sections={sections}
+          activeSection={activeSection}
+          onSectionClick={setActiveSection}
+        />
+      </div>
+    </section>
   );
 };
 

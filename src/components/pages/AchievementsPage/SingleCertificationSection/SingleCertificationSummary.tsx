@@ -37,7 +37,7 @@ const SingleCertificationSummary: React.FC<ISingleCertificationSectionProps> = (
         <h4 className="single-certification-title">{certificateInformation.title}</h4>
         <p className="single-certification-issuer">{certificateInformation.issuer}</p>
         <div className="read-more-button">
-          <Link to={fullPath}>Read More</Link>
+          <Link aria-label={`Read more about ${certificateInformation.title}`} to={fullPath}>Read More</Link>
         </div>
       </div>
     </div>

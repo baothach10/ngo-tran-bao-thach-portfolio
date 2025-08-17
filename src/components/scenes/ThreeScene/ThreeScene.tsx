@@ -35,7 +35,6 @@ const ThreeScene = () => {
 
   useGSAP(() => {
     const threeSceneContainer = document.querySelector('.three-scene') as HTMLDivElement;
-    console.log(threeSceneContainer);
     // Animate to opacity 1 when component mounts
     gsap.from(threeSceneContainer, {
       opacity: 0,
