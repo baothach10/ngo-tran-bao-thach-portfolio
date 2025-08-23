@@ -146,10 +146,15 @@ export function useThree({
     webglDiv.appendChild(webglRenderer.domElement);
     mountRef.current.appendChild(webglDiv);
     webglRenderer.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight);
+    webglRenderer.domElement.style.width = '100%';
+    webglRenderer.domElement.style.height = '100%';
+    webglRenderer.domElement.style.position = 'relative';
     if (hasSeparateCSSRenderer) {
       // CSS2D Renderer (for HTML elements)
       const cssRenderer = new CSS2DRenderer();
       cssRenderer.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight);
+      cssRenderer.domElement.style.width = '100%';
+      cssRenderer.domElement.style.height = '100%';
       cssRenderer.domElement.style.position = 'absolute';
       cssRenderer.domElement.style.top = '0';
       cssRenderer.domElement.classList.add('css2d-renderer');
@@ -199,11 +204,12 @@ export function useThree({
 
     // Resize window
     window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
+      if (!mountRef.current) return;
+      camera.aspect = mountRef.current.clientWidth / mountRef.current.clientHeight;
       camera.updateProjectionMatrix();
-      webglRenderer.setSize(window.innerWidth, window.innerHeight);
+      webglRenderer.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight);
       if (hasSeparateCSSRenderer && cssRenderer)
-        cssRenderer.setSize(window.innerWidth, window.innerHeight);
+        cssRenderer.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight);
     });
 
     const handleMouseMove = (event: MouseEvent) => {

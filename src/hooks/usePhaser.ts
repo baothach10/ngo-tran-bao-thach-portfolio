@@ -60,7 +60,6 @@ export function usePhaser(config: TPhaserSceneConfig) {
       backgroundColor = 0x2c3e50,
       physics,
       audio,
-      isPixelArt = false,
       isTransparent = false
     } = configRef.current;
 
@@ -80,21 +79,17 @@ export function usePhaser(config: TPhaserSceneConfig) {
           noAudio: audio?.isAudioDisabled || false
         },
         render: {
-          pixelArt: isPixelArt,
+          pixelArt: false,
           antialias: true,
+          antialiasGL: true,
           transparent: isTransparent,
           clearBeforeRender: true,
           failIfMajorPerformanceCaveat: false,
-          powerPreference: isMobile ? 'high-performance' : 'default',
-          // Mobile-specific WebGL optimizations
-          batchSize: isMobile ? 2000 : 4096,
           mipmapFilter: 'NEAREST'
         },
         scale: {
           mode: Scale.FIT,
           autoCenter: Scale.CENTER_BOTH,
-          // Mobile-specific scale settings
-          fullscreenTarget: mountRef.current
         },
         input: {
           mouse: true,
@@ -103,12 +98,6 @@ export function usePhaser(config: TPhaserSceneConfig) {
         // Mobile performance optimizations
         disableContextMenu: true,
         banner: false,
-        fps: {
-          target: 60,
-          deltaHistory: isMobile ? 5 : 10,
-          panicMax: isMobile ? 60 : 120,
-          smoothStep: isMobile ? false : true
-        }
       };
 
       // Add debug configuration if in debug mode

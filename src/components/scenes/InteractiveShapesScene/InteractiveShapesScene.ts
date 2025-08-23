@@ -84,6 +84,8 @@ export class InteractiveShapesScene extends Scene {
     this.createShapeTexture('square_empty', emptyShapeSize);
     this.createShapeTexture('hexagon_empty', emptyShapeSize);
     this.createShapeTexture('rectangle_empty', emptyShapeSize);
+
+    this.load.font('Roboto', '/assets/fonts/Roboto-ExtraBold.ttf');
   }
 
   private createShapeTexture(name: string, size: number) {
@@ -368,7 +370,8 @@ export class InteractiveShapesScene extends Scene {
       color: '#000000', // Black text initially
       align: 'center',
       wordWrap: { width: this.shapeSize * 0.8 }, // Allow text wrapping within shape bounds
-      lineSpacing: -2 // Tighter line spacing for multi-line text
+      lineSpacing: -2, // Tighter line spacing for multi-line text,
+      resolution: window.devicePixelRatio || 1 // High DPI support,
     });
 
     // Center the text
