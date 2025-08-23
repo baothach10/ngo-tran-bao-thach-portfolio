@@ -24,7 +24,7 @@ interface IAward {
 
 const AwardsSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [awards, setAwards] = useState<{ [key: string]: IAward }>(
+  const [awards] = useState<{ [key: string]: IAward }>(
     awardsData as { [key: string]: IAward }
   );
 
@@ -108,8 +108,8 @@ const AwardsSection: React.FC = () => {
                   {award.achievements && renderAchievements(award.achievements)}
                 </div>
               </div>
-              <Link aria-label='Read More' to={`/achievements/awards/${awardId}`} className="awards-read-more-button">
-                Read More
+              <Link aria-label={`Explore ${award.title}`} to={`/achievements/awards/${awardId}`} className="awards-read-more-button">
+                Explore {award.title}
               </Link>
             </div>
           ))}
