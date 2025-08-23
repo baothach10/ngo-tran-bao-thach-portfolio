@@ -39,14 +39,14 @@ const CertificationCategorySection: React.FC<ICertificationCategorySectionProps>
   const canvasWidth = isMobileDevice()
     ? document.documentElement.clientWidth > 500
       ? 500
-      : 220
+      : 320
     : document.documentElement.clientWidth > 1600 ? 1000 : 600;
   const canvasHeight = isMobileDevice()
     ? document.documentElement.clientWidth > 500
       ? 500
-      : 300
+      : 550
     : document.documentElement.clientWidth > 1600 ? 600 : 600;
-  const shapeSize = isMobileDevice() ? (document.documentElement.clientWidth > 500 ? 70 : 40) : 100;
+  const shapeSize = isMobileDevice() ? (document.documentElement.clientWidth > 500 ? 70 : 65) : 80;
 
   // GSAP ScrollTrigger animations for internal elements
   useGSAP(() => {

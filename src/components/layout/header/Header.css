@@ -145,9 +145,6 @@
   height: 80px;
   z-index: 9;
   overflow: hidden;
-  box-shadow:
-    0 0 20px rgba(255, 255, 255, 0.4),
-    0 0 40px rgba(255, 255, 255, 0.2);
   background-color: #000;
   animation:
     border-transform 7s linear infinite,
@@ -246,10 +243,7 @@
   top: 50%;
   right: 50%;
   transform: translate(50%, -50%);
-  box-shadow:
-    0 0 40px rgba(255, 255, 255, 0.6),
-    0 0 80px rgba(255, 255, 255, 0.3),
-    0 0 120px rgba(255, 255, 255, 0.15);
+  animation: border-transform 7s linear infinite;
   width: 200%;
   height: 200%;
   transition:
@@ -297,7 +291,7 @@
 }
 
 .nav-mobile ul .active a {
-  color: #66fcf1;
+  color: #999999;
   text-decoration: underline;
 }
 

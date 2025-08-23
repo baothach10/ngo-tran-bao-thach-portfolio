@@ -82,15 +82,14 @@
   gap: 1rem;
   display: flex;
   flex-direction: column;
+  text-align: left;
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+
+@media (max-width: 1024px) {
   .personal-information-container {
     grid-template-columns: 1fr;
-  }
-
-  .personal-information-text h2 {
   }
 
   .personal-information-image {
@@ -107,7 +106,8 @@
 
   .personal-information-text-wrapper {
     position: relative;
-    width: 80%;
+    width: 70%;
+    text-align: center;
   }
 }
 
@@ -139,4 +139,3 @@
     text-align: center;
   }
 }
-

@@ -334,9 +334,7 @@ export class InteractiveShapesScene extends Scene {
     }
 
     // Set Matter.js specific properties
-    shape.setMass(PhaserMath.FloatBetween(0.8, 1.5));
-    shape.setFriction(0.3);
-    shape.setFrictionAir(0.02);
+    shape.setMass(PhaserMath.FloatBetween(0.8, 1));
     shape.setBounce(PhaserMath.FloatBetween(0.3, 0.8));
   }
 
@@ -346,32 +344,47 @@ export class InteractiveShapesScene extends Scene {
     index: number
   ): GameObjects.Text {
     // Calculate font size based on shape size and text length
-    const baseSize = this.shapeSize * 0.25; // Reduced from 0.3 to 0.25 for better fit
+    const baseSize = this.shapeSize * (isMobileDevice() ? 0.15 : 0.25); // Reduced from 0.3 to 0.25 for better fit
     const textLength = text.length;
 
     // Adjust font size based on text length for better readability
     let fontSize: number;
-    if (textLength <= 2) {
-      fontSize = Math.max(10, Math.floor(baseSize)); // Short text like "JS", "A", "🚀"
-    } else if (textLength <= 4) {
-      fontSize = Math.max(9, Math.floor(baseSize * 0.9)); // Medium text like "HTML", "CSS"
-    } else if (textLength <= 6) {
-      fontSize = Math.max(8, Math.floor(baseSize * 0.75)); // Longer text like "React", "Python"
-    } else if (textLength <= 10) {
-      fontSize = Math.max(7, Math.floor(baseSize * 0.65)); // Long text like "JavaScript", "PostgreSQL"
+    if (isMobileDevice()) {
+      if (textLength <= 2) {
+        fontSize = Math.max(10, Math.floor(baseSize)); // Short text like "JS", "A", "🚀"
+      } else if (textLength <= 4) {
+        fontSize = Math.max(2, Math.floor(baseSize * 0.9)); // Medium text like "HTML", "CSS"
+      } else if (textLength <= 6) {
+        fontSize = Math.max(4, Math.floor(baseSize * 0.75)); // Longer text like "React", "Python"
+      } else if (textLength <= 10) {
+        fontSize = Math.max(0.5, Math.floor(baseSize * 0.5)); // Long text like "JavaScript", "PostgreSQL"
+      } else {
+        fontSize = Math.max(0.4, Math.floor(baseSize * 0.4)); // Very long text
+      }
     } else {
-      fontSize = Math.max(6, Math.floor(baseSize * 0.5)); // Very long text
+      if (textLength <= 2) {
+        fontSize = Math.max(10, Math.floor(baseSize)); // Short text like "JS", "A", "🚀"
+      } else if (textLength <= 4) {
+        fontSize = Math.max(9, Math.floor(baseSize * 0.9)); // Medium text like "HTML", "CSS"
+      } else if (textLength <= 6) {
+        fontSize = Math.max(8, Math.floor(baseSize * 0.75)); // Longer text like "React", "Python"
+      } else if (textLength <= 10) {
+        fontSize = Math.max(7, Math.floor(baseSize * 0.65)); // Long text like "JavaScript", "PostgreSQL"
+      } else {
+        fontSize = Math.max(6, Math.floor(baseSize * 0.5)); // Very long text
+      }
     }
 
     // Create text object with black text initially using Roboto font
     const textObject = this.add.text(shape.x, shape.y, text, {
       fontSize: `${fontSize}px`,
-      fontFamily: 'Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif',
+      fontFamily: 'Roboto',
+      padding: isMobileDevice() ? { top: 1, bottom: 1 } : { top: 0.5, bottom: 0.5 }, // Added padding
       color: '#000000', // Black text initially
       align: 'center',
-      wordWrap: { width: this.shapeSize * 0.8 }, // Allow text wrapping within shape bounds
-      lineSpacing: -2, // Tighter line spacing for multi-line text,
-      resolution: window.devicePixelRatio || 1 // High DPI support,
+      wordWrap: { width: isMobileDevice() ? this.shapeSize * 0.4 : this.shapeSize * 1 }, // Allow text wrapping within shape bounds
+      lineSpacing: 0.5, // Tighter line spacing for multi-line text
+      resolution: window.devicePixelRatio || 1 // High DPI support
     });
 
     // Center the text
@@ -388,7 +401,11 @@ export class InteractiveShapesScene extends Scene {
     // Update text position to match shape
     textObject.setPosition(shape.x, shape.y);
     textObject.setRotation(shape.rotation);
-    textObject.setScale(shape.scaleX, shape.scaleY);
+    if (isMobileDevice())
+      textObject.setScale(
+        shape.scaleX * window.devicePixelRatio,
+        shape.scaleY * window.devicePixelRatio
+      );
   }
 
   private changeShapeColor(shape: Phaser.Physics.Matter.Sprite, isHovered: boolean) {
@@ -407,7 +424,8 @@ export class InteractiveShapesScene extends Scene {
       if (textObject) {
         textObject.setStyle({
           color: '#ffffff',
-          fontFamily: 'Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif'
+          fontFamily: 'Roboto',
+          scale: window.devicePixelRatio ? window.devicePixelRatio : 1
         });
       }
     } else {
@@ -421,7 +439,8 @@ export class InteractiveShapesScene extends Scene {
       if (textObject) {
         textObject.setStyle({
           color: '#000000',
-          fontFamily: 'Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif'
+          fontFamily: 'Roboto',
+          scale: window.devicePixelRatio ? window.devicePixelRatio : 1
         });
       }
     }
@@ -506,7 +525,7 @@ export class InteractiveShapesScene extends Scene {
     });
 
     // Start gradual shape creation after a small delay to ensure scene is ready
-    this.time.delayedCall(50, () => {
+    this.time.delayedCall(100, () => {
       this.createShapesForAllLabels();
     });
   }
@@ -537,7 +556,7 @@ export class InteractiveShapesScene extends Scene {
     const deltaRotation = Math.abs(currentPos.rotation - lastPos.rotation);
 
     return (
-      deltaX > this.POSITION_THRESHOLD || deltaY > this.POSITION_THRESHOLD || deltaRotation > 0.1
+      deltaX > this.POSITION_THRESHOLD || deltaY > this.POSITION_THRESHOLD || deltaRotation > 0.05
     ); // ~5.7 degrees
   }
 
