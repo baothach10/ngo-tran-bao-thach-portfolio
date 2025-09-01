@@ -7,16 +7,20 @@
       "thumbnail": "/assets/images/aimockinterview1.webp",
       "endDate": "Sep 2025",
       "type": "Personal Project",
-      "description": "Designed and developed a full-stack SaaS Next.js app for practicing interviews with AI-generated questions, resume analysis, and interactive AI avatars. Powered by Convex, Clerk, Google Gemini, HeyGen, and GSAP for a seamless, engaging experience.",
+      "description": "Designed and developed a full-stack SaaS Next.js app for practicing interviews with AI-generated questions & customized feedbacks, resume analysis, and interactive AI avatars. Powered by Convex, Clerk, Google Gemini, HeyGen, and GSAP for a seamless, engaging experience.",
       "roles": [
         "UI/UX Designer",
-        "Fullstack Developer",
+        "Fullstack Engineer",
         "AI Engineer",
+        "LLM Engineer",
+        "Prompt Engineer",
         "End-to-End Tester",
-        "SaaS Developer"
+        "SaaS Engineer"
       ],
       "techStack": [
         "Next.js",
+        "TailwindCSS",
+        "Python",
         "Convex",
         "Clerk",
         "Google Gemini",
@@ -24,7 +28,6 @@
         "GSAP",
         "Shadcn UI",
         "Aceternity UI",
-        "Python",
         "Pipedream",
         "ImageKit",
         "ArcJet"
