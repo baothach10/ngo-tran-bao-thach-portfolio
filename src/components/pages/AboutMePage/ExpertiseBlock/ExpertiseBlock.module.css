@@ -33,6 +33,10 @@
   }
 }
 
+.description {
+  font-weight: 300;
+}
+
 .blurry {
   position: absolute;
   width: 100%;
@@ -58,7 +62,7 @@
 
 .tool {
   position: relative;
-
+  font-weight: 300;
   border: 1px white solid;
   border-radius: 10px;
 }
