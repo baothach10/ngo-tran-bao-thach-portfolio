@@ -7,12 +7,12 @@
       "thumbnail": "/assets/images/aimockinterview1.webp",
       "endDate": "Sep 2025",
       "type": "Personal Project",
-      "description": "Designed and developed a full-stack SaaS Next.js app for practicing interviews with AI-generated questions & customized feedbacks, resume analysis, and interactive AI avatars. Powered by Convex, Clerk, Google Gemini, HeyGen, and GSAP for a seamless, engaging experience.",
+      "description": "The AI Mock Interview Project is a SaaS and full-stack AI application designed to help users excel in job interviews. Built with Next.js, Convex, Clerk, Google Gemini, HeyGen, GSAP, Shadcn UI, Aceternity UI, Python, Pipedream, ImageKit, and ArcJet, it features two RAG pipelines: one parses resumes using Python and generates 15 tailored questions and answers via Google Gemini, while the other retrieves conversation history from Convex to provide feedback, suggestions, and ratings. With secure authentication (Clerk), interactive AI avatars (HeyGen), smooth animations (GSAP), and secure resume storage (ImageKit), it delivers a seamless, engaging experience for career preparation.",
       "roles": [
         "UI/UX Designer",
         "Fullstack Engineer",
         "AI Engineer",
-        "LLM Engineer",
+        "RAG Engineer",
         "Prompt Engineer",
         "End-to-End Tester",
         "SaaS Engineer"
@@ -21,6 +21,7 @@
         "Next.js",
         "TailwindCSS",
         "Python",
+        "RAG Application",
         "Convex",
         "Clerk",
         "Google Gemini",
@@ -71,22 +72,24 @@
       ],
       "liveLink": "https://github.com/baothach10/ai-mock-interview",
       "responsibilities": [
-        "Designed and developed the full-stack architecture using Next.js and Convex",
-        "Implemented secure OAuth authentication and subscription management with Clerk",
-        "Integrated Google Gemini for AI-powered interview question and answer generation",
-        "Built resume analysis functionality using Python for text parsing and processing",
-        "Developed interactive AI avatar feature with HeyGen for realistic interview practice",
-        "Created smooth animations and transitions using GSAP with Shadcn UI and Aceternity UI",
-        "Set up secure resume storage and retrieval with ImageKit and Convex",
-        "Implemented real-time feedback and performance tracking using Convex and Next.js",
-        "Configured rate limiting for API endpoints with ArcJet for security",
-        "Automated AI workflows with Pipedream for seamless pipeline integration",
-        "Wrote and maintained API routes and server components in Next.js",
-        "Designed responsive and accessible UI components with Shadcn UI and Aceternity UI",
-        "Managed database schemas and queries in Convex for efficient data handling",
-        "Ensured deployment and scalability on Vercel with optimized SSG configuration",
-        "Tested and debugged features to ensure a seamless user experience",
-        "Maintained project documentation and environment setup for local development"
+        [
+          "Architected a full-stack SaaS application with Next.js and Convex for scalable RAG workflows",
+          "Implemented secure OAuth authentication and subscription management using Clerk and Next.js",
+          "Developed RAG pipeline for resume parsing with Python, storing data in Convex for retrieval",
+          "Integrated Google Gemini to analyze retrieved resume data and generate 15 tailored questions and answers",
+          "Built RAG pipeline for conversation history retrieval from Convex, generating feedback and ratings with Google Gemini",
+          "Automated AI workflows with Pipedream to streamline resume parsing and feedback generation pipelines",
+          "Created interactive AI avatar feature with HeyGen, leveraging Convex for user-specific data retrieval",
+          "Designed smooth UI animations using GSAP, Shadcn UI, and Aceternity UI for enhanced user experience",
+          "Set up secure resume storage with ImageKit, integrated with Convex for metadata management",
+          "Implemented real-time feedback display using Convex, Next.js, and Shadcn UI components",
+          "Configured API rate limiting with ArcJet to secure Next.js API endpoints for RAG pipelines",
+          "Developed server-side rendering with Next.js App Router for SEO-friendly question and feedback display",
+          "Designed Convex database schemas for storing resume data and conversation history for RAG retrieval",
+          "Optimized Vercel deployment with static site generation for fast, scalable performance",
+          "Tested and debugged RAG pipelines to ensure accurate data retrieval and generation",
+          "Documented environment setup and API key configuration for Gemini, Pipedream, and other services"
+        ]
       ]
     },
     "portfolio": {
