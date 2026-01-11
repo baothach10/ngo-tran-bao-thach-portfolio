@@ -691,12 +691,12 @@
     },
     "ielts-academic-certificate-70-overall": {
       "category": "languages-and-soft-skills",
-      "title": "IELTS Academic Certificate - 7.0 Overall",
+      "title": "IELTS Academic Certificate - 8.0 Overall",
       "issuer": "British Council",
       "issuerImage": "/assets/images/britishCouncil.svg",
-      "issueDate": "Sep 2020",
+      "issueDate": "Nov 2025",
       "description": "Demonstrates English language proficiency at an academic level, with strong performance across listening, reading, writing, and speaking skills, as assessed by the British Council.",
-      "skillsLearned": ["8.0 Listening", "7.0 Reading", "6.5 Writing", "7.0 Speaking"]
+      "skillsLearned": ["8.5 Listening", "8.5 Reading", "7.5 Writing", "7.5 Speaking"]
     }
   },
   "certificationCategories": {
